@@ -1,51 +1,51 @@
 import Link from "next/link"
 
 import ParallaxImage from "@/components/parallaxImage"
+import { formatPrice } from "@/lib/catalog"
 
 type ShowcasePair = {
-  /** Overlay link shown on the lifestyle image. */
   label: string
   href: string
-  /** Full-bleed lifestyle photo (model wearing the piece). */
   lifestyleImage: string
   lifestyleAlt: string
-  /** Single product shot on the light panel. */
   product: {
     name: string
-    price: string
+    href?: string
+    price?: string
     image: string
     alt: string
-    /** Optional looping video; replaces the still image when present. */
     video?: string
   }
-  /** Flip the panes so the product sits on the left (editorial rhythm). */
+
   reverse?: boolean
 }
 
 const pairs: ShowcasePair[] = [
   {
-    label: "Collares de Oro",
-    href: "/products?categoria=collares",
+    label: "Collares",
+    href: "/products/collares/medalla-grabada",
     lifestyleImage: "/img/collares/collar-medalla-grabada.webp",
-    lifestyleAlt: "Collar de oro con colgante rectangular y corazón sobre seda clara",
+    lifestyleAlt:
+      "Collar Medalla Grabada: medalla rectangular en relieve sobre cadena fina de oro",
     product: {
-      name: "Gargantilla Aurora",
-      price: "320,00 €",
+      name: "Pulseras",
+      href: "/products/pulseras",
       image: "/img/collares/collar-corazon-filigrana.webp",
-      alt: "Gargantilla Aurora de oro sobre fondo claro",
+      alt: "Cadenas finas, perlas y tréboles para apilar en la muñeca",
       video: "/video/collar.mp4",
     },
   },
   {
-    label: "Pendientes de Fiesta",
-    href: "/products?categoria=pendientes",
+    label: "Pendientes",
+    href: "/products/pendientes",
     lifestyleImage: "/img/pendientes/aretes-hero.webp",
-    lifestyleAlt: "Modelo con pendientes de perla y oro a la luz del sol",
+    lifestyleAlt: "Modelo con pendientes de nácar y oro a la luz del sol",
     product: {
-      name: "Pendientes Solsticio",
-      price: "260,00 €",
+      name: "Aretes Pera",
+      href: "/products/pendientes/aretes-pera",
+      price: formatPrice(6),
       image: "/img/pendientes/aretes-pera.webp",
-      alt: "Pendientes Solsticio de oro sobre fondo claro",
+      alt: "Aretes Pera: cristal facetado en forma de pera colgando de un arete de oro",
     },
     reverse: true,
   },
@@ -96,7 +96,7 @@ export default function PairedShowcase() {
           {/* Product pane — video fills the panel; still image stays centered */}
           {pair.product.video ? (
             <Link
-              href={pair.href}
+              href={pair.product.href ?? pair.href}
               className="group relative block min-h-[58vh] overflow-hidden bg-sand lg:min-h-170 focus-visible:outline-none"
             >
               <video
@@ -121,7 +121,7 @@ export default function PairedShowcase() {
             </Link>
           ) : (
             <Link
-              href={pair.href}
+              href={pair.product.href ?? pair.href}
               className="group relative block min-h-[58vh] overflow-clip bg-sand lg:min-h-170 focus-visible:outline-none"
             >
               <ParallaxImage
@@ -129,7 +129,6 @@ export default function PairedShowcase() {
                 alt={pair.product.alt}
                 className="absolute inset-0"
               />
-              {/* Soft wash so the name + price read over the photo */}
               <div
                 aria-hidden="true"
                 className="absolute inset-0 bg-linear-to-t from-stone-950/55 via-stone-950/10 to-transparent"
@@ -138,9 +137,11 @@ export default function PairedShowcase() {
                 <h3 className="text-base font-normal tracking-wide text-cream transition-colors group-hover:text-gold-bright">
                   {pair.product.name}
                 </h3>
-                <p className="mt-2 text-xl italic text-gold-bright">
-                  {pair.product.price}
-                </p>
+                {pair.product.price && (
+                  <p className="mt-2 text-xl italic text-gold-bright">
+                    {pair.product.price}
+                  </p>
+                )}
               </div>
             </Link>
           )}

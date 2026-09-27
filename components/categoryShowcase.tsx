@@ -28,13 +28,13 @@ const categories: Category[] = [
   {
     name: "Pulseras",
     tagline: "Eslabones y cadenas que se llevan a diario",
-    image: "/img/pulseras/pulsera-esposas.webp",
+    image: "/img/pulseras/pulsera-trebol-negro.webp",
     href: "/products/pulseras",
   },
   {
     name: "Brazaletes",
     tagline: "Piezas rígidas pensadas para durar años",
-    image: "/img/pulseras/pulsera-eslabones.webp",
+    image: "/img/brazaletes/brazalete-charms-corazon.webp",
     href: "/products/brazaletes",
   },
 ];

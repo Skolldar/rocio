@@ -32,7 +32,6 @@ const columns: FooterColumn[] = [
       { label: "Más Vendidos", href: "/products/mas-vendidos" },
       { label: "Para Regalo", href: "/products/para-regalo" },
       { label: "Guía de Regalos", href: "/regalos" },
-      { label: "Atelier de Oro", href: "/products" },
     ],
   },
   {
@@ -74,7 +73,6 @@ export default function Footer() {
       </h2>
 
       <div className="mx-auto max-w-400 px-8 py-16 lg:py-20">
-        {/* Newsletter — the wide opening band */}
         <div className="flex flex-col gap-8 border-b border-white/10 pb-12 lg:flex-row lg:items-end lg:justify-between lg:pb-16">
           <div className="max-w-xl">
             <p className="text-[0.72rem] font-medium uppercase tracking-[0.32em] text-gold-bright">
