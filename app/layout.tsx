@@ -1,11 +1,29 @@
 import type { Metadata } from "next";
+import { Elms_Sans, Google_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
+const elmsSans = Elms_Sans({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  variable: "--font-elms-sans",
+  adjustFontFallback: false,
+  fallback: ["system-ui", "sans-serif"],
+});
+
+const googleSans = Google_Sans({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  axes: ["opsz"],
+  variable: "--font-google-sans",
+  adjustFontFallback: false,
+  fallback: ["system-ui", "sans-serif"],
+});
+
 export const metadata: Metadata = {
   title: "Luxgirl",
-  description: "Jewerly store",
+  description: "Joyería contemporánea hecha a mano en oro de 18 quilates.",
 };
 
 export default function RootLayout({
@@ -14,19 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin=""
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang="es" className={`${elmsSans.variable} ${googleSans.variable}`}>
       <body className="bg-stone-200 antialiased" suppressHydrationWarning>
         <Navbar />
         {children}

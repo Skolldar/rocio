@@ -55,7 +55,7 @@ export default function PairedShowcase() {
   return (
     <section
       aria-label="Colecciones destacadas"
-      className="w-full bg-background font-[Elms_Sans,system-ui,sans-serif]"
+      className="w-full bg-background"
     >
       {pairs.map((pair) => (
         <div
@@ -82,14 +82,14 @@ export default function PairedShowcase() {
               className="absolute inset-0 bg-linear-to-r from-stone-950/45 via-stone-950/10 to-transparent transition-opacity duration-500 group-hover:from-stone-950/55"
             />
             <span className="absolute left-[8%] top-1/2 -translate-y-1/2">
-              <span className="inline-block pb-2 text-sm font-medium uppercase tracking-[0.32em] text-[#f5f0e8] transition-colors duration-300 group-hover:border-[#f0c869] group-hover:text-[#f0c869] sm:text-base">
+              <span className="inline-block pb-2 text-sm font-medium uppercase tracking-[0.32em] text-cream transition-colors duration-300 group-hover:border-gold-bright group-hover:text-gold-bright sm:text-base">
                 {pair.label}
               </span>
             </span>
             {/* Keyboard focus ring on the whole pane */}
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute inset-3 rounded-sm ring-[#f0c869] ring-offset-0 transition group-focus-visible:ring-2"
+              className="pointer-events-none absolute inset-3 rounded-sm ring-gold-bright ring-offset-0 transition group-focus-visible:ring-2"
             />
           </Link>
 
@@ -97,7 +97,7 @@ export default function PairedShowcase() {
           {pair.product.video ? (
             <Link
               href={pair.href}
-              className="group relative block min-h-[58vh] overflow-hidden bg-[#f3efe8] lg:min-h-170 focus-visible:outline-none"
+              className="group relative block min-h-[58vh] overflow-hidden bg-sand lg:min-h-170 focus-visible:outline-none"
             >
               <video
                 src={pair.product.video}
@@ -115,14 +115,14 @@ export default function PairedShowcase() {
                 aria-hidden="true"
                 className="absolute inset-0 bg-linear-to-t from-stone-950/40 via-transparent to-transparent"
               />
-              <h3 className="absolute bottom-8 left-0 right-0 text-center text-base font-normal tracking-wide text-[#f5f0e8] transition-colors group-hover:text-[#f0c869]">
+              <h3 className="absolute bottom-8 left-0 right-0 text-center text-base font-normal tracking-wide text-cream transition-colors group-hover:text-gold-bright">
                 {pair.product.name}
               </h3>
             </Link>
           ) : (
             <Link
               href={pair.href}
-              className="group relative block min-h-[58vh] overflow-hidden bg-[#f3efe8] lg:min-h-170 focus-visible:outline-none"
+              className="group relative block min-h-[58vh] overflow-hidden bg-sand lg:min-h-170 focus-visible:outline-none"
             >
               <ParallaxImage
                 src={pair.product.image}
@@ -135,10 +135,10 @@ export default function PairedShowcase() {
                 className="absolute inset-0 bg-linear-to-t from-stone-950/55 via-stone-950/10 to-transparent"
               />
               <div className="absolute bottom-8 left-0 right-0 text-center">
-                <h3 className="text-base font-normal tracking-wide text-[#f5f0e8] transition-colors group-hover:text-[#f0c869]">
+                <h3 className="text-base font-normal tracking-wide text-cream transition-colors group-hover:text-gold-bright">
                   {pair.product.name}
                 </h3>
-                <p className="mt-2 font-[Elms_Sans,system-ui,sans-serif] text-xl italic text-[#f0c869]">
+                <p className="mt-2 text-xl italic text-gold-bright">
                   {pair.product.price}
                 </p>
               </div>

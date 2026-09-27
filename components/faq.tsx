@@ -67,7 +67,7 @@ export default function Faq() {
   return (
     <section
       aria-labelledby="faq-titulo"
-      className="w-full border-t border-border bg-background font-[Elms_Sans,system-ui,sans-serif]"
+      className="w-full border-t border-border bg-background"
     >
       <h2 id="faq-titulo" className="sr-only">
         Preguntas frecuentes
@@ -89,7 +89,7 @@ export default function Faq() {
                     aria-expanded={open}
                     aria-controls={panelId}
                     onClick={() => setOpenIndex(open ? null : index)}
-                    className="flex w-full cursor-pointer items-center justify-between gap-6 py-7 text-left transition-colors hover:text-[#b88a2e] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b88a2e] focus-visible:ring-offset-4 focus-visible:ring-offset-background"
+                    className="flex w-full cursor-pointer items-center justify-between gap-6 py-7 text-left transition-colors hover:text-gold-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-deep focus-visible:ring-offset-4 focus-visible:ring-offset-background"
                   >
                     <span className="text-lg font-normal leading-snug tracking-[0.01em] text-foreground sm:text-xl">
                       {item.question}

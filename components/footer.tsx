@@ -1,13 +1,7 @@
-// Footer — site-wide closing section for Luxgirl.
-// Matches the brand idiom: dark stone (#0c0a09 / stone-950) ground, gold
-// accents (#f0c869), Cormorant serif headings, Montserrat labels, Spanish copy.
-// Mirrors the dark NewSeason section so the page closes on a consistent note.
 
 import Link from "next/link"
 import { ArrowUpRight, Mail } from "lucide-react"
 
-// lucide-react dropped its brand glyphs, so the social marks are inline
-// Simple Icons paths (24×24, filled with currentColor).
 type BrandIcon = (props: { className?: string }) => React.ReactElement
 
 const InstagramIcon: BrandIcon = ({ className }) => (
@@ -83,7 +77,7 @@ export default function Footer() {
   return (
     <footer
       aria-labelledby="footer-titulo"
-      className="w-full bg-stone-950 text-stone-50 font-[Elms_Sans,system-ui,sans-serif]"
+      className="w-full bg-stone-950 text-stone-50"
     >
       <h2 id="footer-titulo" className="sr-only">
         Pie de página
@@ -93,10 +87,10 @@ export default function Footer() {
         {/* Newsletter — the wide opening band */}
         <div className="flex flex-col gap-8 border-b border-white/10 pb-12 lg:flex-row lg:items-end lg:justify-between lg:pb-16">
           <div className="max-w-xl">
-            <p className="text-[0.72rem] font-medium uppercase tracking-[0.32em] text-[#f0c869]">
+            <p className="text-[0.72rem] font-medium uppercase tracking-[0.32em] text-gold-bright">
               Lista Luxgirl
             </p>
-            <h3 className="mt-3 font-[Elms_Sans,system-ui,sans-serif] text-[clamp(1.875rem,4vw,2.75rem)] font-semibold leading-[1.05] tracking-tight text-stone-50">
+            <h3 className="mt-3 text-[clamp(1.875rem,4vw,2.75rem)] font-semibold leading-[1.05] tracking-tight text-stone-50">
               Únete y recibe lo nuevo primero
             </h3>
             <p className="mt-3 max-w-md text-sm font-light leading-relaxed text-stone-300">
@@ -125,12 +119,12 @@ export default function Footer() {
                 required
                 autoComplete="email"
                 placeholder="tu@correo.com"
-                className="h-12 w-full rounded-full border border-white/15 bg-white/5 pl-11 pr-4 text-sm text-stone-50 placeholder:text-stone-400 transition-colors focus:border-[#f0c869] focus:outline-none focus:ring-2 focus:ring-[#f0c869]/40"
+                className="h-12 w-full rounded-full border border-white/15 bg-white/5 pl-11 pr-4 text-sm text-stone-50 placeholder:text-stone-400 transition-colors focus:border-gold-bright focus:outline-none focus:ring-2 focus:ring-gold-bright/40"
               />
             </div>
             <button
               type="submit"
-              className="inline-flex h-12 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full bg-[#f0c869] px-6 text-xs font-semibold uppercase tracking-[0.16em] text-stone-950 transition-colors hover:bg-[#d8a948] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f0c869] focus-visible:ring-offset-2 focus-visible:ring-offset-stone-950"
+              className="inline-flex h-12 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full bg-gold-bright px-6 text-xs font-semibold uppercase tracking-[0.16em] text-stone-950 transition-colors hover:bg-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-bright focus-visible:ring-offset-2 focus-visible:ring-offset-stone-950"
             >
               Suscribirme
               <ArrowUpRight className="size-4" />
@@ -144,9 +138,9 @@ export default function Footer() {
           <div className="col-span-2 sm:col-span-3 lg:col-span-1">
             <Link
               href="/"
-              className="inline-block rounded-sm font-[Elms_Sans,system-ui,sans-serif] text-3xl font-semibold uppercase tracking-[0.22em] text-stone-50 transition-colors hover:text-[#f0c869] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f0c869] focus-visible:ring-offset-2 focus-visible:ring-offset-stone-950"
+              className="inline-block rounded-sm text-3xl font-semibold uppercase tracking-[0.22em] text-stone-50 transition-colors hover:text-gold-bright focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-bright focus-visible:ring-offset-2 focus-visible:ring-offset-stone-950"
             >
-              Lux<span className="text-[#f0c869]">girl</span>
+              Lux<span className="text-gold-bright">girl</span>
             </Link>
             <p className="mt-4 max-w-xs text-sm font-light leading-relaxed text-stone-400">
               Joyería contemporánea hecha a mano en oro de 18 quilates, para
@@ -163,7 +157,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="grid size-10 cursor-pointer place-items-center rounded-full border border-white/15 text-stone-300 transition-colors hover:border-[#f0c869] hover:text-[#f0c869] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f0c869] focus-visible:ring-offset-2 focus-visible:ring-offset-stone-950"
+                    className="grid size-10 cursor-pointer place-items-center rounded-full border border-white/15 text-stone-300 transition-colors hover:border-gold-bright hover:text-gold-bright focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-bright focus-visible:ring-offset-2 focus-visible:ring-offset-stone-950"
                   >
                     <Icon className="size-4.5" />
                   </a>
@@ -175,7 +169,7 @@ export default function Footer() {
           {/* Link columns */}
           {columns.map((column) => (
             <nav key={column.title} aria-label={column.title}>
-              <p className="text-[0.7rem] font-medium uppercase tracking-[0.24em] text-[#f0c869]">
+              <p className="text-[0.7rem] font-medium uppercase tracking-[0.24em] text-gold-bright">
                 {column.title}
               </p>
               <ul className="mt-5 space-y-3">
@@ -183,7 +177,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="rounded-sm text-sm font-light text-stone-300 transition-colors hover:text-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f0c869] focus-visible:ring-offset-2 focus-visible:ring-offset-stone-950"
+                      className="rounded-sm text-sm font-light text-stone-300 transition-colors hover:text-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-bright focus-visible:ring-offset-2 focus-visible:ring-offset-stone-950"
                     >
                       {link.label}
                     </Link>
@@ -204,7 +198,7 @@ export default function Footer() {
               <li key={link.label}>
                 <Link
                   href={link.href}
-                  className="rounded-sm text-xs font-light text-stone-400 transition-colors hover:text-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f0c869]"
+                  className="rounded-sm text-xs font-light text-stone-400 transition-colors hover:text-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-bright"
                 >
                   {link.label}
                 </Link>

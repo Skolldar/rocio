@@ -1,13 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-
-/* ------------------------------------------------------------------ *
- * Luxgirl — Shopping cart ("Mi Pedido")
- * Premium dark + gold aesthetic. Cormorant headings / Montserrat body.
- * Self-contained mock state until the cart is wired to Prisma + a real
- * product source. Swap `INITIAL_ITEMS` / handlers for server state later.
- * ------------------------------------------------------------------ */
+import Image from "next/image";
 
 type CartItem = {
   id: string;
@@ -75,13 +69,13 @@ export default function OrderSummary() {
   const toFreeShipping = Math.max(0, SHIPPING_THRESHOLD - subtotal);
 
   return (
-    <aside className="font-['Elms_Sans',system-ui,sans-serif] flex flex-col bg-[#0c0a09] text-[#f5f0e8] md:h-screen md:w-72 lg:w-96">
+    <aside className=" flex flex-col bg-ink text-cream md:h-screen md:w-72 lg:w-96">
       {/* Header */}
       <header className="flex items-baseline justify-between border-b border-white/10 px-6 py-6">
-        <h2 className="font-['Elms_Sans',system-ui,sans-serif] text-3xl font-semibold tracking-wide">
+        <h2 className=" text-3xl font-semibold tracking-wide">
           Mi Pedido
         </h2>
-        <span className="text-xs uppercase tracking-[0.2em] text-[#f0c869]">
+        <span className="text-xs uppercase tracking-[0.2em] text-gold-bright">
           {itemCount} {itemCount === 1 ? "pieza" : "piezas"}
         </span>
       </header>
@@ -94,18 +88,18 @@ export default function OrderSummary() {
           <div className="px-6 pt-5">
             <p className="text-[0.7rem] leading-relaxed text-white/60">
               {freeShipping ? (
-                <span className="text-[#f0c869]">Envío gratuito incluido</span>
+                <span className="text-gold-bright">Envío gratuito incluido</span>
               ) : (
                 <>
                   Te faltan{" "}
-                  <span className="text-[#f0c869]">{eur.format(toFreeShipping)}</span>{" "}
+                  <span className="text-gold-bright">{eur.format(toFreeShipping)}</span>{" "}
                   para el envío gratuito
                 </>
               )}
             </p>
-            <div className="mt-2 h-[3px] w-full overflow-hidden rounded-full bg-white/10">
+            <div className="mt-2 h-0.75 w-full overflow-hidden rounded-full bg-white/10">
               <div
-                className="h-full rounded-full bg-gradient-to-r from-[#d8a948] to-[#f0c869] transition-[width] duration-500 ease-out"
+                className="h-full rounded-full bg-linear-to-r from-gold to-gold-bright transition-[width] duration-500 ease-out"
                 style={{
                   width: `${Math.min(100, (subtotal / SHIPPING_THRESHOLD) * 100)}%`,
                 }}
@@ -120,16 +114,18 @@ export default function OrderSummary() {
                 key={item.id}
                 className="group flex gap-3 rounded-xl p-3 transition-colors duration-200 hover:bg-white/5"
               >
-                <img
+                <Image
                   src={item.image}
                   alt={item.name}
-                  className="h-16 w-16 flex-shrink-0 rounded-lg object-cover ring-1 ring-white/10"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16 shrink-0 rounded-lg object-cover ring-1 ring-white/10"
                 />
 
                 <div className="flex min-w-0 flex-1 flex-col">
                   <div className="flex items-start justify-between gap-2">
                     <div className="min-w-0">
-                      <p className="font-['Elms_Sans',system-ui,sans-serif] truncate text-lg font-semibold leading-tight">
+                      <p className=" truncate text-lg font-semibold leading-tight">
                         {item.name}
                       </p>
                       <p className="truncate text-[0.7rem] text-white/50">
@@ -140,7 +136,7 @@ export default function OrderSummary() {
                       type="button"
                       onClick={() => removeItem(item.id)}
                       aria-label={`Quitar ${item.name} del pedido`}
-                      className="flex-shrink-0 cursor-pointer rounded-md p-1 text-white/40 opacity-0 transition-colors duration-200 hover:text-[#f0c869] focus-visible:opacity-100 focus-visible:outline-2 focus-visible:outline-[#f0c869] group-hover:opacity-100"
+                      className="shrink-0 cursor-pointer rounded-md p-1 text-white/40 opacity-0 transition-colors duration-200 hover:text-gold-bright focus-visible:opacity-100 focus-visible:outline-2 focus-visible:outline-gold-bright group-hover:opacity-100"
                     >
                       <TrashIcon />
                     </button>
@@ -156,7 +152,7 @@ export default function OrderSummary() {
                       >
                         <MinusIcon />
                       </StepperButton>
-                      <span className="min-w-[1.25rem] text-center text-xs tabular-nums">
+                      <span className="min-w-5 text-center text-xs tabular-nums">
                         {item.quantity}
                       </span>
                       <StepperButton
@@ -167,7 +163,7 @@ export default function OrderSummary() {
                       </StepperButton>
                     </div>
 
-                    <span className="font-['Elms_Sans',system-ui,sans-serif] text-lg font-semibold text-[#f0c869]">
+                    <span className=" text-lg font-semibold text-gold-bright">
                       {eur.format(item.price * item.quantity)}
                     </span>
                   </div>
@@ -187,17 +183,17 @@ export default function OrderSummary() {
                 <dt>Envío</dt>
                 <dd className="tabular-nums">
                   {shipping === 0 ? (
-                    <span className="text-[#f0c869]">Gratis</span>
+                    <span className="text-gold-bright">Gratis</span>
                   ) : (
                     eur.format(shipping)
                   )}
                 </dd>
               </div>
               <div className="mt-3 flex items-baseline justify-between border-t border-white/10 pt-3">
-                <dt className="font-['Elms_Sans',system-ui,sans-serif] text-xl font-semibold">
+                <dt className=" text-xl font-semibold">
                   Total
                 </dt>
-                <dd className="font-['Elms_Sans',system-ui,sans-serif] text-2xl font-semibold tabular-nums text-[#f0c869]">
+                <dd className=" text-2xl font-semibold tabular-nums text-gold-bright">
                   {eur.format(total)}
                 </dd>
               </div>
@@ -205,7 +201,7 @@ export default function OrderSummary() {
 
             <button
               type="button"
-              className="mt-5 flex w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-gradient-to-br from-[#f0c869] to-[#d8a948] px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#1c1206] shadow-[0_8px_30px_rgba(216,169,72,0.28)] transition-all duration-200 hover:shadow-[0_10px_38px_rgba(216,169,72,0.45)] hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f0c869] motion-reduce:transition-none"
+              className="mt-5 flex w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-linear-to-br from-gold-bright to-gold px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.12em] text-gold-ink shadow-gold transition-all duration-200 hover:shadow-gold-lg hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-bright motion-reduce:transition-none"
             >
               Finalizar compra
               <ArrowIcon />
@@ -226,10 +222,10 @@ export default function OrderSummary() {
 function EmptyCart() {
   return (
     <div className="flex flex-1 flex-col items-center justify-center px-8 py-16 text-center">
-      <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/10 text-[#f0c869]">
+      <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/10 text-gold-bright">
         <BagIcon />
       </div>
-      <p className="font-['Elms_Sans',system-ui,sans-serif] mt-5 text-xl font-semibold">
+      <p className=" mt-5 text-xl font-semibold">
         Tu pedido está vacío
       </p>
       <p className="mt-1 max-w-[24ch] text-xs leading-relaxed text-white/50">
@@ -256,7 +252,7 @@ function StepperButton({
       aria-label={label}
       onClick={onClick}
       disabled={disabled}
-      className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-full text-white/80 transition-colors duration-200 hover:text-[#f0c869] focus-visible:outline-2 focus-visible:outline-[#f0c869] disabled:cursor-not-allowed disabled:text-white/20"
+      className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-full text-white/80 transition-colors duration-200 hover:text-gold-bright focus-visible:outline-2 focus-visible:outline-gold-bright disabled:cursor-not-allowed disabled:text-white/20"
     >
       {children}
     </button>
@@ -296,7 +292,7 @@ const TrashIcon = () => (
 );
 
 const ArrowIcon = () => (
-  <svg {...iconBase} stroke="#1c1206" aria-hidden="true">
+  <svg {...iconBase} className="text-gold-ink" aria-hidden="true">
     <path d="M5 12h14M13 6l6 6-6 6" />
   </svg>
 );

@@ -49,21 +49,18 @@ export default function CategoryShowcase() {
       {/* Centered title block */}
       <div className="mx-auto mb-12 max-w-2xl text-center sm:mb-16">
         <p
-          className="mb-4 text-xs font-medium uppercase tracking-[0.32em] text-[#b88a2e]"
-          style={{ fontFamily: "var(--font-elms-sans), system-ui, sans-serif" }}
+          className="mb-4 text-xs font-medium uppercase tracking-[0.32em] text-gold-deep"
         >
           Selección actual
         </p>
         <h2
           id="shop-by-category-title"
           className="text-4xl font-semibold leading-none tracking-tight text-foreground sm:text-5xl"
-          style={{ fontFamily: "var(--font-elms-sans), system-ui, sans-serif" }}
         >
           Compra por categoría
         </h2>
         <p
           className="mx-auto mt-5 max-w-md text-sm font-light leading-relaxed text-muted-foreground"
-          style={{ fontFamily: "var(--font-elms-sans), system-ui, sans-serif" }}
         >
           Anillos, collares, pendientes y pulseras en oro y plata, para el día a día o para regalar.
         </p>
@@ -91,20 +88,18 @@ export default function CategoryShowcase() {
             {/* Legibility gradient */}
             <div
               aria-hidden="true"
-              className="absolute inset-0 bg-linear-to-t from-[#0c0a09]/85 via-[#0c0a09]/20 to-transparent"
+              className="absolute inset-0 bg-linear-to-t from-ink/85 via-ink/20 to-transparent"
             />
 
             {/* Label */}
             <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
               <h3
-                className="mt-1.5 text-2xl font-semibold leading-tight text-[#f5f0e8] sm:text-[1.65rem]"
-                style={{ fontFamily: "var(--font-elms-sans), system-ui, sans-serif" }}
+                className="mt-1.5 text-2xl font-semibold leading-tight text-cream sm:text-[1.65rem]"
               >
                 {category.name}
               </h3>
               <p
-                className="mt-0.5 text-xs font-light text-[#f5f0e8]/70"
-                style={{ fontFamily: "var(--font-elms-sans), system-ui, sans-serif" }}
+                className="mt-0.5 text-xs font-light text-cream/70"
               >
                 {category.tagline}
               </p>

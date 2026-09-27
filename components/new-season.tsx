@@ -24,28 +24,28 @@ const pieces: SeasonPiece[] = [
     category: "Anillos",
     price: "320 €",
     image: "/img/season-anillo.webp",
-    href: "/products?categoria=anillos&coleccion=novedades",
+    href: "/products/anillos?orden=novedades",
   },
   {
     name: "Vendimia",
     category: "Collares",
     price: "480 €",
     image: "/img/season-collar-1.webp",
-    href: "/products?categoria=collares&coleccion=novedades",
+    href: "/products/collares?orden=novedades",
   },
   {
     name: "Ámbar",
     category: "Pendientes",
     price: "260 €",
     image: "/img/season-aretes.webp",
-    href: "/products?categoria=pendientes&coleccion=novedades",
+    href: "/products/pendientes?orden=novedades",
   },
   {
     name: "Bruma",
     category: "Pulseras",
     price: "210 €",
     image: "/img/season-pulsera.webp",
-    href: "/products?categoria=pulseras&coleccion=novedades",
+    href: "/products/pulseras?orden=novedades",
   },
   {
     name: "Eclipse",
@@ -59,7 +59,7 @@ const pieces: SeasonPiece[] = [
     category: "Collares",
     price: "390 €",
     image: "/img/season-collar-2.webp",
-    href: "/products?categoria=collares&coleccion=novedades",
+    href: "/products/collares?orden=novedades",
   },
 ]
 
@@ -70,18 +70,18 @@ export default function NewSeason() {
       className="w-full bg-background text-foreground"
     >
       <div className="mx-auto max-w-400 px-8 py-10">
-        <Carousel opts={{ align: "start" }} className="font-[Elms_Sans,system-ui,sans-serif]">
-          {/* Section header — arrows live here so they never overflow the bleed */}
+        <Carousel opts={{ align: "start" }} className="">
+
           <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-[0.72rem] font-medium uppercase tracking-[0.32em] text-[#b88a2e]">
+              <p className="text-[0.72rem] font-medium uppercase tracking-[0.32em] text-gold-deep">
                 Nueva Temporada
               </p>
               <h2
                 id="nueva-temporada-titulo"
-                className="mt-3 font-[Elms_Sans,system-ui,sans-serif] text-[clamp(2.25rem,5vw,3.75rem)] font-semibold leading-[1.02] tracking-tight text-foreground"
+                className="mt-3 text-xs font-semibold leading-[1.02] tracking-tight text-foreground"
               >
-                Los favoritos del <span className="text-[#b88a2e]">verano</span>
+                Los favoritos del <span className="text-gold-deep">verano</span>
               </h2>
               <p className="mt-4 max-w-[46ch] text-[0.95rem] font-light leading-relaxed text-muted-foreground">
                 Piezas ligeras para los días de sol: oro cálido y piedras
@@ -92,11 +92,11 @@ export default function NewSeason() {
             <div className="flex items-center gap-3">
               <CarouselPrevious
                 aria-label="Pieza anterior"
-                className="static left-auto right-auto top-auto h-11 w-11 translate-x-0 translate-y-0 border-border bg-transparent text-foreground hover:border-[#b88a2e] hover:bg-[#b88a2e] hover:text-white focus-visible:ring-[#b88a2e] focus-visible:ring-offset-background disabled:opacity-40"
+                className="static left-auto right-auto top-auto h-11 w-11 translate-x-0 translate-y-0 border-border bg-transparent text-foreground hover:border-gold-deep hover:bg-gold-deep hover:text-white focus-visible:ring-gold-deep focus-visible:ring-offset-background disabled:opacity-40"
               />
               <CarouselNext
                 aria-label="Pieza siguiente"
-                className="static left-auto right-auto top-auto h-11 w-11 translate-x-0 translate-y-0 border-border bg-transparent text-foreground hover:border-[#b88a2e] hover:bg-[#b88a2e] hover:text-white focus-visible:ring-[#b88a2e] focus-visible:ring-offset-background disabled:opacity-40"
+                className="static left-auto right-auto top-auto h-11 w-11 translate-x-0 translate-y-0 border-border bg-transparent text-foreground hover:border-gold-deep hover:bg-gold-deep hover:text-white focus-visible:ring-gold-deep focus-visible:ring-offset-background disabled:opacity-40"
               />
             </div>
           </div>
@@ -112,7 +112,7 @@ export default function NewSeason() {
                   href={piece.href}
                   className="group block rounded-xl focus-visible:outline-none"
                 >
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-foreground/5 ring-1 ring-border transition duration-300 group-hover:ring-[#b88a2e]/50 group-focus-visible:ring-2 group-focus-visible:ring-[#b88a2e]">
+                  <div className="relative aspect-4/5 overflow-hidden rounded-xl bg-foreground/5 ring-1 ring-border transition duration-300 group-hover:ring-gold-deep/50 group-focus-visible:ring-2 group-focus-visible:ring-gold-deep">
                     <div
                       aria-hidden="true"
                       className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-[1.05] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
@@ -127,17 +127,17 @@ export default function NewSeason() {
                     </span>
                     <span
                       aria-hidden="true"
-                      className="absolute bottom-4 right-4 grid size-10 translate-y-2 place-items-center rounded-full bg-[#b88a2e] text-white opacity-0 shadow-lg transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 motion-reduce:transition-none"
+                      className="absolute bottom-4 right-4 grid size-10 translate-y-2 place-items-center rounded-full bg-gold-deep text-white opacity-0 shadow-lg transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 motion-reduce:transition-none"
                     >
                       <ArrowUpRight className="size-5" />
                     </span>
                   </div>
 
                   <div className="mt-4 flex items-baseline justify-between gap-3">
-                    <h3 className="font-[Elms_Sans,system-ui,sans-serif] text-2xl font-semibold leading-tight text-foreground transition-colors group-hover:text-[#b88a2e]">
+                    <h3 className="text-2xl font-semibold leading-tight text-foreground transition-colors group-hover:text-gold-deep">
                       {piece.name}
                     </h3>
-                    <span className="shrink-0 text-sm font-medium tracking-wide text-[#b88a2e]">
+                    <span className="shrink-0 text-sm font-medium tracking-wide text-gold-deep">
                       {piece.price}
                     </span>
                   </div>
@@ -150,7 +150,7 @@ export default function NewSeason() {
           <div className="mt-12 border-t border-border pt-6">
             <Link
               href="/products?coleccion=novedades"
-              className="group inline-flex items-center gap-2 rounded-sm text-sm font-medium uppercase tracking-[0.18em] text-foreground transition-colors hover:text-[#b88a2e] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b88a2e] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              className="group inline-flex items-center gap-2 rounded-sm text-sm font-medium uppercase tracking-[0.18em] text-foreground transition-colors hover:text-gold-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-deep focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               Ver toda la colección
               <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none" />
