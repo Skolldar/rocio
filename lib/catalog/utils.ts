@@ -1,4 +1,4 @@
-import type { Material, Product } from "./types"
+import type { Material, Product, ProductDetail } from "./types"
 
 export const materialLabels: Record<Material, string> = {
   oro: "Baño de oro",
@@ -50,4 +50,13 @@ const priceFormatter = new Intl.NumberFormat("es-ES", {
 
 export function formatPrice(price: number) {
   return priceFormatter.format(price)
+}
+
+export function getProductDetails(product: Product): ProductDetail[] {
+  return [
+    { label: "Material", value: materialLabels[product.material] },
+    { label: "Referencia", value: `LX-${product.slug.toUpperCase()}` },
+    { label: "Presentación", value: "Estuche de firma Luxgirl" },
+    ...(product.details ?? []),
+  ]
 }

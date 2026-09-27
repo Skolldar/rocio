@@ -1,15 +1,17 @@
 import Image from "next/image"
+import Link from "next/link"
 
 import { formatPrice, materialLabels, type Product } from "@/lib/catalog"
 
 type ProductCardProps = {
   product: Product
+  href: string
   priority?: boolean
 }
 
-export default function ProductCard({ product, priority = false }: ProductCardProps) {
+export default function ProductCard({ product, href, priority = false }: ProductCardProps) {
   return (
-    <article className="group">
+    <article className="group relative">
       <div className="relative aspect-4/5 overflow-hidden rounded-xl bg-foreground/5 ring-1 ring-border transition duration-300 group-hover:ring-gold-deep/50">
         <Image
           src={product.image}
@@ -29,9 +31,14 @@ export default function ProductCard({ product, priority = false }: ProductCardPr
       <div className="mt-4 flex items-start justify-between gap-3">
         <div className="min-w-0">
           <h3 className="text-lg font-semibold leading-tight text-foreground transition-colors group-hover:text-gold-deep sm:text-xl">
-            {product.name}
+            <Link
+              href={href}
+              className="rounded-sm after:absolute after:inset-0 after:rounded-xl focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-gold-deep focus-visible:after:ring-offset-4"
+            >
+              {product.name}
+            </Link>
           </h3>
-          <p className="mt-1 text-xs uppercase tracking-[0.16em] text-muted-foreground">
+          <p className="mt-1 text-xs uppercase font-medium text-muted-foreground">
             {materialLabels[product.material]}
           </p>
         </div>

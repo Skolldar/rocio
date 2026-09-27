@@ -12,6 +12,8 @@ export const collares: Category = {
       slug: "medalla-grabada",
       name: "Medalla Grabada",
       description: "Medalla rectangular en relieve sobre cadena fina.",
+      story:
+        "Una medalla rectangular con un dibujo en relieve, colgada de una cadena fina. Tiene el tamaño de una uña y se lleva pegada al cuello o un poco más abajo, según el cierre. Se puede combinar con otra cadena más larga sin que se enreden.",
       price: 42,
       material: "oro",
       image: "/img/collares/collar-medalla-grabada.webp",
@@ -21,6 +23,8 @@ export const collares: Category = {
       slug: "trebol-de-nacar",
       name: "Trébol de Nácar",
       description: "Trébol de nácar sobre una cadena de plata.",
+      story:
+        "Un trébol de cuatro hojas en nácar blanco sobre cadena de plata. El nácar es natural, así que cada trébol tiene un tono ligeramente distinto. Es un collar para todos los días que también sirve como regalo cuando no sabes muy bien qué regalar.",
       price: 36,
       material: "plata",
       image: "/img/collares/collar-trebol-de-nacar.webp",
@@ -31,6 +35,8 @@ export const collares: Category = {
       slug: "gardenia",
       name: "Gardenia",
       description: "Gargantilla rígida con flor blanca de resina.",
+      story:
+        "Una gargantilla rígida, sin cadena, con una flor blanca de resina en el centro. Los pétalos son mates y la flor mide unos dos centímetros. Al ser rígida, se abre por detrás y se coloca directamente sobre el cuello. Va bien con escotes abiertos y con camisetas de cuello redondo.",
       price: 58,
       material: "oro",
       image: "/img/collares/collar-gardenia.webp",
@@ -41,6 +47,8 @@ export const collares: Category = {
       slug: "dalia",
       name: "Dalia",
       description: "Gargantilla rígida con flor nacarada.",
+      story:
+        "Gargantilla rígida con una flor nacarada de pétalos apretados, parecida a una dalia. Es la más llamativa de las gargantillas florales de la colección y la que más se lleva para salir. El nácar brilla más que la resina de la Gardenia, si dudas entre las dos.",
       price: 62,
       material: "oro",
       image: "/img/collares/collar-dalia.webp",
@@ -50,6 +58,8 @@ export const collares: Category = {
       slug: "trebol-calado",
       name: "Trébol Calado",
       description: "Trébol calado con circonita en cadena fina.",
+      story:
+        "Un trébol calado, con los bordes en metal y el centro vacío, salvo por una circonita pequeña. Cuelga de una cadena fina. Pesa muy poco y deja ver la piel a través del trébol, así que queda más ligero que los tréboles de nácar.",
       price: 39,
       material: "oro",
       image: "/img/collares/collar-trebol-calado.webp",
@@ -59,6 +69,8 @@ export const collares: Category = {
       slug: "cascada-de-treboles",
       name: "Cascada de Tréboles",
       description: "Cadena larga salpicada de tréboles de nácar.",
+      story:
+        "Una cadena larga de plata con varios tréboles de nácar repartidos a lo largo. Se puede llevar suelta, a la altura del pecho, o dar dos vueltas y usarla como collar corto. Los tréboles no están todos a la misma distancia, y eso hace que caiga de forma menos uniforme.",
       price: 55,
       material: "plata",
       image: "/img/collares/collar-cascada-de-treboles.webp",
@@ -68,6 +80,8 @@ export const collares: Category = {
       slug: "petalos",
       name: "Pétalos",
       description: "Cadena de eslabones con pétalos dorados.",
+      story:
+        "Una cadena de eslabones con pétalos dorados intercalados. Los pétalos son planos y pulidos, y captan la luz al moverse. Es un collar más de estructura que de colgante: no tiene un elemento central, sino que toda la cadena es el diseño.",
       price: 49,
       material: "oro",
       image: "/img/collares/collar-petalos.webp",
@@ -77,6 +91,8 @@ export const collares: Category = {
       slug: "doble-corazon",
       name: "Doble Corazón",
       description: "Dos cadenas con corazones esmaltados.",
+      story:
+        "Dos cadenas de distinta longitud que se ponen juntas, cada una con un corazón esmaltado. Vienen unidas por el cierre, así que no hay que combinarlas ni ajustarlas. El esmalte es de color y añade un punto que el metal solo no tiene.",
       price: 46,
       material: "oro",
       image: "/img/collares/collar-doble-corazon.webp",
@@ -87,6 +103,8 @@ export const collares: Category = {
       slug: "cristal",
       name: "Cristal",
       description: "Doble hilo transparente con gota colgante.",
+      story:
+        "Dos hilos transparentes, casi invisibles sobre la piel, con una gota de cristal colgante. Desde lejos parece que la gota flota en el cuello. Es el collar más económico de la colección y uno de los que más se repiten en pedidos.",
       price: 29,
       material: "plata",
       image: "/img/collares/collar-cristal.webp",
@@ -96,6 +114,8 @@ export const collares: Category = {
       slug: "perla-barroca",
       name: "Perla Barroca",
       description: "Perla barroca en cadena ajustable tipo lazo.",
+      story:
+        "Una perla barroca, es decir, de forma irregular, colgada de una cadena ajustable tipo lazo. Cada perla es diferente porque no son redondas ni simétricas. Se ajusta tirando de un extremo, sin cierre, y sirve tanto corto como largo.",
       price: 44,
       material: "oro",
       image: "/img/collares/collar-perla-barroca.webp",
@@ -105,6 +125,8 @@ export const collares: Category = {
       slug: "perla-y-corazon",
       name: "Perla y Corazón",
       description: "Dos vueltas: hilo de perlas y corazón dorado.",
+      story:
+        "Dos vueltas en un solo collar: un hilo de perlas pequeñas y una cadena dorada con un corazón. Las dos capas se llevan juntas y quedan a alturas distintas. Es el tipo de collar que resuelve el look sin tener que añadir nada más.",
       price: 52,
       material: "oro",
       image: "/img/collares/collar-perla-y-corazon.webp",
@@ -115,6 +137,8 @@ export const collares: Category = {
       slug: "trebol-clasico",
       name: "Trébol Clásico",
       description: "Trébol de nácar sobre cadena dorada.",
+      story:
+        "El mismo trébol de nácar que en la versión de plata, aquí sobre cadena dorada. El blanco del nácar contrasta más con el dorado que con la plata, así que se ve algo más desde lejos. Cadena fina, cierre de mosquetón.",
       price: 38,
       material: "oro",
       image: "/img/collares/collar-trebol-clasico.webp",
@@ -124,6 +148,8 @@ export const collares: Category = {
       slug: "corazon-filigrana",
       name: "Corazón Filigrana",
       description: "Colgante de corazón con filigrana.",
+      story:
+        "Un colgante de corazón hecho con hilos de metal entrelazados, al estilo de la filigrana tradicional. Se ve a través de él. Es una pieza que suele gustar a quienes prefieren joyas con algo de trabajo artesanal a la vista.",
       price: 41,
       material: "oro",
       image: "/img/collares/collar-corazon-filigrana.webp",
@@ -133,6 +159,8 @@ export const collares: Category = {
       slug: "lazo-de-perla",
       name: "Lazo de Perla",
       description: "Cadena serpiente rematada con una perla.",
+      story:
+        "Una cadena tipo serpiente, plana y flexible, que termina en una perla. La cadena brilla de forma continua, sin eslabones a la vista, y la perla queda justo en el centro. Se lleva corta.",
       price: 45,
       material: "oro",
       image: "/img/collares/collar-lazo-de-perla.webp",
@@ -143,6 +171,8 @@ export const collares: Category = {
       slug: "lirio",
       name: "Lirio",
       description: "Gargantilla rígida con flor de lirio.",
+      story:
+        "Gargantilla rígida con una flor de lirio en el centro. El lirio tiene los pétalos más largos y abiertos que la Gardenia o la Dalia, así que ocupa más espacio en el cuello. Es la gargantilla que más se usa con vestidos de tirantes.",
       price: 54,
       material: "oro",
       image: "/img/collares/collar-lirio.webp",
@@ -152,6 +182,8 @@ export const collares: Category = {
       slug: "constelacion",
       name: "Constelación",
       description: "Gargantilla de circonitas engastadas.",
+      story:
+        "Una gargantilla de circonitas engastadas en fila, sin huecos entre ellas. Es el collar con más brillo de la tienda y el de precio más alto. Para bodas, cenas y fotos con flash. Cierre ajustable en varias posiciones.",
       price: 69,
       material: "oro",
       image: "/img/collares/collar-constelacion.webp",

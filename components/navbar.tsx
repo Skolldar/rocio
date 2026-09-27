@@ -155,13 +155,10 @@ export default function Navbar() {
                             className="absolute inset-0 bg-linear-to-t from-stone-950/90 via-stone-950/40 to-transparent"
                           />
                           <span className="relative mb-1 text-[0.7rem] font-medium uppercase tracking-[0.22em] text-gold-bright">
-                            Colección
+                            New
                           </span>
                           <span className="relative text-2xl font-semibold leading-tight text-white">
-                            Atelier de Oro
-                          </span>
-                          <span className="relative mt-1 text-sm leading-snug text-stone-200">
-                            Piezas hechas a mano en oro de 18 quilates.
+                            Doble Corazón
                           </span>
                         </a>
                       </NavigationMenuLink>

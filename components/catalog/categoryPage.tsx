@@ -46,6 +46,7 @@ export default function CategoryPage({
           fill
           priority
           sizes="100vw"
+          style={{ objectPosition: category.heroPosition }}
           className="-z-10 object-cover object-center opacity-60"
         />
         <div
@@ -114,7 +115,11 @@ export default function CategoryPage({
             <ul className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-3 lg:mt-12 xl:grid-cols-4">
               {products.map((product, index) => (
                 <li key={product.slug}>
-                  <ProductCard product={product} priority={index < 4} />
+                  <ProductCard
+                    product={product}
+                    href={`/products/${category.slug}/${product.slug}`}
+                    priority={index < 4}
+                  />
                 </li>
               ))}
             </ul>
