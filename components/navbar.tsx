@@ -75,7 +75,9 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = React.useState(false)
   const pathname = usePathname()
 
-  const transparent = pathname === "/" && !scrolled && !mobileOpen
+  const hasHero =
+    pathname === "/" || categories.some((category) => category.href === pathname)
+  const transparent = hasHero && !scrolled && !mobileOpen
   const closeMobile = () => setMobileOpen(false)
 
   React.useEffect(() => {
@@ -145,7 +147,7 @@ export default function Navbar() {
                             className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
                             style={{
                               backgroundImage:
-                                "url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=640&q=80')",
+                                "url('/Users/carlapena/Desktop/rocio/img/modelos/modelo-collares-capas.webp')",
                             }}
                           />
                           <span
