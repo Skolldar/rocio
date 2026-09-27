@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 
-import { LEGAL } from "@/components/legal/legalData"
 import LegalPage, { type LegalSection } from "@/components/legal/legalPage"
+import { EMAIL, PHONE_DISPLAY } from "@/lib/contact"
 
 export const metadata: Metadata = {
   title: "Términos · Luxgirl",
@@ -93,8 +93,8 @@ const sections: LegalSection[] = [
     title: "Dudas y reclamaciones",
     content: (
       <p>
-        Escríbeme a <a href={`mailto:${LEGAL.email}`}>{LEGAL.email}</a> o llámame al{" "}
-        {LEGAL.phone}. Suelo contestar el mismo día. Si no lo resolvemos entre las dos,
+        Escríbeme a <a href={`mailto:${EMAIL}`}>{EMAIL}</a> o llámame al{" "}
+        {PHONE_DISPLAY}. Suelo contestar el mismo día. Si no lo resolvemos entre las dos,
         puedes acudir a la oficina de consumo de tu comunidad. Se aplica la ley española y
         los juzgados de tu domicilio.
       </p>

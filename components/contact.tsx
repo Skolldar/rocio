@@ -8,12 +8,7 @@ import {
   WhatsappIcon,
   YoutubeIcon,
 } from "@/components/socialIcons"
-import { whatsappUrl } from "@/lib/whatsapp"
-
-// TODO: confirm the email address before launch.
-const PHONE_DISPLAY = "+34 610 919 305"
-const PHONE_HREF = "tel:+34610919305"
-const EMAIL = "anneryssuarez@gmail.com"
+import { EMAIL, PHONE_DISPLAY, PHONE_HREF, whatsappUrl } from "@/lib/contact"
 
 type Channel = {
   icon: React.ComponentType<{ className?: string; strokeWidth?: number }>

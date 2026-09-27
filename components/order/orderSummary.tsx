@@ -11,7 +11,7 @@ import {
   useCheckout,
 } from "@/lib/checkout"
 import { cn } from "@/lib/utils"
-import { whatsappUrl } from "@/lib/whatsapp"
+import { whatsappUrl } from "@/lib/contact"
 
 const reassurances: { icon: LucideIcon; text: string }[] = [
   { icon: Wallet, text: "Pagas con Bizum, transferencia o en efectivo si quedamos en mano." },

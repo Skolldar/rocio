@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
-import { LEGAL } from "@/components/legal/legalData"
 import LegalPage, { type LegalSection } from "@/components/legal/legalPage"
+import { EMAIL } from "@/lib/contact"
 
 export const metadata: Metadata = {
   title: "Cookies · Luxgirl",
@@ -55,7 +55,7 @@ const sections: LegalSection[] = [
       <p>
         Desde los ajustes de tu navegador puedes ver, bloquear o borrar las cookies de
         cualquier web, esta incluida. Si te queda alguna duda, escríbeme a{" "}
-        <a href={`mailto:${LEGAL.email}`}>{LEGAL.email}</a>.
+        <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.
       </p>
     ),
   },
