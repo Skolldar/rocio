@@ -127,7 +127,7 @@ function WhatsappButton({
       rel="noopener noreferrer"
       onClick={onSend}
       className={cn(
-        "flex min-h-13 w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-full bg-linear-to-br from-gold-bright to-gold px-5 text-xs font-semibold uppercase tracking-[0.1em] sm:tracking-[0.14em] text-gold-ink shadow-gold transition-[filter,box-shadow] duration-200 hover:shadow-gold-lg hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-bright motion-reduce:transition-none",
+        "flex min-h-13 w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-full bg-linear-to-br from-gold-bright to-gold px-5 text-xs font-semibold uppercase tracking-widest sm:tracking-[0.14em] text-gold-ink shadow-gold transition-[filter,box-shadow] duration-200 hover:shadow-gold-lg hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-bright motion-reduce:transition-none",
         className
       )}
     >
