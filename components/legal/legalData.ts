@@ -2,12 +2,6 @@
 // TODO: completar con los datos reales antes de publicar.
 export const LEGAL = {
   brand: "Luxgirl",
-  ownerName: "[Nombre y apellidos de la titular]",
-  nif: "[NIF]",
-  address: "[Dirección postal completa]",
-  email: "anneryssuarez@gmail.com",
-  phone: "+34 610 919 305",
-  domain: "luxgirl.es",
   lastUpdated: "27 de septiembre de 2026",
 } as const
 

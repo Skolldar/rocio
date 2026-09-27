@@ -8,9 +8,9 @@ import {
   WhatsappIcon,
   YoutubeIcon,
 } from "@/components/socialIcons"
+import { whatsappUrl } from "@/lib/whatsapp"
 
 // TODO: confirm the email address before launch.
-const WHATSAPP_NUMBER = "34610919305"
 const PHONE_DISPLAY = "+34 610 919 305"
 const PHONE_HREF = "tel:+34610919305"
 const EMAIL = "anneryssuarez@gmail.com"
@@ -30,9 +30,7 @@ const channels: Channel[] = [
     label: "WhatsApp",
     value: PHONE_DISPLAY,
     description: "La forma más rápida: escríbenos y te respondemos en pocas horas.",
-    href: `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-      "¡Hola Luxgirl! Tengo una consulta sobre una joya."
-    )}`,
+    href: whatsappUrl("¡Hola Luxgirl! Tengo una consulta sobre una joya."),
     external: true,
   },
   {

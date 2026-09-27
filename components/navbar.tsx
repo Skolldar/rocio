@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/navigation-menu"
 import MobileMenu, { type NavLink } from "@/components/mobileMenu"
 import CartPreview from "@/components/cartPreview"
-import { SAMPLE_CART_ITEMS, type CartItem } from "@/lib/cart"
+import { removeFromCart, useCart } from "@/lib/cart"
 import { INSTAGRAM_URL, InstagramIcon } from "@/components/socialIcons"
 
 type Category = NavLink
@@ -77,10 +77,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = React.useState(false)
   const [mobileOpen, setMobileOpen] = React.useState(false)
   const [cartOpen, setCartOpen] = React.useState(false)
-  const [cartItems, setCartItems] = React.useState<CartItem[]>(SAMPLE_CART_ITEMS)
-  const cartCount = cartItems.reduce((sum, it) => sum + it.quantity, 0)
-  const removeCartItem = (itemId: string) =>
-    setCartItems((prev) => prev.filter((it) => it.id !== itemId))
+  const { items: cartItems, count: cartCount } = useCart()
   const cartCloseTimer = React.useRef<ReturnType<typeof setTimeout>>(undefined)
   const pathname = usePathname()
 
@@ -256,22 +253,27 @@ export default function Navbar() {
             >
               <Link
                 href="/order"
-                aria-label="Carrito de compra"
+                aria-label={cartCount > 0 ? `Carrito de compra, ${cartCount} ${cartCount === 1 ? "pieza" : "piezas"}` : "Carrito de compra"}
                 aria-controls="vista-carrito"
                 onClick={closeCart}
                 className={cn("relative grid size-10 cursor-pointer place-items-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2", iconClass)}
               >
                 <ShoppingBag className="size-5" />
-                <span className="absolute -right-0.5 -top-0.5 grid min-w-4.5 place-items-center rounded-full bg-gold px-1 text-[0.65rem] font-semibold text-stone-950">
-                  {cartCount}
-                </span>
+                {cartCount > 0 && (
+                  <span
+                    aria-hidden="true"
+                    className="absolute -right-0.5 -top-0.5 grid min-w-4.5 place-items-center rounded-full bg-gold px-1 text-[0.65rem] font-semibold tabular-nums text-stone-950"
+                  >
+                    {cartCount}
+                  </span>
+                )}
               </Link>
 
               <CartPreview
                 id="vista-carrito"
                 open={cartOpen && cartPreviewEnabled}
                 items={cartItems}
-                onRemove={removeCartItem}
+                onRemove={removeFromCart}
                 onNavigate={closeCart}
               />
             </div>

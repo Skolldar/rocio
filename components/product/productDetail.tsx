@@ -101,7 +101,16 @@ export default function ProductDetail({ category, product }: ProductDetailProps)
             </p>
 
             <div className="mt-8 border-t border-border pt-8">
-              <AddToCart productName={product.name} soldOut={soldOut} />
+              <AddToCart
+                item={{
+                  id: `${category.slug}/${product.slug}`,
+                  name: product.name,
+                  detail: materialLabels[product.material],
+                  price: product.price,
+                  image: product.image,
+                }}
+                soldOut={soldOut}
+              />
               <AskQuestion productName={product.name} />
             </div>
 

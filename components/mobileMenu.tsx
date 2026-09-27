@@ -5,6 +5,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { ArrowUpRight, ShoppingBag, User } from "lucide-react"
 
+import { useCart } from "@/lib/cart"
 import { cn } from "@/lib/utils"
 
 export type NavLink = { title: string; href: string; description: string }
@@ -35,6 +36,7 @@ export default function MobileMenu({
   categories,
   collections,
 }: MobileMenuProps) {
+  const { count: cartCount } = useCart()
   const pathname = usePathname()
 
   // Lock page scroll, close on Escape, and close if the viewport grows to desktop.
@@ -242,7 +244,7 @@ export default function MobileMenu({
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-linear-135 from-gold-bright to-gold text-[0.78rem] font-medium uppercase tracking-[0.12em] text-gold-ink shadow-gold outline-none transition-[filter] hover:brightness-107 focus-visible:ring-2 focus-visible:ring-gold-bright focus-visible:ring-offset-2 focus-visible:ring-offset-stone-950"
           >
             <ShoppingBag aria-hidden="true" className="size-4" strokeWidth={1.75} />
-            Carrito (2)
+            Carrito ({cartCount})
           </Link>
         </div>
       </div>

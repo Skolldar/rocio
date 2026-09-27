@@ -4,15 +4,16 @@ import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { Check, Minus, Plus, ShoppingBag } from "lucide-react"
 
-const MAX_QUANTITY = 10
+import { addToCart, MAX_QUANTITY, type CartItem } from "@/lib/cart"
 
 export default function AddToCart({
-  productName,
+  item,
   soldOut = false,
 }: {
-  productName: string
+  item: Omit<CartItem, "quantity">
   soldOut?: boolean
 }) {
+  const productName = item.name
   const [quantity, setQuantity] = useState(1)
   const [added, setAdded] = useState(false)
   const timer = useRef<ReturnType<typeof setTimeout>>(undefined)
@@ -39,6 +40,7 @@ export default function AddToCart({
   }
 
   const handleAdd = () => {
+    addToCart(item, quantity)
     setAdded(true)
     clearTimeout(timer.current)
     timer.current = setTimeout(() => setAdded(false), 3000)
