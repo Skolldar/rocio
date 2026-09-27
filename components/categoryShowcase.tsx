@@ -49,18 +49,18 @@ export default function CategoryShowcase() {
       {/* Centered title block */}
       <div className="mx-auto mb-12 max-w-2xl text-center sm:mb-16">
         <p
-          className="mb-4 text-xs font-medium uppercase tracking-[0.32em] text-gold-deep"
+          className="mb-3 text-xs font-medium uppercase text-gold-deep sm:text-sm"
         >
           Selección actual
         </p>
         <h2
           id="shop-by-category-title"
-          className="text-4xl font-semibold leading-none tracking-tight text-foreground sm:text-5xl"
+          className="text-4xl font-semibold text-balance text-foreground sm:text-5xl"
         >
           Compra por categoría
         </h2>
         <p
-          className="mx-auto mt-5 max-w-md text-sm font-light leading-relaxed text-muted-foreground"
+          className="mx-auto mt-4 max-w-7xl text-base leading-relaxed text-muted-foreground sm:mt-5 md:text-lg md:font-light"
         >
           Anillos, collares, pendientes y pulseras en oro y plata, para el día a día o para regalar.
         </p>
@@ -99,7 +99,7 @@ export default function CategoryShowcase() {
                 {category.name}
               </h3>
               <p
-                className="mt-0.5 text-xs font-light text-cream/70"
+                className="mt-1 text-sm leading-snug text-cream/80"
               >
                 {category.tagline}
               </p>

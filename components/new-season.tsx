@@ -74,16 +74,16 @@ export default function NewSeason() {
 
           <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="text-[0.72rem] font-medium uppercase tracking-[0.32em] text-gold-deep">
+              <p className="text-xs font-medium uppercase text-gold-deep">
                 Nueva Temporada
               </p>
               <h2
                 id="nueva-temporada-titulo"
-                className="mt-3 text-xs font-semibold leading-[1.02] tracking-tight text-foreground"
+                className="mt-3 text-4xl font-semibold text-balance text-foreground sm:text-5xl"
               >
                 Los favoritos del <span className="text-gold-deep">verano</span>
               </h2>
-              <p className="mt-4 max-w-[46ch] text-[0.95rem] font-light leading-relaxed text-muted-foreground">
+              <p className="mt-4 max-w-7xl text-base leading-relaxed text-muted-foreground sm:mt-5 md:text-lg md:font-light">
                 Piezas ligeras para los días de sol: oro cálido y piedras
                 luminosas que lucen sobre la piel.
               </p>

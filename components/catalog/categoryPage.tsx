@@ -54,7 +54,7 @@ export default function CategoryPage({
         />
 
         <div className="mx-auto flex min-h-[clamp(20rem,52vh,32rem)] max-w-400 flex-col justify-end px-8 pb-12 pt-28 sm:pb-16">
-          <nav aria-label="Ruta de navegación" className="mb-8">
+          <nav aria-label="Ruta de navegación" className="mb-auto pb-10">
             <ol className="flex items-center gap-1.5 text-xs uppercase tracking-[0.18em] text-stone-300">
               <li>
                 <Link
@@ -84,16 +84,16 @@ export default function CategoryPage({
             </ol>
           </nav>
 
-          <p className="text-[0.72rem] font-medium uppercase tracking-[0.32em] text-gold-bright">
+          <p className="text-xs font-medium uppercase text-gold-bright">
             {category.eyebrow}
           </p>
           <h1
             id="categoria-titulo"
-            className="mt-3 text-[clamp(2.75rem,7vw,5.5rem)] font-semibold leading-[0.98] tracking-tight"
+            className="mt-3 text-[clamp(2.5rem,1.5rem+5vw,5.5rem)] font-semibold text-balance"
           >
             {category.title}
           </h1>
-          <p className="mt-5 max-w-[46ch] text-[0.95rem] font-light leading-relaxed text-stone-200 sm:text-base">
+          <p className="mt-4 max-w-[46ch] text-base leading-relaxed text-stone-200 sm:mt-5 md:text-lg md:font-light">
             {category.description}
           </p>
         </div>
