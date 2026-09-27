@@ -30,13 +30,7 @@ function useOrder() {
   }
 }
 
-export default function OrderSummary({
-  sent,
-  onSend,
-}: {
-  sent: boolean
-  onSend: () => void
-}) {
+export default function OrderSummary() {
   const { checkout, subtotal, shipping, total, url } = useOrder()
 
   return (
@@ -65,23 +59,8 @@ export default function OrderSummary({
 
       {/* En móvil el botón vive en la barra fija de abajo */}
       <div className="mt-7 hidden lg:block">
-        <WhatsappButton url={url} onSend={onSend} />
+        <WhatsappButton url={url} />
       </div>
-
-      <p role="status" className="text-center text-xs text-white/65 empty:hidden lg:mt-3">
-        {sent && (
-          <>
-            ¿Ya me lo has enviado?{" "}
-            <button
-              type="button"
-              onClick={clearCart}
-              className="min-h-6 cursor-pointer rounded-sm text-gold-bright underline underline-offset-4 hover:text-cream focus-visible:outline-2 focus-visible:outline-gold-bright"
-            >
-              Vaciar carrito
-            </button>
-          </>
-        )}
-      </p>
 
       <ul className="mt-7 space-y-3 border-t border-white/15 pt-6">
         {reassurances.map(({ icon: Icon, text }) => (
@@ -95,7 +74,7 @@ export default function OrderSummary({
   )
 }
 
-export function MobileOrderBar({ onSend }: { onSend: () => void }) {
+export function MobileOrderBar() {
   const { total, url } = useOrder()
 
   return (
@@ -105,27 +84,21 @@ export function MobileOrderBar({ onSend }: { onSend: () => void }) {
           <p className="text-[0.7rem] uppercase tracking-[0.18em] text-white/60">Total</p>
           <p className="text-xl font-semibold tabular-nums text-gold-bright">{eur.format(total)}</p>
         </div>
-        <WhatsappButton url={url} onSend={onSend} className="flex-1" />
+        <WhatsappButton url={url} className="flex-1" />
       </div>
     </div>
   )
 }
 
-function WhatsappButton({
-  url,
-  onSend,
-  className,
-}: {
-  url: string
-  onSend: () => void
-  className?: string
-}) {
+const sendOrder = () => setTimeout(clearCart, 0)
+
+function WhatsappButton({ url, className }: { url: string; className?: string }) {
   return (
     <a
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={onSend}
+      onClick={sendOrder}
       className={cn(
         "flex min-h-13 w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-full bg-linear-to-br from-gold-bright to-gold px-5 text-xs font-semibold uppercase tracking-widest sm:tracking-[0.14em] text-gold-ink shadow-gold transition-[filter,box-shadow] duration-200 hover:shadow-gold-lg hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-bright motion-reduce:transition-none",
         className

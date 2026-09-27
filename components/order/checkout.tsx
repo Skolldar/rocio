@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { ArrowLeft, ShoppingBag } from "lucide-react"
@@ -15,22 +15,15 @@ import { useHydrated } from "@/lib/localStore"
 export default function Checkout() {
   const { items, count } = useCart()
   const hydrated = useHydrated()
-  const [sent, setSent] = useState(false)
-  const markSent = () => setSent(true)
   const router = useRouter()
   const hadItems = useRef(false)
 
-  // Si se vacía el carrito estando aquí (quitando piezas o con «Vaciar
-  // carrito»), no tiene sentido quedarse en el pedido: vuelve al inicio.
-  // Quien llega ya con el carrito vacío sí ve el estado vacío.
   useEffect(() => {
     if (!hydrated) return
     if (items.length > 0) hadItems.current = true
     else if (hadItems.current) router.replace("/")
   }, [hydrated, items.length, router])
 
-  // Reserva el hueco mientras se lee el carrito guardado, para no enseñar
-  // "carrito vacío" un instante.
   if (!hydrated) return <div className="min-h-[70dvh]" aria-hidden="true" />
 
   if (items.length === 0) return <EmptyCart />
@@ -63,11 +56,11 @@ export default function Checkout() {
         </div>
 
         <div className="lg:sticky lg:top-24 lg:self-start">
-          <OrderSummary sent={sent} onSend={markSent} />
+          <OrderSummary />
         </div>
       </div>
 
-      <MobileOrderBar onSend={markSent} />
+      <MobileOrderBar />
     </div>
   )
 }
