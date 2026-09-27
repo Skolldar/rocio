@@ -84,11 +84,19 @@ export default function Navbar() {
   const cartCloseTimer = React.useRef<ReturnType<typeof setTimeout>>(undefined)
   const pathname = usePathname()
 
+  // Páginas con hero oscuro: la barra empieza transparente con texto claro.
+  // Las páginas de ayuda no están aquí a propósito: su barra es siempre sólida.
   const heroPages = ["/", "/regalos", "/sobre-nosotras"]
   const hasHero =
     heroPages.includes(pathname) ||
     categories.some((category) => category.href === pathname)
   const transparent = hasHero && !scrolled && !mobileOpen
+
+  // Clases de los enlaces e iconos de la barra (siempre sobre fondo oscuro).
+  const itemClass =
+    "bg-transparent text-stone-200 hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white data-[state=open]:bg-white/10 data-[state=open]:text-white"
+  const iconClass =
+    "text-stone-200 hover:bg-white/10 hover:text-white focus-visible:ring-gold-bright"
   const closeMobile = () => setMobileOpen(false)
 
   // La vista previa no tiene sentido en /order, donde el resumen ya está visible.
@@ -128,7 +136,7 @@ export default function Navbar() {
               : "border-white/10 bg-stone-950/70 shadow-lg shadow-black/20 backdrop-blur-md backdrop-saturate-150"
         )}
       >
-        <div className="mx-auto flex h-14 max-w-400 items-center justify-between gap-4 px-8">
+        <div className="mx-auto flex h-14 max-w-400 items-center justify-between gap-4 px-5 sm:px-8">
           {/* Brand */}
           <Link
             href="/"
@@ -141,7 +149,7 @@ export default function Navbar() {
           <NavigationMenu className="hidden lg:flex">
             <NavigationMenuList className="gap-1">
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent text-stone-200 hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white data-[state=open]:bg-white/10 data-[state=open]:text-white">
+                <NavigationMenuTrigger className={itemClass}>
                   Joyería
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -160,7 +168,7 @@ export default function Navbar() {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent text-stone-200 hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white data-[state=open]:bg-white/10 data-[state=open]:text-white">
+                <NavigationMenuTrigger className={itemClass}>
                   Colecciones
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -209,10 +217,7 @@ export default function Navbar() {
                 <NavigationMenuLink asChild>
                   <Link
                     href="/regalos"
-                    className={cn(
-                      navigationMenuTriggerStyle(),
-                      "bg-transparent text-stone-200 hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white"
-                    )}
+                    className={cn(navigationMenuTriggerStyle(), itemClass)}
                   >
                     Regalos
                   </Link>
@@ -223,10 +228,7 @@ export default function Navbar() {
                 <NavigationMenuLink asChild>
                   <Link
                     href="/sobre-nosotras"
-                    className={cn(
-                      navigationMenuTriggerStyle(),
-                      "bg-transparent text-stone-200 hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white"
-                    )}
+                    className={cn(navigationMenuTriggerStyle(), itemClass)}
                   >
                     Sobre mí
                   </Link>
@@ -242,7 +244,7 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram de Luxgirl"
-              className="grid size-10 cursor-pointer place-items-center rounded-full text-stone-200 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-bright"
+              className={cn("grid size-10 cursor-pointer place-items-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2", iconClass)}
             >
               <InstagramIcon className="size-5" />
             </a>
@@ -257,7 +259,7 @@ export default function Navbar() {
                 aria-label="Carrito de compra"
                 aria-controls="vista-carrito"
                 onClick={closeCart}
-                className="relative grid size-10 cursor-pointer place-items-center rounded-full text-stone-200 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-bright"
+                className={cn("relative grid size-10 cursor-pointer place-items-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2", iconClass)}
               >
                 <ShoppingBag className="size-5" />
                 <span className="absolute -right-0.5 -top-0.5 grid min-w-4.5 place-items-center rounded-full bg-gold px-1 text-[0.65rem] font-semibold text-stone-950">
@@ -281,7 +283,7 @@ export default function Navbar() {
               aria-expanded={mobileOpen}
               aria-controls="menu-movil"
               onClick={() => setMobileOpen((open) => !open)}
-              className="grid size-10 cursor-pointer place-items-center rounded-full text-stone-200 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-bright lg:hidden"
+              className={cn("grid size-10 cursor-pointer place-items-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 lg:hidden", iconClass)}
             >
               {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
             </button>
@@ -303,12 +305,12 @@ export default function Navbar() {
 
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
+  React.ComponentPropsWithoutRef<typeof Link>
 >(({ className, title, children, ...props }, ref) => {
   return (
     <li>
       <NavigationMenuLink asChild>
-        <a
+        <Link
           ref={ref}
           className={cn(
             "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
@@ -320,7 +322,7 @@ const ListItem = React.forwardRef<
           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
             {children}
           </p>
-        </a>
+        </Link>
       </NavigationMenuLink>
     </li>
   )

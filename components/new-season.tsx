@@ -69,7 +69,7 @@ export default function NewSeason() {
       aria-labelledby="nueva-temporada-titulo"
       className="w-full bg-background text-foreground"
     >
-      <div className="mx-auto max-w-400 px-8 py-10">
+      <div className="mx-auto max-w-400 px-5 sm:px-8 py-10">
         <Carousel opts={{ align: "start" }} className="">
 
           <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
@@ -83,7 +83,7 @@ export default function NewSeason() {
               >
                 Los favoritos del <span className="text-gold-deep">verano</span>
               </h2>
-              <p className="mt-4 max-w-7xl text-base leading-relaxed text-muted-foreground sm:mt-5 md:text-lg md:font-light">
+              <p className="mt-4 max-w-7xl text-base leading-relaxed text-muted-foreground sm:mt-5 md:text-lg md:font-regular">
                 Piezas ligeras para los días de sol: oro cálido y piedras
                 luminosas que lucen sobre la piel.
               </p>
@@ -122,7 +122,7 @@ export default function NewSeason() {
                       aria-hidden="true"
                       className="absolute inset-0 bg-linear-to-t from-stone-950/70 via-stone-950/5 to-transparent"
                     />
-                    <span className="absolute left-4 top-4 rounded-full bg-stone-950/55 px-3 py-1 text-[0.62rem] font-medium uppercase tracking-[0.2em] text-stone-100 backdrop-blur-sm">
+                    <span className="absolute left-4 top-4 rounded-full bg-stone-950/55 px-3 py-1 text-[0.68rem] font-medium uppercase tracking-[0.2em] text-stone-100 backdrop-blur-sm">
                       {piece.category}
                     </span>
                     <span
@@ -150,7 +150,7 @@ export default function NewSeason() {
           <div className="mt-12 border-t border-border pt-6">
             <Link
               href="/products/novedades"
-              className="group inline-flex items-center gap-2 rounded-sm text-sm font-medium uppercase tracking-[0.18em] text-foreground transition-colors hover:text-gold-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-deep focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              className="group inline-flex min-h-11 items-center gap-2 rounded-sm text-sm font-medium uppercase tracking-[0.18em] text-foreground transition-colors hover:text-gold-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-deep focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               Ver toda la colección
               <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none" />

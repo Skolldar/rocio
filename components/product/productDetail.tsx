@@ -29,7 +29,7 @@ export default function ProductDetail({ category, product }: ProductDetailProps)
 
   return (
     <main className="w-full bg-background pt-14 text-foreground">
-      <div className="mx-auto max-w-400 px-8 pb-16 pt-8 sm:pb-24">
+      <div className="mx-auto max-w-400 px-5 sm:px-8 pb-16 pt-8 sm:pb-24">
         <nav aria-label="Ruta de navegación">
           <ol className="flex flex-wrap items-center gap-1.5 text-xs uppercase tracking-[0.18em] text-muted-foreground">
             <li>
@@ -70,14 +70,14 @@ export default function ProductDetail({ category, product }: ProductDetailProps)
                 <>
                   <div aria-hidden="true" className="absolute inset-0 bg-stone-950/45" />
                   <span className="absolute inset-x-0 bottom-0 flex justify-center pb-5 sm:pb-6">
-                    <span className="rounded-full border border-stone-100/40 bg-stone-950/70 px-4 py-1.5 text-[0.62rem] font-medium uppercase tracking-[0.2em] text-stone-100 backdrop-blur-sm">
+                    <span className="rounded-full border border-stone-100/40 bg-stone-950/70 px-4 py-1.5 text-[0.68rem] font-medium uppercase tracking-[0.2em] text-stone-100 backdrop-blur-sm">
                       Agotado
                     </span>
                   </span>
                 </>
               )}
               {product.badge && !soldOut && (
-                <span className="absolute left-4 top-4 rounded-full bg-stone-950/60 px-3 py-1 text-[0.62rem] font-medium uppercase tracking-[0.2em] text-stone-100 backdrop-blur-sm sm:left-5 sm:top-5">
+                <span className="absolute left-4 top-4 rounded-full bg-stone-950/60 px-3 py-1 text-[0.68rem] font-medium uppercase tracking-[0.2em] text-stone-100 backdrop-blur-sm sm:left-5 sm:top-5">
                   {product.badge}
                 </span>
               )}
@@ -96,7 +96,7 @@ export default function ProductDetail({ category, product }: ProductDetailProps)
               {formatPrice(product.price)}
             </p>
 
-            <p className="mt-6 max-w-5xl text-base font-light leading-relaxed text-muted-foreground">
+            <p className="mt-6 max-w-5xl text-base font-regular leading-relaxed text-muted-foreground">
               {product.story ?? product.description}
             </p>
 
@@ -105,7 +105,7 @@ export default function ProductDetail({ category, product }: ProductDetailProps)
               <AskQuestion productName={product.name} />
             </div>
 
-            <ul className="mt-8 grid gap-3 text-sm font-light text-muted-foreground sm:grid-cols-2">
+            <ul className="mt-8 grid gap-3 text-sm font-regular text-muted-foreground sm:grid-cols-2">
               <li className="flex items-center gap-3">
                 <Gift aria-hidden="true" strokeWidth={1.25} className="size-5 text-foreground" />
                 Lista para regalar, en su estuche
@@ -153,8 +153,8 @@ export default function ProductDetail({ category, product }: ProductDetailProps)
           aria-labelledby="relacionados-titulo"
           className="border-t border-border"
         >
-          <div className="mx-auto max-w-400 px-8 py-16 sm:py-20">
-            <div className="flex items-end justify-between gap-4">
+          <div className="mx-auto max-w-400 px-5 sm:px-8 py-16 sm:py-20">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <h2
                 id="relacionados-titulo"
                 className="text-[clamp(1.75rem,1.25rem+2vw,2.5rem)] font-semibold leading-tight"
@@ -163,7 +163,7 @@ export default function ProductDetail({ category, product }: ProductDetailProps)
               </h2>
               <Link
                 href={categoryPath}
-                className={`shrink-0 text-xs font-medium uppercase tracking-[0.16em] underline decoration-foreground/40 underline-offset-4 hover:decoration-gold-deep ${linkStyles}`}
+                className={`inline-flex min-h-11 w-fit shrink-0 items-center text-xs font-medium uppercase tracking-[0.16em] underline decoration-foreground/40 underline-offset-4 hover:decoration-gold-deep ${linkStyles}`}
               >
                 Ver {category.title.toLowerCase()}
               </Link>
@@ -200,7 +200,7 @@ function DetailSection({
           className="size-4 transition-transform duration-300 group-open:rotate-180 motion-reduce:transition-none"
         />
       </summary>
-      <div className="pb-6 text-sm font-light leading-relaxed text-muted-foreground">
+      <div className="pb-6 text-sm font-regular leading-relaxed text-muted-foreground">
         {children}
       </div>
     </details>

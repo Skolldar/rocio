@@ -10,9 +10,9 @@ export default function QualityGuarantee({
   return (
     <section
       aria-labelledby="sellos-titulo"
-      className={`border-y border-border bg-sand ${className}`}
+      className={`border-t border-border bg-sand ${className}`}
     >
-      <div className="mx-auto max-w-400 px-8 py-16 sm:py-20">
+      <div className="mx-auto max-w-400 px-5 sm:px-8 py-16 sm:py-20">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-medium uppercase tracking-[0.22em] text-gold-deep">
             Garantía Luxgirl

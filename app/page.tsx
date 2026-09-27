@@ -5,6 +5,7 @@ import PairedShowcase from "@/components/pairedShowcase";
 import QualityGuarantee from "@/components/qualityGuarantee";
 import ShoppingTerms from "@/components/shoppingTerms";
 import Faq from "@/components/faq";
+import Contact from "@/components/contact";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Faq />
       <ShoppingTerms />
       <QualityGuarantee />
+      <Contact />
     </>
   );
 }

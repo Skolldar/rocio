@@ -73,7 +73,7 @@ export default function Faq() {
         Preguntas frecuentes
       </h2>
 
-      <div className="mx-auto max-w-400 px-8 py-20 sm:py-24 lg:py-28">
+      <div className="mx-auto max-w-400 px-5 sm:px-8 py-20 sm:py-24 lg:py-28">
         <ul className="mx-auto max-w-7xl">
           {faqs.map((item, index) => {
             const open = openIndex === index

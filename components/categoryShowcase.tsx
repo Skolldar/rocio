@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 
 type Category = {
   name: string;
@@ -45,7 +47,7 @@ export default function CategoryShowcase() {
       aria-labelledby="shop-by-category-title"
       className="w-full bg-background"
     >
-      <div className="mx-auto max-w-400 px-8 py-10">
+      <div className="mx-auto max-w-400 px-5 sm:px-8 py-10">
       {/* Centered title block */}
       <div className="mx-auto mb-12 max-w-2xl text-center sm:mb-16">
         <p
@@ -60,7 +62,7 @@ export default function CategoryShowcase() {
           Compra por categoría
         </h2>
         <p
-          className="mx-auto mt-4 max-w-7xl text-base leading-relaxed text-muted-foreground sm:mt-5 md:text-lg md:font-light"
+          className="mx-auto mt-4 max-w-7xl text-base leading-relaxed text-muted-foreground sm:mt-5 md:text-lg md:font-regular"
         >
           Anillos, collares, pendientes y pulseras en oro y plata, para el día a día o para regalar.
         </p>
@@ -69,12 +71,13 @@ export default function CategoryShowcase() {
       {/* 5-card grid */}
       <div className="mx-auto grid max-w-7xl grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-5">
         {categories.map((category, index) => (
-          <a
+          <Link
             key={category.name}
             href={category.href}
-            className={`group relative block aspect-3/4 overflow-hidden rounded-xl border border-border bg-foreground/5 shadow-sm outline-none transition-shadow duration-300 hover:shadow-xl focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
-              // make the 5th card span both columns on the 2-col mobile layout
-              index === 4 ? "col-span-2 md:col-span-1" : ""
+            className={`group relative block overflow-hidden rounded-xl border border-border bg-foreground/5 shadow-sm outline-none transition-shadow duration-300 hover:shadow-xl focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+              // the 5th card spans both columns on the 2-col mobile layout, as a
+              // landscape banner so it doesn't tower over the others
+              index === 4 ? "col-span-2 aspect-3/2 md:col-span-1 md:aspect-3/4" : "aspect-3/4"
             }`}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -104,7 +107,7 @@ export default function CategoryShowcase() {
                 {category.tagline}
               </p>
             </div>
-          </a>
+          </Link>
         ))}
       </div>
       </div>

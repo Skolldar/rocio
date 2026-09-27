@@ -15,8 +15,13 @@ import { animateInitialTitle, animateTitleIn, animateTitleOut, splitText } from 
 declare const gsap: any;
 declare const THREE: any;
 
+
+const imageCache = new Map<string, Promise<HTMLImageElement>>();
+
 export class LuminaSliderEngine {
   private currentSlideIndex = 0;
+
+  onSlideChange?: (idx: number) => void;
   private isTransitioning = false;
   private shaderMaterial: any;
   private renderer: any;
@@ -29,6 +34,8 @@ export class LuminaSliderEngine {
   private sliderEnabled = false;
   private rafId = 0;
   private disposed = false;
+  // The auto-advance only runs while the hero is actually on screen.
+  private inView = false;
 
   private readonly slideDuration = () => SLIDER_CONFIG.settings.autoSlideSpeed as number;
   private readonly transitionDuration = () => SLIDER_CONFIG.settings.transitionDuration as number;
@@ -51,6 +58,17 @@ export class LuminaSliderEngine {
 
     document.addEventListener("visibilitychange", this.onVisibility);
     window.addEventListener("resize", this.onResize);
+  };
+
+  /** Called by the IntersectionObserver in the hook: pause off-screen, resume on-screen. */
+  setInView = (inView: boolean) => {
+    if (this.inView === inView) return;
+    this.inView = inView;
+    if (inView) {
+      if (!this.isTransitioning) this.safeStartTimer(300);
+    } else {
+      this.stopAutoSlideTimer();
+    }
   };
 
   dispose = () => {
@@ -90,6 +108,7 @@ export class LuminaSliderEngine {
     setTimeout(() => {
       titleEl.innerHTML = splitText(slides[idx].title);
       descEl.textContent = slides[idx].description;
+      this.onSlideChange?.(idx);
       animateTitleIn(idx, titleEl, descEl);
     }, 500);
   };
@@ -234,7 +253,7 @@ export class LuminaSliderEngine {
 
   private safeStartTimer = (delay = 0) => {
     this.stopAutoSlideTimer();
-    if (this.sliderEnabled && this.texturesLoaded) {
+    if (this.sliderEnabled && this.texturesLoaded && this.inView) {
       if (delay > 0) this.autoSlideTimer = setTimeout(this.startAutoSlideTimer, delay);
       else this.startAutoSlideTimer();
     }
@@ -242,21 +261,29 @@ export class LuminaSliderEngine {
 
   // --- TEXTURES & RENDERER ---
 
-  private loadImageTexture = (src: string) =>
-    new Promise<any>((resolve, reject) => {
-      const l = new THREE.TextureLoader();
-      l.setCrossOrigin("anonymous");
-      l.load(
-        src,
-        (t: any) => {
-          t.minFilter = t.magFilter = THREE.LinearFilter;
-          t.userData = { size: new THREE.Vector2(t.image.width, t.image.height) };
-          resolve(t);
-        },
-        undefined,
-        reject
-      );
-    });
+  private loadImageTexture = async (src: string) => {
+    let pending = imageCache.get(src);
+    if (!pending) {
+      pending = new Promise<HTMLImageElement>((resolve, reject) => {
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.onload = () => resolve(img);
+        img.onerror = () => reject(new Error(`Failed to load ${src}`));
+        img.src = src;
+      }).then(async (img) => {
+        await img.decode().catch(() => undefined);
+        return img;
+      });
+      imageCache.set(src, pending);
+      pending.catch(() => imageCache.delete(src));
+    }
+    const img = await pending;
+    const t = new THREE.Texture(img);
+    t.minFilter = t.magFilter = THREE.LinearFilter;
+    t.needsUpdate = true;
+    t.userData = { size: new THREE.Vector2(img.width, img.height) };
+    return t;
+  };
 
   private onResize = () => {
     if (this.renderer) {
@@ -321,15 +348,17 @@ export class LuminaSliderEngine {
     });
     this.scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), this.shaderMaterial));
 
-    for (const s of slides) {
-      try {
-        this.slideTextures.push(await this.loadImageTexture(s.media));
-      } catch {
-        console.warn("Failed texture");
-      }
-    }
+    const loads = slides.map((s) =>
+      this.loadImageTexture(s.media).catch(() => {
+        console.warn(`Failed texture: ${s.media}`);
+        return null;
+      }),
+    );
+    this.slideTextures = slides.map(() => null);
+    loads.forEach((p, i) => p.then((t) => { this.slideTextures[i] = t; }));
+    await Promise.all(loads.slice(0, 2));
     if (this.disposed) return;
-    if (this.slideTextures.length >= 2) {
+    if (this.slideTextures[0] && this.slideTextures[1]) {
       this.shaderMaterial.uniforms.uTexture1.value = this.slideTextures[0];
       this.shaderMaterial.uniforms.uTexture2.value = this.slideTextures[1];
       this.shaderMaterial.uniforms.uTexture1Size.value = this.slideTextures[0].userData.size;

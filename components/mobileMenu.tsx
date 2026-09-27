@@ -82,7 +82,7 @@ export default function MobileMenu({
         className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(ellipse_at_top,color-mix(in_srgb,var(--gold)_14%,transparent),transparent_70%)]"
       />
 
-      <div className="relative mx-auto flex w-full max-w-400 flex-1 flex-col px-8 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-8">
+      <div className="relative mx-auto flex w-full max-w-400 flex-1 flex-col px-5 sm:px-8 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-8">
         <p
           style={revealStyle(open, 0)}
           className={cn(
@@ -165,7 +165,7 @@ export default function MobileMenu({
               <ArrowUpRight aria-hidden="true" strokeWidth={1.75} className="size-4.5" />
             </span>
           </span>
-          <span className="relative mt-1 text-sm font-light leading-snug text-stone-200">
+          <span className="relative mt-1 text-sm font-regular leading-snug text-stone-200">
             Piezas de acero inoxidable con baño de oro o plata.
           </span>
         </Link>

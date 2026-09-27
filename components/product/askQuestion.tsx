@@ -31,13 +31,13 @@ export default function AskQuestion({ productName }: { productName: string }) {
 
       <div id={panelId} hidden={!open} className="mt-4 rounded-2xl bg-muted p-5 sm:p-6">
         {sent ? (
-          <p role="status" className="text-sm font-light leading-relaxed">
+          <p role="status" className="text-sm font-regular leading-relaxed">
             Gracias, hemos recibido tu pregunta sobre <strong className="font-medium">{productName}</strong>.
             Te responderemos de lunes a sábado, en horario comercial.
           </p>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-            <p className="text-sm font-light leading-relaxed text-muted-foreground">
+            <p className="text-sm font-regular leading-relaxed text-muted-foreground">
               Cuéntanos qué quieres saber sobre {productName}: tallas, materiales,
               regalos… Te respondemos por correo.
             </p>

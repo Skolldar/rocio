@@ -1,16 +1,28 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
+import Link from "next/link";
 
+import { slides } from "./lumina/slides";
 import { useLuminaSlider } from "./lumina/use-lumina-slider";
 
 export function Component() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLElement>(null);
 
-  useLuminaSlider();
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useLuminaSlider(containerRef, setActiveSlide);
 
   return (
     <main className="slider-wrapper" ref={containerRef} aria-label="Colecciones destacadas">
+      <img
+        className="slide-poster"
+        src={slides[0].media}
+        alt=""
+        aria-hidden="true"
+        decoding="async"
+        fetchPriority="high"
+      />
       <canvas className="webgl-canvas" aria-hidden="true"></canvas>
 
       <div className="slider-overlay" aria-hidden="true"></div>
@@ -29,12 +41,12 @@ export function Component() {
         <p className="slide-eyebrow">La Colección</p>
         <h1 className="slide-title" id="mainTitle"></h1>
         <p className="slide-description" id="mainDesc"></p>
-        <a className="slide-cta" href="/products">
+        <Link className="slide-cta" href={slides[activeSlide].href}>
           Explora la colección
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
             <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-        </a>
+        </Link>
       </div>
 
       <nav className="slides-navigation" id="slidesNav" aria-label="Diapositivas de la colección"></nav>

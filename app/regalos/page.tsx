@@ -101,7 +101,7 @@ export default function RegalosPage() {
           className="absolute inset-0 -z-10 bg-linear-to-r from-stone-950/90 via-stone-950/55 to-stone-950/10"
         />
 
-        <div className="mx-auto flex min-h-[clamp(22rem,60vh,36rem)] max-w-400 flex-col justify-end px-8 pb-12 pt-28 sm:pb-16">
+        <div className="mx-auto flex min-h-[clamp(22rem,60vh,36rem)] max-w-400 flex-col justify-end px-5 sm:px-8 pb-12 pt-28 sm:pb-16">
           <p className="text-xs font-medium uppercase tracking-[0.22em] text-gold-bright">
             Guía de regalos
           </p>
@@ -111,7 +111,7 @@ export default function RegalosPage() {
           >
             Regalos que se recuerdan
           </h1>
-          <p className="mt-4 max-w-lg text-base leading-relaxed text-stone-200 sm:mt-5 md:text-lg md:font-light">
+          <p className="mt-4 max-w-lg text-base leading-relaxed text-stone-200 sm:mt-5 md:text-lg md:font-regular">
             Joyas elegidas para sorprender, con estuche de firma y envoltorio
             incluido. Solo tienes que decidir a quién.
           </p>
@@ -138,7 +138,7 @@ export default function RegalosPage() {
         aria-labelledby="ocasion-titulo"
         className="scroll-mt-24"
       >
-        <div className="mx-auto max-w-400 px-8 py-20 sm:py-24">
+        <div className="mx-auto max-w-400 px-5 sm:px-8 py-20 sm:py-24">
           <div className="max-w-2xl">
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-gold-deep">
               ¿Para quién es?
@@ -149,7 +149,7 @@ export default function RegalosPage() {
             >
               Regalar por ocasión
             </h2>
-            <p className="mt-4 text-base font-light leading-relaxed text-muted-foreground">
+            <p className="mt-4 text-base font-regular leading-relaxed text-muted-foreground">
               Hemos agrupado nuestras piezas según el momento que quieres
               celebrar. Cada camino te lleva a una selección pensada para
               acertar.
@@ -161,7 +161,7 @@ export default function RegalosPage() {
               <li key={occasion.title}>
                 <Link
                   href={occasion.href}
-                  className="group relative flex aspect-4/5 flex-col justify-end overflow-hidden rounded-xl p-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-deep focus-visible:ring-offset-4"
+                  className="group relative flex aspect-4/3 flex-col justify-end overflow-hidden rounded-xl p-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-deep focus-visible:ring-offset-4 sm:aspect-4/5"
                 >
                   <Image
                     src={occasion.image}
@@ -186,7 +186,7 @@ export default function RegalosPage() {
                       />
                     </span>
                   </span>
-                  <span className="relative mt-2 text-sm font-light leading-snug text-stone-200">
+                  <span className="relative mt-2 text-sm font-regular leading-snug text-stone-200">
                     {occasion.description}
                   </span>
                 </Link>
@@ -201,7 +201,7 @@ export default function RegalosPage() {
         aria-labelledby="detalles-titulo"
         className="border-t border-border"
       >
-        <div className="mx-auto max-w-400 px-8 py-20 sm:py-24">
+        <div className="mx-auto max-w-400 px-5 sm:px-8 py-20 sm:py-24">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-2xl">
               <p className="text-xs font-medium uppercase tracking-[0.22em] text-gold-deep">
@@ -213,7 +213,7 @@ export default function RegalosPage() {
               >
                 Pequeños detalles
               </h2>
-              <p className="mt-4 text-base font-light leading-relaxed text-muted-foreground">
+              <p className="mt-4 text-base font-regular leading-relaxed text-muted-foreground">
                 {paraRegalo.description}
               </p>
             </div>
@@ -254,7 +254,7 @@ export default function RegalosPage() {
               className="object-cover"
             />
           </div>
-          <div className="flex flex-col justify-center px-8 py-16 lg:px-16 lg:py-24">
+          <div className="flex flex-col justify-center px-5 sm:px-8 py-16 lg:px-16 lg:py-24">
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-gold-bright">
               Listo para entregar
             </p>
@@ -264,7 +264,7 @@ export default function RegalosPage() {
             >
               El envoltorio también es parte del regalo
             </h2>
-            <p className="mt-5 max-w-[52ch] text-base font-light leading-relaxed text-stone-300">
+            <p className="mt-5 max-w-lg text-base font-regular leading-relaxed text-stone-300">
               Todos los pedidos salen del atelier en su estuche de firma, con
               bolsa y lazo. Si es un regalo, dínoslo al hacer el pedido y
               retiramos el precio del paquete.
@@ -280,7 +280,7 @@ export default function RegalosPage() {
                   />
                   <div>
                     <h3 className="text-base font-medium">{perk.title}</h3>
-                    <p className="mt-1 text-sm font-light leading-relaxed text-stone-300">
+                    <p className="mt-1 text-sm font-regular leading-relaxed text-stone-300">
                       {perk.description}
                     </p>
                   </div>
@@ -293,7 +293,7 @@ export default function RegalosPage() {
 
       {/* Favoritos */}
       <section aria-labelledby="favoritos-titulo">
-        <div className="mx-auto max-w-400 px-8 py-20 sm:py-24">
+        <div className="mx-auto max-w-400 px-5 sm:px-8 py-20 sm:py-24">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-2xl">
               <p className="text-xs font-medium uppercase tracking-[0.22em] text-gold-deep">
@@ -305,7 +305,7 @@ export default function RegalosPage() {
               >
                 Los regalos más repetidos
               </h2>
-              <p className="mt-4 text-base font-light leading-relaxed text-muted-foreground">
+              <p className="mt-4 text-base font-regular leading-relaxed text-muted-foreground">
                 Las piezas que más se regalan en Luxgirl. Si dudas, empieza por
                 aquí.
               </p>
@@ -337,7 +337,7 @@ export default function RegalosPage() {
         aria-labelledby="ayuda-titulo"
         className="border-t border-border bg-sand"
       >
-        <div className="mx-auto max-w-400 px-8 py-16 sm:py-20">
+        <div className="mx-auto max-w-400 px-5 sm:px-8 py-16 sm:py-20">
           <div className="mx-auto max-w-2xl text-center">
             <h2
               id="ayuda-titulo"
@@ -345,7 +345,7 @@ export default function RegalosPage() {
             >
               ¿No sabes por dónde empezar?
             </h2>
-            <p className="mt-4 text-base font-light leading-relaxed text-muted-foreground">
+            <p className="mt-4 text-base font-regular leading-relaxed text-muted-foreground">
               Cuéntanos para quién es y cómo es su estilo. Te proponemos dos o
               tres opciones para que solo tengas que elegir.
             </p>

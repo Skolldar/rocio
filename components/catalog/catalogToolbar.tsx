@@ -64,11 +64,13 @@ export default function CatalogToolbar({
 
   return (
     <div className="flex flex-col gap-6 border-b border-border pb-6 lg:flex-row lg:items-center lg:justify-between">
-      <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+      {/* On phones the filter pills scroll sideways (bleeding into the page
+          gutter) instead of wrapping their labels onto two lines. */}
+      <div className="-mx-5 flex items-center gap-x-5 gap-y-3 overflow-x-auto px-5 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 [&::-webkit-scrollbar]:hidden">
         {filters.length > 0 && (
           <nav
             aria-label="Filtrar por material"
-            className="inline-flex items-center gap-1 rounded-full border border-border bg-secondary/70 p-1"
+            className="inline-flex shrink-0 items-center gap-1 rounded-full border border-border bg-secondary/70 p-1"
           >
             {filters.map((filter) => {
               const active = filter.value === material
@@ -79,7 +81,7 @@ export default function CatalogToolbar({
                   aria-current={active ? "page" : undefined}
                   scroll={false}
                   className={cn(
-                    "inline-flex min-h-10 items-center gap-2 rounded-full px-4 text-sm transition-[background-color,color,box-shadow] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-deep focus-visible:ring-offset-2 focus-visible:ring-offset-secondary",
+                    "inline-flex min-h-10 items-center gap-2 whitespace-nowrap rounded-full px-4 text-sm transition-[background-color,color,box-shadow] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-deep focus-visible:ring-offset-2 focus-visible:ring-offset-secondary",
                     active
                       ? "bg-card text-foreground shadow-[0_1px_2px_rgb(12_10_9/0.06),0_4px_12px_rgb(12_10_9/0.06)] ring-1 ring-border"
                       : "text-muted-foreground hover:text-foreground",
@@ -103,7 +105,7 @@ export default function CatalogToolbar({
         {styleFilters.length > 0 && (
           <nav
             aria-label="Filtrar por estilo"
-            className="inline-flex items-center gap-1 rounded-full border border-border bg-secondary/70 p-1"
+            className="inline-flex shrink-0 items-center gap-1 rounded-full border border-border bg-secondary/70 p-1"
           >
             {styleFilters.map((filter) => {
               const active = filter.value === style
@@ -114,7 +116,7 @@ export default function CatalogToolbar({
                   aria-current={active ? "page" : undefined}
                   scroll={false}
                   className={cn(
-                    "inline-flex min-h-10 items-center rounded-full px-4 text-sm transition-[background-color,color,box-shadow] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-deep focus-visible:ring-offset-2 focus-visible:ring-offset-secondary",
+                    "inline-flex min-h-10 items-center whitespace-nowrap rounded-full px-4 text-sm transition-[background-color,color,box-shadow] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-deep focus-visible:ring-offset-2 focus-visible:ring-offset-secondary",
                     active
                       ? "bg-card text-foreground shadow-[0_1px_2px_rgb(12_10_9/0.06),0_4px_12px_rgb(12_10_9/0.06)] ring-1 ring-border"
                       : "text-muted-foreground hover:text-foreground",
@@ -127,7 +129,7 @@ export default function CatalogToolbar({
           </nav>
         )}
         <p
-          className="text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground"
+          className="shrink-0 whitespace-nowrap text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground"
           aria-live="polite"
         >
           <span className="tabular-nums text-foreground">{total}</span>{" "}

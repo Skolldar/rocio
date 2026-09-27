@@ -35,23 +35,24 @@ export default function ProductCard({ product, href, priority = false }: Product
           <>
             <div aria-hidden="true" className="absolute inset-0 bg-stone-950/45" />
             <span className="absolute inset-x-0 bottom-0 flex justify-center pb-4 sm:pb-5">
-              <span className="rounded-full border border-stone-100/40 bg-stone-950/70 px-3.5 py-1.5 text-[0.62rem] font-medium uppercase tracking-[0.2em] text-stone-100 backdrop-blur-sm">
+              <span className="rounded-full border border-stone-100/40 bg-stone-950/70 px-3.5 py-1.5 text-[0.68rem] font-medium uppercase tracking-[0.2em] text-stone-100 backdrop-blur-sm">
                 Agotado
               </span>
             </span>
           </>
         )}
         {product.badge && !soldOut && (
-          <span className="absolute left-3 top-3 rounded-full bg-stone-950/60 px-3 py-1 text-[0.62rem] font-medium uppercase tracking-[0.2em] text-stone-100 backdrop-blur-sm sm:left-4 sm:top-4">
+          <span className="absolute left-3 top-3 rounded-full bg-stone-950/60 px-3 py-1 text-[0.68rem] font-medium uppercase tracking-[0.2em] text-stone-100 backdrop-blur-sm sm:left-4 sm:top-4">
             {product.badge}
           </span>
         )}
       </div>
 
-      <div className="mt-4 flex items-start justify-between gap-3">
+      {/* Price drops below the name on narrow two-column grids */}
+      <div className="mt-3 flex flex-col gap-1 sm:mt-4 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
         <div className="min-w-0">
           <h3
-            className={`text-lg font-semibold leading-tight transition-colors sm:text-xl ${
+            className={`text-base font-semibold leading-tight transition-colors sm:text-xl ${
               soldOut ? "text-muted-foreground" : "text-foreground group-hover:text-gold-deep"
             }`}
           >
@@ -63,19 +64,19 @@ export default function ProductCard({ product, href, priority = false }: Product
               {soldOut && <span className="sr-only"> (agotado)</span>}
             </Link>
           </h3>
-          <p className="mt-1 text-xs uppercase font-medium text-muted-foreground">
+          <p className="mt-1 text-[0.68rem] uppercase font-medium text-muted-foreground sm:text-xs">
             {materialLabels[product.material]}
           </p>
         </div>
         <span
-          className={`shrink-0 text-sm font-medium tabular-nums tracking-wide ${
+          className={`shrink-0 text-sm font-medium tabular-nums tracking-wide sm:pt-0.5 ${
             soldOut ? "text-muted-foreground" : "text-gold-deep"
           }`}
         >
           {formatPrice(product.price)}
         </span>
       </div>
-      <p className="mt-2 hidden text-sm font-light leading-relaxed text-muted-foreground sm:block">
+      <p className="mt-2 hidden text-sm font-regular leading-relaxed text-muted-foreground sm:block">
         {product.description}
       </p>
     </article>

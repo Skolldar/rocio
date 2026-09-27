@@ -87,7 +87,7 @@ export default function SobreNosotrasPage() {
           className="absolute inset-0 -z-10 bg-linear-to-r from-stone-950/90 via-stone-950/55 to-stone-950/10"
         />
 
-        <div className="mx-auto flex min-h-[clamp(22rem,60vh,36rem)] max-w-400 flex-col justify-end px-8 pb-12 pt-28 sm:pb-16">
+        <div className="mx-auto flex min-h-[clamp(22rem,60vh,36rem)] max-w-400 flex-col justify-end px-5 sm:px-8 pb-12 pt-28 sm:pb-16">
           <p className="text-xs font-medium uppercase tracking-[0.22em] text-gold-bright">
             Sobre mí
           </p>
@@ -95,10 +95,10 @@ export default function SobreNosotrasPage() {
             id="sobre-mi-titulo"
             className="mt-3 text-[clamp(2.5rem,1.5rem+5vw,3.5rem)] font-semibold text-balance"
           >
-            Joyas hechas por una mujer, <br />
+            Joyas hechas por una mujer, <br className="hidden sm:inline" />
             para otras mujeres
           </h1>
-          <p className="mt-4 max-w-lg text-base leading-relaxed text-stone-200 sm:mt-5 md:text-lg md:font-light">
+          <p className="mt-4 max-w-lg text-base leading-relaxed text-stone-200 sm:mt-5 md:text-lg md:font-regular">
             Luxgirl es un proyecto pequeño que llevo yo sola. Piezas bonitas,
             bien hechas y pensadas para llevarlas cada día.
           </p>
@@ -107,7 +107,7 @@ export default function SobreNosotrasPage() {
 
       {/* Historia */}
       <section aria-labelledby="historia-titulo">
-        <div className="mx-auto max-w-400 px-8 py-20 sm:py-24 lg:py-28">
+        <div className="mx-auto max-w-400 px-5 sm:px-8 py-20 sm:py-24 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
               <p className="text-xs font-medium uppercase tracking-[0.22em] text-gold-deep">
@@ -120,7 +120,7 @@ export default function SobreNosotrasPage() {
                 Empecé buscando la joya que no existía
               </h2>
             </div>
-            <div className="space-y-6 text-base font-light leading-relaxed text-muted-foreground lg:col-span-7 lg:text-lg">
+            <div className="space-y-6 text-base font-regular leading-relaxed text-muted-foreground lg:col-span-7 lg:text-lg">
               <p>
                 Quería collares finos que no se enredaran, pendientes ligeros
                 para llevar todo el día y anillos que combinaran entre sí sin
@@ -163,7 +163,7 @@ export default function SobreNosotrasPage() {
         aria-labelledby="valores-titulo"
         className="border-b border-border bg-background"
       >
-        <div className="mx-auto max-w-400 px-8 py-20 sm:py-24 lg:py-28">
+        <div className="mx-auto max-w-400 px-5 sm:px-8 py-20 sm:py-24 lg:py-28">
           <div className="max-w-2xl">
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-gold-deep">
               Lo que me importa
@@ -185,7 +185,7 @@ export default function SobreNosotrasPage() {
                   className="size-7 text-gold-deep"
                 />
                 <h3 className="mt-5 text-lg font-medium">{value.title}</h3>
-                <p className="mt-3 text-sm font-light leading-relaxed text-muted-foreground">
+                <p className="mt-3 text-sm font-regular leading-relaxed text-muted-foreground">
                   {value.description}
                 </p>
               </li>
@@ -196,7 +196,7 @@ export default function SobreNosotrasPage() {
 
       {/* Recorrido */}
       <section aria-labelledby="recorrido-titulo" className="bg-sand">
-        <div className="mx-auto max-w-400 px-8 py-20 sm:py-24 lg:py-28">
+        <div className="mx-auto max-w-400 px-5 sm:px-8 py-20 sm:py-24 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-4">
               <p className="text-xs font-medium uppercase tracking-[0.22em] text-gold-deep">
@@ -230,7 +230,7 @@ export default function SobreNosotrasPage() {
                   </span>
                   <div className="sm:col-span-10">
                     <h3 className="text-xl font-semibold">{milestone.title}</h3>
-                    <p className="mt-2 max-w-[60ch] text-base font-light leading-relaxed text-muted-foreground">
+                    <p className="mt-2 max-w-[60ch] text-base font-regular leading-relaxed text-muted-foreground">
                       {milestone.description}
                     </p>
                   </div>
@@ -247,7 +247,7 @@ export default function SobreNosotrasPage() {
         className="bg-white text-foreground"
       >
         <div className="grid grid-cols-1 lg:grid-cols-2">
-          <div className="flex flex-col justify-center px-8 py-16 lg:px-16 lg:py-24">
+          <div className="flex flex-col justify-center px-5 sm:px-8 py-16 lg:px-16 lg:py-24">
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-gold-deep">
               Descubre el taller
             </p>
@@ -257,7 +257,7 @@ export default function SobreNosotrasPage() {
             >
               Ahora que me conoces, conoce las piezas
             </h2>
-            <p className="mt-5 max-w-3xl text-base font-light leading-relaxed text-muted-foreground">
+            <p className="mt-5 max-w-3xl text-base font-regular leading-relaxed text-muted-foreground">
               Echa un vistazo a las colecciones o escríbeme si buscas algo
               concreto. Me gusta ayudar a encontrar la joya adecuada.
             </p>

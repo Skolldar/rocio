@@ -119,7 +119,7 @@ export default function QualityStamps({ className = "" }: QualityStampsProps) {
             <h3 className="mt-5 text-sm font-medium uppercase tracking-[0.18em]">
               {stamp.label}
             </h3>
-            <p className="mt-2 max-w-[28ch] text-sm font-light leading-relaxed text-muted-foreground">
+            <p className="mt-2 max-w-[28ch] text-sm font-regular leading-relaxed text-muted-foreground">
               {stamp.description}
             </p>
           </li>

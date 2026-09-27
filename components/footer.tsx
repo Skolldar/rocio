@@ -38,11 +38,10 @@ const columns: FooterColumn[] = [
     title: "Ayuda",
     links: [
       { label: "Sobre mí", href: "/sobre-nosotras" },
-      { label: "Envíos y entregas", href: "/" },
-      { label: "Devoluciones", href: "/" },
-      { label: "Guía de tallas", href: "/" },
-      { label: "Cuidado de tus joyas", href: "/" },
-      { label: "Contacto", href: "/" },
+      { label: "Envíos y entrega", href: "/envios-y-entrega" },
+      { label: "Guía de tallas", href: "/guia-de-tallas" },
+      { label: "Cuidado de tus joyas", href: "/cuidado-de-tus-joyas" },
+      { label: "Contacto", href: "/#contacto" },
     ],
   },
 ]
@@ -72,7 +71,7 @@ export default function Footer() {
         Pie de página
       </h2>
 
-      <div className="mx-auto max-w-400 px-8 py-16 lg:py-20">
+      <div className="mx-auto max-w-400 px-5 sm:px-8 py-16 lg:py-20">
         <div className="flex flex-col gap-8 border-b border-white/10 pb-12 lg:flex-row lg:items-end lg:justify-between lg:pb-16">
           <div className="max-w-xl">
             <p className="text-[0.72rem] font-medium uppercase tracking-[0.32em] text-gold-bright">
@@ -81,7 +80,7 @@ export default function Footer() {
             <h3 className="mt-3 text-[clamp(1.875rem,4vw,2.75rem)] font-semibold leading-[1.05] tracking-tight text-stone-50">
               Únete y recibe lo nuevo primero
             </h3>
-            <p className="mt-3 max-w-md text-sm font-light leading-relaxed text-stone-300">
+            <p className="mt-3 max-w-md text-sm font-regular leading-relaxed text-stone-300">
               Lanzamientos, ediciones limitadas y un 10&nbsp;% en tu primera compra.
             </p>
           </div>
@@ -130,7 +129,7 @@ export default function Footer() {
             >
               Lux<span className="text-gold-bright">girl</span>
             </Link>
-            <p className="mt-4 max-w-xs text-sm font-light leading-relaxed text-stone-400">
+            <p className="mt-4 max-w-xs text-sm font-regular leading-relaxed text-stone-400">
               Joyería contemporánea en acero inoxidable con baño de oro o plata, para
               marcar los momentos que más importan.
             </p>
@@ -165,7 +164,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="rounded-sm text-sm font-light text-stone-300 transition-colors hover:text-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-bright focus-visible:ring-offset-2 focus-visible:ring-offset-stone-950"
+                      className="rounded-sm text-sm font-regular text-stone-300 transition-colors hover:text-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-bright focus-visible:ring-offset-2 focus-visible:ring-offset-stone-950"
                     >
                       {link.label}
                     </Link>
@@ -178,7 +177,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="flex flex-col gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs font-light text-stone-400">
+          <p className="text-xs font-regular text-stone-400">
             © {year} Luxgirl. Todos los derechos reservados.
           </p>
           <ul className="flex flex-wrap items-center gap-x-5 gap-y-2">
@@ -186,7 +185,7 @@ export default function Footer() {
               <li key={link.label}>
                 <Link
                   href={link.href}
-                  className="rounded-sm text-xs font-light text-stone-400 transition-colors hover:text-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-bright"
+                  className="rounded-sm text-xs font-regular text-stone-400 transition-colors hover:text-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-bright"
                 >
                   {link.label}
                 </Link>

@@ -61,7 +61,7 @@ export default function CategoryPage({
           className="absolute inset-0 -z-10 bg-linear-to-r from-stone-950/90 via-stone-950/55 to-stone-950/10"
         />
 
-        <div className="mx-auto flex min-h-[clamp(20rem,52vh,32rem)] max-w-400 flex-col justify-end px-8 pb-12 pt-28 sm:pb-16">
+        <div className="mx-auto flex min-h-[clamp(20rem,52vh,32rem)] max-w-400 flex-col justify-end px-5 sm:px-8 pb-12 pt-28 sm:pb-16">
           <nav aria-label="Ruta de navegación" className="mb-auto pb-10">
             <ol className="flex items-center gap-1.5 text-xs uppercase tracking-[0.18em] text-stone-300">
               <li>
@@ -101,7 +101,7 @@ export default function CategoryPage({
           >
             {category.title}
           </h1>
-          <p className="mt-4 max-w-lg text-base leading-relaxed text-stone-200 sm:mt-5 md:text-lg md:font-light">
+          <p className="mt-4 max-w-lg text-base leading-relaxed text-stone-200 sm:mt-5 md:text-lg md:font-regular">
             {category.description}
           </p>
         </div>
@@ -109,7 +109,7 @@ export default function CategoryPage({
 
       {/* Listado */}
       <section aria-label={`Productos de ${category.title}`}>
-        <div className="mx-auto max-w-400 px-8 py-10 sm:py-14">
+        <div className="mx-auto max-w-400 px-5 sm:px-8 py-10 sm:py-14">
           <CatalogToolbar
             basePath={basePath}
             total={products.length}
@@ -138,7 +138,7 @@ export default function CategoryPage({
           ) : (
             <div className="mx-auto mt-16 max-w-md text-center">
               <p className="text-xl font-semibold">No hay piezas con este filtro</p>
-              <p className="mt-2 text-sm font-light text-muted-foreground">
+              <p className="mt-2 text-sm font-regular text-muted-foreground">
                 Prueba con otro filtro o vuelve a ver toda la selección.
               </p>
               <Link

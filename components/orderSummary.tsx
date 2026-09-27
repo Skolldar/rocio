@@ -29,7 +29,7 @@ export default function OrderSummary() {
   const toFreeShipping = Math.max(0, SHIPPING_THRESHOLD - subtotal);
 
   return (
-    <aside className=" flex flex-col bg-ink text-cream md:h-screen md:w-72 lg:w-96">
+    <aside className="flex flex-col bg-ink text-cream md:h-[calc(100vh-3.5rem)] md:w-72 lg:w-96">
       {/* Header */}
       <header className="flex items-baseline justify-between border-b border-white/10 px-6 py-6">
         <h2 className=" text-3xl font-semibold tracking-wide">

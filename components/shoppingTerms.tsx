@@ -41,7 +41,7 @@ export default function ShoppingTerms() {
         Condiciones de compra
       </h2>
 
-      <div className="mx-auto max-w-400 px-8 py-20 sm:py-24 lg:py-28">
+      <div className="mx-auto max-w-400 px-5 sm:px-8 py-20 sm:py-24 lg:py-28">
         <div className="mx-auto grid max-w-6xl gap-x-10 gap-y-14 md:grid-cols-3">
           {blocks.map((block) => (
             <div
@@ -56,7 +56,7 @@ export default function ShoppingTerms() {
               <h3 className="text-base font-medium tracking-[0.01em] text-muted-foreground">
                 {block.title}
               </h3>
-              <p className="mt-3 text-sm font-light leading-relaxed text-foreground">
+              <p className="mt-3 text-sm font-regular leading-relaxed text-foreground">
                 {block.description}
               </p>
               {block.cta && (

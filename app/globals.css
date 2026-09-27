@@ -36,6 +36,11 @@ body {
   --radius: 0.625rem;
 }
 
+/* Alias de font-normal (400): la clase font-regular no existe en Tailwind. */
+@utility font-regular {
+  font-weight: 400;
+}
+
 @theme inline {
   --font-elms: var(--font-elms-sans), system-ui, sans-serif;
   --color-gold: var(--gold);
@@ -79,12 +84,26 @@ body {
   overflow: hidden;
   background: var(--ink);
   color: var(--cream);
-  opacity: 0;
-  transition: opacity 1.2s ease;
 }
 
-.slider-wrapper.loaded {
+/* The dark shell paints instantly on navigation; only the WebGL canvas fades
+   in once its textures are ready, so arriving at home never looks blank. */
+.slider-wrapper .webgl-canvas {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.slider-wrapper.loaded .webgl-canvas {
   opacity: 1;
+}
+
+.slide-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .webgl-canvas {
@@ -152,7 +171,7 @@ body {
   transform: translate(-50%, -50%);
   width: 100%;
   max-width: 100rem;
-  padding-inline: 2rem;
+  padding-inline: clamp(1.25rem, 5vw, 2rem);
   z-index: 10;
 }
 
@@ -231,7 +250,7 @@ body {
   transform: translateX(-50%);
   width: 100%;
   max-width: 100rem;
-  padding-inline: 2rem;
+  padding-inline: clamp(1.25rem, 5vw, 2rem);
   bottom: clamp(2rem, 6vh, 3.5rem);
   z-index: 20;
   display: flex;
@@ -305,7 +324,7 @@ body {
   border-radius: 2px;
 }
 
-/* Mobile: tighten spacing and shrink labels */
+/* Tablet: tighten spacing and shrink labels */
 @media (max-width: 768px) {
   .slides-navigation {
     gap: 0.5rem;
@@ -320,8 +339,65 @@ body {
   }
 }
 
+/* Phones: five labels don't fit side by side, so the nav collapses to
+   progress lines with a 44px tap area and the active label is shown alone. */
+@media (max-width: 639px) {
+  .slides-navigation {
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 0.35rem;
+    bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+  .slide-nav-item {
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    gap: 0;
+    min-height: 44px;
+    padding-bottom: 0.75rem;
+  }
+  .slide-nav-item .slide-nav-title {
+    display: none;
+  }
+  .slide-nav-item.active .slide-nav-title {
+    display: block;
+    position: absolute;
+    left: clamp(1.25rem, 5vw, 2rem);
+    bottom: calc(100% + 0.25rem);
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    color: var(--gold-bright);
+  }
+  .slide-progress-line {
+    max-width: none;
+    height: 2px;
+  }
+  .slide-content {
+    top: auto;
+    bottom: clamp(5.5rem, 16vh, 8rem);
+    transform: translateX(-50%);
+  }
+  .slide-counter {
+    top: 4.5rem;
+    right: clamp(1.25rem, 5vw, 2rem);
+  }
+}
+
+/* Landscape phones: keep the copy clear of the fixed navbar */
+@media (max-height: 520px) {
+  .slide-title {
+    font-size: clamp(1.75rem, 7vh, 2.5rem);
+  }
+  .slide-description {
+    display: none;
+  }
+  .slide-cta {
+    margin-top: 1rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .slider-wrapper,
+  .webgl-canvas,
   .slide-cta,
   .slide-cta svg,
   .slide-nav-item {

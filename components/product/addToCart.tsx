@@ -31,7 +31,7 @@ export default function AddToCart({
           <ShoppingBag aria-hidden="true" className="size-4.5" />
           Agotado
         </button>
-        <p role="status" className="mt-3 text-sm font-light text-muted-foreground">
+        <p role="status" className="mt-3 text-sm font-regular text-muted-foreground">
           Esta pieza no está disponible ahora mismo. Pregúntanos si quieres saber cuándo vuelve.
         </p>
       </div>
@@ -46,8 +46,9 @@ export default function AddToCart({
 
   return (
     <div>
-      <div className="flex gap-3">
-        <div className="flex h-13 items-center rounded-full border border-border">
+      {/* Stepper and CTA stack on phones so the button label stays on one line */}
+      <div className="flex flex-col gap-3 sm:flex-row">
+        <div className="flex h-13 w-fit items-center rounded-full border border-border">
           <StepButton
             label={`Reducir cantidad de ${productName}`}
             onClick={() => setQuantity((q) => Math.max(1, q - 1))}
@@ -82,7 +83,7 @@ export default function AddToCart({
         </button>
       </div>
 
-      <p role="status" className="mt-3 min-h-5 text-sm font-light text-muted-foreground">
+      <p role="status" className="mt-3 min-h-5 text-sm font-regular text-muted-foreground">
         {added && (
           <>
             {quantity} × {productName} en tu carrito.{" "}
