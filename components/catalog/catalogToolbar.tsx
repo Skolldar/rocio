@@ -1,20 +1,32 @@
 import Link from "next/link"
 
 import { cn } from "@/lib/utils"
-import { materialLabels, type Material, type SortValue } from "@/lib/catalog"
+import {
+  materialLabels,
+  styleLabels,
+  type Material,
+  type SortValue,
+  type Style,
+} from "@/lib/catalog"
 import SortSelect from "@/components/catalog/sortSelect"
 
 type CatalogToolbarProps = {
   basePath: string
   total: number
   material?: Material
+  style?: Style
   sort: SortValue
   materials: Material[]
+  styles: Style[]
 }
 
-function buildHref(basePath: string, material?: Material, sort?: SortValue) {
+function buildHref(
+  basePath: string,
+  { material, style, sort }: { material?: Material; style?: Style; sort?: SortValue },
+) {
   const params = new URLSearchParams()
   if (material) params.set("material", material)
+  if (style) params.set("estilo", style)
   if (sort && sort !== "destacados") params.set("orden", sort)
   const query = params.toString()
   return query ? `${basePath}?${query}` : basePath
@@ -29,14 +41,24 @@ export default function CatalogToolbar({
   basePath,
   total,
   material,
+  style,
   sort,
   materials,
+  styles,
 }: CatalogToolbarProps) {
   const filters: { label: string; value?: Material }[] =
     materials.length > 1
       ? [
           { label: "Todo" },
           ...materials.map((value) => ({ label: materialLabels[value], value })),
+        ]
+      : []
+
+  const styleFilters: { label: string; value?: Style }[] =
+    styles.length > 0
+      ? [
+          { label: "Todos" },
+          ...styles.map((value) => ({ label: styleLabels[value], value })),
         ]
       : []
 
@@ -53,7 +75,7 @@ export default function CatalogToolbar({
               return (
                 <Link
                   key={filter.label}
-                  href={buildHref(basePath, filter.value, sort)}
+                  href={buildHref(basePath, { material: filter.value, style, sort })}
                   aria-current={active ? "page" : undefined}
                   scroll={false}
                   className={cn(
@@ -72,6 +94,32 @@ export default function CatalogToolbar({
                       )}
                     />
                   )}
+                  {filter.label}
+                </Link>
+              )
+            })}
+          </nav>
+        )}
+        {styleFilters.length > 0 && (
+          <nav
+            aria-label="Filtrar por estilo"
+            className="inline-flex items-center gap-1 rounded-full border border-border bg-secondary/70 p-1"
+          >
+            {styleFilters.map((filter) => {
+              const active = filter.value === style
+              return (
+                <Link
+                  key={filter.label}
+                  href={buildHref(basePath, { material, style: filter.value, sort })}
+                  aria-current={active ? "page" : undefined}
+                  scroll={false}
+                  className={cn(
+                    "inline-flex min-h-10 items-center rounded-full px-4 text-sm transition-[background-color,color,box-shadow] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-deep focus-visible:ring-offset-2 focus-visible:ring-offset-secondary",
+                    active
+                      ? "bg-card text-foreground shadow-[0_1px_2px_rgb(12_10_9/0.06),0_4px_12px_rgb(12_10_9/0.06)] ring-1 ring-border"
+                      : "text-muted-foreground hover:text-foreground",
+                  )}
+                >
                   {filter.label}
                 </Link>
               )

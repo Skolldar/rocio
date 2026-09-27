@@ -6,10 +6,12 @@ import CatalogToolbar from "@/components/catalog/catalogToolbar"
 import ProductCard from "@/components/catalog/productCard"
 import {
   materialLabels,
+  styleLabels,
   type Category,
   type Material,
   type Product,
   type SortValue,
+  type Style,
 } from "@/lib/catalog"
 
 type CategoryPageProps = {
@@ -17,6 +19,7 @@ type CategoryPageProps = {
   products: Product[]
   basePath: string
   material?: Material
+  style?: Style
   sort: SortValue
   productHref?: (product: Product) => string
 }
@@ -26,11 +29,15 @@ export default function CategoryPage({
   products,
   basePath,
   material,
+  style,
   sort,
   productHref = (product) => `/products/${category.slug}/${product.slug}`,
 }: CategoryPageProps) {
   const materials = (Object.keys(materialLabels) as Material[]).filter((m) =>
     category.products.some((p) => p.material === m),
+  )
+  const styles = (Object.keys(styleLabels) as Style[]).filter((s) =>
+    category.products.some((p) => p.style === s),
   )
 
   return (
@@ -107,8 +114,10 @@ export default function CategoryPage({
             basePath={basePath}
             total={products.length}
             material={material}
+            style={style}
             sort={sort}
             materials={materials}
+            styles={styles}
           />
 
           {products.length > 0 ? (
@@ -130,7 +139,7 @@ export default function CategoryPage({
             <div className="mx-auto mt-16 max-w-md text-center">
               <p className="text-xl font-semibold">No hay piezas con este filtro</p>
               <p className="mt-2 text-sm font-light text-muted-foreground">
-                Prueba con otro material o vuelve a ver toda la selección.
+                Prueba con otro filtro o vuelve a ver toda la selección.
               </p>
               <Link
                 href={basePath}

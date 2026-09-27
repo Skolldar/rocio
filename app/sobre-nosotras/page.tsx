@@ -7,35 +7,35 @@ import ParallaxImage from "@/components/parallaxImage"
 import QualityGuarantee from "@/components/qualityGuarantee"
 
 export const metadata: Metadata = {
-  title: "Sobre nosotras · Luxgirl",
+  title: "Sobre mí · Luxgirl",
   description:
-    "Conoce Luxgirl: un atelier de joyería contemporánea hecho por mujeres, para mujeres. Piezas cuidadas, materiales nobles y atención cercana.",
+    "Luxgirl es un pequeño proyecto de joyería que llevo yo sola: piezas escogidas con calma, materiales que duran y trato directo conmigo.",
 }
 
 const values = [
   {
     icon: Gem,
-    title: "Materiales nobles",
+    title: "Materiales que duran",
     description:
-      "Trabajamos con baño de oro de 18 quilates y plata de ley para que cada pieza brille durante años.",
+      "Todas mis piezas son de acero inoxidable con baño de oro o de plata. No se oscurecen, no dan alergia y aguantan el día a día sin perder el color.",
   },
   {
     icon: Scissors,
-    title: "Hecho con calma",
+    title: "Sin prisas",
     description:
-      "Seleccionamos y terminamos cada joya a mano en el atelier, en tiradas pequeñas y sin prisas.",
+      "Reviso y termino cada joya a mano, en tiradas pequeñas. Si algo no me convence, no sale.",
   },
   {
     icon: HandHeart,
-    title: "Trato cercano",
+    title: "Hablas conmigo",
     description:
-      "Te acompañamos antes y después de la compra: tallas, combinaciones, regalos y cuidados.",
+      "Si tienes dudas con la talla, con un regalo o con cómo cuidar una pieza, me escribes y te contesto yo.",
   },
   {
     icon: Leaf,
-    title: "Consumo consciente",
+    title: "Para toda la vida",
     description:
-      "Diseñamos piezas atemporales para llevar toda la vida, no para una temporada.",
+      "Diseño pensando en piezas que quieras llevar dentro de diez años, no solo esta temporada.",
   },
 ]
 
@@ -44,25 +44,25 @@ const milestones = [
     year: "2021",
     title: "Un cajón lleno de ideas",
     description:
-      "Luxgirl empieza como un proyecto entre amigas: joyas sencillas que queríamos llevar y no encontrábamos.",
+      "Empecé haciendo las joyas sencillas que quería llevar y no encontraba en ningún sitio. Al principio, solo para mí.",
   },
   {
     year: "2023",
-    title: "El primer atelier",
+    title: "El primer taller",
     description:
-      "Abrimos nuestro pequeño taller y presentamos la primera colección completa de collares y pendientes.",
+      "Monté un pequeño taller en casa y saqué la primera colección completa de collares y pendientes.",
   },
   {
     year: "2025",
-    title: "Comunidad Luxgirl",
+    title: "Edición Limitada",
     description:
-      "Miles de piezas han salido del atelier. Las series numeradas de Edición Limitada nacen ese año.",
+      "Ya habían salido miles de piezas del taller. Ese año empecé las series numeradas, en cantidades muy pequeñas.",
   },
   {
     year: "Hoy",
-    title: "Seguimos a mano",
+    title: "Sigo haciéndolo yo",
     description:
-      "Cada pedido sigue saliendo con su estuche de firma y una nota escrita por nosotras.",
+      "Cada pedido sale con su estuche y una nota escrita a mano. La escribo yo, igual que el primer día.",
   },
 ]
 
@@ -71,7 +71,7 @@ export default function SobreNosotrasPage() {
     <main className="w-full bg-background text-foreground">
       {/* Hero */}
       <section
-        aria-labelledby="nosotras-titulo"
+        aria-labelledby="sobre-mi-titulo"
         className="relative isolate overflow-hidden bg-stone-950 text-stone-50"
       >
         <Image
@@ -89,87 +89,90 @@ export default function SobreNosotrasPage() {
 
         <div className="mx-auto flex min-h-[clamp(22rem,60vh,36rem)] max-w-400 flex-col justify-end px-8 pb-12 pt-28 sm:pb-16">
           <p className="text-xs font-medium uppercase tracking-[0.22em] text-gold-bright">
-            Sobre nosotras
+            Sobre mí
           </p>
           <h1
-            id="nosotras-titulo"
+            id="sobre-mi-titulo"
             className="mt-3 text-[clamp(2.5rem,1.5rem+5vw,3.5rem)] font-semibold text-balance"
           >
-            Joyas hechas por mujeres, <br /> 
-            para mujeres
+            Joyas hechas por una mujer, <br />
+            para otras mujeres
           </h1>
           <p className="mt-4 max-w-lg text-base leading-relaxed text-stone-200 sm:mt-5 md:text-lg md:font-light">
-            Luxgirl es un atelier pequeño con una idea clara: piezas bonitas,
+            Luxgirl es un proyecto pequeño que llevo yo sola. Piezas bonitas,
             bien hechas y pensadas para llevarlas cada día.
           </p>
         </div>
       </section>
 
-      {/* Manifiesto */}
+      {/* Historia */}
       <section aria-labelledby="historia-titulo">
         <div className="mx-auto max-w-400 px-8 py-20 sm:py-24 lg:py-28">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
               <p className="text-xs font-medium uppercase tracking-[0.22em] text-gold-deep">
-                Nuestra historia
+                Mi historia
               </p>
               <h2
                 id="historia-titulo"
                 className="mt-3 text-3xl font-semibold text-balance sm:text-4xl"
               >
-                Empezamos buscando la joya que no existía
+                Empecé buscando la joya que no existía
               </h2>
             </div>
             <div className="space-y-6 text-base font-light leading-relaxed text-muted-foreground lg:col-span-7 lg:text-lg">
               <p>
-                Queríamos collares finos que no se enredaran, pendientes ligeros
-                que pudiéramos llevar todo el día y anillos que combinaran entre
-                sí sin pensarlo demasiado. Como no los encontrábamos, empezamos a
-                hacerlos.
+                Quería collares finos que no se enredaran, pendientes ligeros
+                para llevar todo el día y anillos que combinaran entre sí sin
+                pensarlo mucho. Como no los encontraba, empecé a hacerlos.
               </p>
               <p>
-                Hoy Luxgirl sigue siendo un equipo pequeño. Elegimos cada
-                material, probamos cada pieza y preparamos cada pedido en el
-                atelier. Nos gusta que lo que llega a tus manos haya pasado antes
-                por las nuestras.
+                Luxgirl sigue siendo cosa de una sola persona. Elijo cada
+                material, pruebo cada pieza y preparo cada pedido en el taller.
+                Lo que llega a tus manos ha pasado antes por las mías, y me
+                gusta que sea así.
               </p>
               <p>
-                Creemos en una joyería cercana: sin lujos inaccesibles, sin
-                prisas y sin piezas que se olvidan en un cajón.
+                Creo en una joyería cercana: sin lujos inaccesibles, sin prisas
+                y sin piezas que acaban olvidadas en un cajón.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Imagen parallax */}
-      <section aria-label="El atelier">
+      {/* Imagen parallax: se fija en la parte superior y el contenido
+          siguiente se desliza por encima (efecto cortina). */}
+      <section aria-label="El taller" className="sticky top-0 z-0 h-svh">
         <ParallaxImage
           src="/img/modelos/modelo-collares-capas.webp"
+          video="/video/taller.mp4"
           alt="Modelo con varios collares de oro a distintas alturas"
           objectPosition="50% 58%"
-          className="relative h-[80svh] min-h-100 w-full max-h-180 lg:h-[110svh] lg:min-h-200 lg:max-h-300"
+          className="relative h-full w-full"
         />
       </section>
 
+      {/* Todo lo que sigue se apila por encima de la imagen fija */}
+      <div className="relative z-10 shadow-[0_-32px_64px_-32px_rgba(0,0,0,0.45)]">
       {/* Sellos de calidad */}
       <QualityGuarantee className="border-t-0" />
 
       {/* Valores */}
       <section
         aria-labelledby="valores-titulo"
-        className="border-b border-border"
+        className="border-b border-border bg-background"
       >
         <div className="mx-auto max-w-400 px-8 py-20 sm:py-24 lg:py-28">
           <div className="max-w-2xl">
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-gold-deep">
-              Lo que nos importa
+              Lo que me importa
             </p>
             <h2
               id="valores-titulo"
               className="mt-3 text-3xl font-semibold text-balance sm:text-4xl"
             >
-              Cuatro cosas en las que no cedemos
+              Cuatro cosas en las que no cedo
             </h2>
           </div>
 
@@ -246,17 +249,17 @@ export default function SobreNosotrasPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2">
           <div className="flex flex-col justify-center px-8 py-16 lg:px-16 lg:py-24">
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-gold-deep">
-              Descubre el atelier
+              Descubre el taller
             </p>
             <h2
               id="cta-titulo"
               className="mt-3 text-3xl font-semibold text-balance sm:text-4xl"
             >
-              Ahora que nos conoces, conoce las piezas
+              Ahora que me conoces, conoce las piezas
             </h2>
             <p className="mt-5 max-w-3xl text-base font-light leading-relaxed text-muted-foreground">
-              Explora las colecciones o escríbenos si buscas algo concreto. Nos
-              encanta ayudar a encontrar la joya adecuada.
+              Echa un vistazo a las colecciones o escríbeme si buscas algo
+              concreto. Me gusta ayudar a encontrar la joya adecuada.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
@@ -285,6 +288,7 @@ export default function SobreNosotrasPage() {
           </div>
         </div>
       </section>
+      </div>
     </main>
   )
 }

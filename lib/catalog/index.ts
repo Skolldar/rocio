@@ -5,7 +5,7 @@ import { pendientes } from "./categories/pendientes"
 import { pulseras } from "./categories/pulseras"
 import type { Category, Product } from "./types"
 
-export type { Category, Material, Product, ProductDetail } from "./types"
+export type { Category, Material, Product, ProductDetail, Style } from "./types"
 export * from "./utils"
 
 const categories: Category[] = [anillos, collares, pendientes, pulseras, brazaletes]

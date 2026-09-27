@@ -1,8 +1,13 @@
-import type { Material, Product, ProductDetail } from "./types"
+import type { Material, Product, ProductDetail, Style } from "./types"
 
 export const materialLabels: Record<Material, string> = {
   oro: "Baño de oro",
-  plata: "Plata",
+  plata: "Baño de plata",
+}
+
+export const styleLabels: Record<Style, string> = {
+  doble: "Collares dobles",
+  mini: "Mini",
 }
 
 export const sortOptions = [
@@ -22,13 +27,23 @@ export function isMaterial(value: unknown): value is Material {
   return typeof value === "string" && value in materialLabels
 }
 
+export function isStyle(value: unknown): value is Style {
+  return typeof value === "string" && value in styleLabels
+}
+
 export function filterAndSortProducts(
   products: Product[],
-  { material, sort }: { material?: Material; sort: SortValue },
+  {
+    material,
+    style,
+    sort,
+  }: { material?: Material; style?: Style; sort: SortValue },
 ) {
-  const filtered = material
-    ? products.filter((product) => product.material === material)
-    : [...products]
+  const filtered = products.filter(
+    (product) =>
+      (!material || product.material === material) &&
+      (!style || product.style === style),
+  )
 
   switch (sort) {
     case "novedades":
@@ -45,7 +60,8 @@ export function filterAndSortProducts(
 const priceFormatter = new Intl.NumberFormat("es-ES", {
   style: "currency",
   currency: "EUR",
-  maximumFractionDigits: 0,
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
 })
 
 export function formatPrice(price: number) {

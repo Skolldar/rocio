@@ -166,7 +166,7 @@ export default function MobileMenu({
             </span>
           </span>
           <span className="relative mt-1 text-sm font-light leading-snug text-stone-200">
-            Piezas hechas a mano en oro de 18 quilates.
+            Piezas de acero inoxidable con baño de oro o plata.
           </span>
         </Link>
 
@@ -193,7 +193,7 @@ export default function MobileMenu({
                 onClick={onClose}
                 className="inline-flex min-h-11 items-center rounded-full border border-white/15 px-4 text-sm text-stone-200 outline-none transition-colors hover:border-gold-bright/60 hover:text-white focus-visible:ring-2 focus-visible:ring-gold-bright active:bg-white/10"
               >
-                Sobre Nosotras
+                Sobre mí
               </Link>
             </li>
           </ul>

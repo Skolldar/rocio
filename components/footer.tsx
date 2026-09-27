@@ -38,7 +38,7 @@ const columns: FooterColumn[] = [
   {
     title: "Ayuda",
     links: [
-      { label: "Sobre nosotras", href: "/sobre-nosotras" },
+      { label: "Sobre mí", href: "/sobre-nosotras" },
       { label: "Envíos y entregas", href: "/" },
       { label: "Devoluciones", href: "/" },
       { label: "Guía de tallas", href: "/" },
@@ -133,7 +133,7 @@ export default function Footer() {
               Lux<span className="text-gold-bright">girl</span>
             </Link>
             <p className="mt-4 max-w-xs text-sm font-light leading-relaxed text-stone-400">
-              Joyería contemporánea hecha a mano en oro de 18 quilates, para
+              Joyería contemporánea en acero inoxidable con baño de oro o plata, para
               marcar los momentos que más importan.
             </p>
 

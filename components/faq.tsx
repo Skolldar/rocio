@@ -16,7 +16,7 @@ const faqs: QAItem[] = [
   {
     question: "¿Cuáles son las mejores joyas de diseño para regalar?",
     answer:
-      "Las piezas más acertadas son las versátiles: un colgante delicado, unos pendientes de botón o una pulsera fina que se adaptan a cualquier ocasión. Apuesta por materiales nobles como el oro de 18 quilates o la plata de ley, que conservan su belleza con los años y se convierten en un regalo para toda la vida.",
+      "Las piezas más acertadas son las versátiles: un colgante delicado, unos pendientes de botón o una pulsera fina que se adaptan a cualquier ocasión. Apuesta por materiales que aguanten el uso diario, como el acero inoxidable con baño de oro o plata, que no se oscurece ni pierde el color con los años.",
   },
   {
     question: "¿Qué estilos de joyería son tendencia en 2026?",

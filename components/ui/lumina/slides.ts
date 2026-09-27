@@ -11,7 +11,7 @@ export const slides: Slide[] = [
   {
     label: "Collares",
     title: "Brillo Eterno",
-    description: "Collares de oro de 18 quilates para llevar cada día.",
+    description: "Collares con baño de oro para llevar cada día.",
     media: "/img/collares/neklace.webp",
   },
   {

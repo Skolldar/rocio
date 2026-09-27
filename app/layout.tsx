@@ -23,7 +23,7 @@ const googleSans = Google_Sans({
 
 export const metadata: Metadata = {
   title: "Luxgirl",
-  description: "Joyería contemporánea hecha a mano en oro de 18 quilates.",
+  description: "Joyería contemporánea en acero inoxidable con baño de oro o plata.",
 };
 
 export default function RootLayout({

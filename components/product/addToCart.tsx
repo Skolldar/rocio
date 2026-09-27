@@ -6,12 +6,37 @@ import { Check, Minus, Plus, ShoppingBag } from "lucide-react"
 
 const MAX_QUANTITY = 10
 
-export default function AddToCart({ productName }: { productName: string }) {
+export default function AddToCart({
+  productName,
+  soldOut = false,
+}: {
+  productName: string
+  soldOut?: boolean
+}) {
   const [quantity, setQuantity] = useState(1)
   const [added, setAdded] = useState(false)
   const timer = useRef<ReturnType<typeof setTimeout>>(undefined)
 
   useEffect(() => () => clearTimeout(timer.current), [])
+
+  if (soldOut) {
+    return (
+      <div>
+        <button
+          type="button"
+          disabled
+          aria-disabled="true"
+          className="inline-flex h-13 w-full cursor-not-allowed items-center justify-center gap-2.5 rounded-full border border-border bg-foreground/5 px-6 text-sm font-semibold uppercase tracking-[0.14em] text-muted-foreground"
+        >
+          <ShoppingBag aria-hidden="true" className="size-4.5" />
+          Agotado
+        </button>
+        <p role="status" className="mt-3 text-sm font-light text-muted-foreground">
+          Esta pieza no está disponible ahora mismo. Pregúntanos si quieres saber cuándo vuelve.
+        </p>
+      </div>
+    )
+  }
 
   const handleAdd = () => {
     setAdded(true)

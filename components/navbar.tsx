@@ -3,7 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu, Search, ShoppingBag, User, X } from "lucide-react"
+import { Menu, ShoppingBag, X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import {
@@ -26,7 +26,7 @@ const categories: Category[] = [
   {
     title: "Anillos",
     href: "/products/anillos",
-    description: "Solitarios, alianzas y diseños de autor en oro y plata.",
+    description: "Solitarios, alianzas y diseños de autor con baño de oro o plata.",
   },
   {
     title: "Collares",
@@ -51,7 +51,7 @@ const categories: Category[] = [
   {
     title: "Edición Limitada",
     href: "/products/edicion-limitada",
-    description: "Series numeradas diseñadas en cantidades reducidas.",
+    description: "Series numeradas que hago en cantidades muy pequeñas.",
   },
 ]
 
@@ -59,12 +59,12 @@ const collections: Category[] = [
   {
     title: "Novedades",
     href: "/products/novedades",
-    description: "Lo último que ha llegado al atelier.",
+    description: "Lo último que he terminado en el taller.",
   },
   {
     title: "Más Vendidos",
     href: "/products/mas-vendidos",
-    description: "Las piezas favoritas de la comunidad Luxgirl.",
+    description: "Las piezas que más me pedís.",
   },
   {
     title: "Para Regalo",
@@ -108,7 +108,7 @@ export default function Navbar() {
   }
 
   React.useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8)
+    const onScroll = () => setScrolled(window.scrollY > 0)
     onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
@@ -120,12 +120,12 @@ export default function Navbar() {
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-50 transition-all duration-300",
+          "fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-150 ease-out",
           transparent
-            ? "border-b border-transparent bg-transparent"
+            ? "border-transparent bg-transparent"
             : mobileOpen
-              ? "border-b border-white/10 bg-stone-950"
-              : "border-b border-white/10 bg-stone-950/40 shadow-lg backdrop-blur-md"
+              ? "border-white/10 bg-stone-950"
+              : "border-white/10 bg-stone-950/70 shadow-lg shadow-black/20 backdrop-blur-md backdrop-saturate-150"
         )}
       >
         <div className="mx-auto flex h-14 max-w-400 items-center justify-between gap-4 px-8">
@@ -167,7 +167,7 @@ export default function Navbar() {
                   <ul className="grid gap-3 p-4 md:w-130 md:grid-cols-[.9fr_1fr]">
                     <li className="row-span-3">
                       <NavigationMenuLink asChild>
-                        <a
+                        <Link
                           href="/products/collares/doble-corazon"
                           className="group relative flex h-full w-full select-none flex-col justify-end overflow-hidden rounded-md p-6 no-underline outline-none focus:ring-2 focus:ring-gold-bright"
                         >
@@ -189,7 +189,7 @@ export default function Navbar() {
                           <span className="relative text-2xl font-semibold leading-tight text-white">
                             Doble Corazón
                           </span>
-                        </a>
+                        </Link>
                       </NavigationMenuLink>
                     </li>
                     {collections.map((collection) => (
@@ -228,7 +228,7 @@ export default function Navbar() {
                       "bg-transparent text-stone-200 hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white"
                     )}
                   >
-                    Sobre Nosotras
+                    Sobre mí
                   </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>

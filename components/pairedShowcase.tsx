@@ -30,7 +30,7 @@ const pairs: ShowcasePair[] = [
     lifestyleAlt: "Collar de oro con colgante rectangular y corazón sobre seda clara",
     product: {
       name: "Gargantilla Aurora",
-      price: "320 €",
+      price: "320,00 €",
       image: "/img/collares/collar-corazon-filigrana.webp",
       alt: "Gargantilla Aurora de oro sobre fondo claro",
       video: "/video/collar.mp4",
@@ -43,7 +43,7 @@ const pairs: ShowcasePair[] = [
     lifestyleAlt: "Modelo con pendientes de perla y oro a la luz del sol",
     product: {
       name: "Pendientes Solsticio",
-      price: "260 €",
+      price: "260,00 €",
       image: "/img/pendientes/aretes-pera.webp",
       alt: "Pendientes Solsticio de oro sobre fondo claro",
     },
@@ -122,7 +122,7 @@ export default function PairedShowcase() {
           ) : (
             <Link
               href={pair.href}
-              className="group relative block min-h-[58vh] overflow-hidden bg-sand lg:min-h-170 focus-visible:outline-none"
+              className="group relative block min-h-[58vh] overflow-clip bg-sand lg:min-h-170 focus-visible:outline-none"
             >
               <ParallaxImage
                 src={pair.product.image}

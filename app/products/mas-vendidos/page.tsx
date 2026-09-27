@@ -6,10 +6,11 @@ import {
   getMasVendidos,
   isMaterial,
   isSortValue,
+  isStyle,
 } from "@/lib/catalog"
 
 type Props = {
-  searchParams: Promise<{ material?: string; orden?: string }>
+  searchParams: Promise<{ material?: string; estilo?: string; orden?: string }>
 }
 
 export function generateMetadata(): Metadata {
@@ -21,10 +22,11 @@ export function generateMetadata(): Metadata {
 }
 
 export default async function MasVendidosPage({ searchParams }: Props) {
-  const { material, orden } = await searchParams
+  const { material, estilo, orden } = await searchParams
   const { category, productHref } = getMasVendidos()
 
   const activeMaterial = isMaterial(material) ? material : undefined
+  const activeStyle = isStyle(estilo) ? estilo : undefined
   const sort = isSortValue(orden) ? orden : "destacados"
 
   return (
@@ -32,10 +34,12 @@ export default async function MasVendidosPage({ searchParams }: Props) {
       category={category}
       products={filterAndSortProducts(category.products, {
         material: activeMaterial,
+        style: activeStyle,
         sort,
       })}
       basePath={`/products/${category.slug}`}
       material={activeMaterial}
+      style={activeStyle}
       sort={sort}
       productHref={productHref}
     />

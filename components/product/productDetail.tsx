@@ -23,6 +23,7 @@ const linkStyles =
 
 export default function ProductDetail({ category, product }: ProductDetailProps) {
   const details = getProductDetails(product)
+  const soldOut = product.soldOut === true
   const related = category.products.filter((p) => p.slug !== product.slug).slice(0, 4)
   const categoryPath = `/products/${category.slug}`
 
@@ -63,9 +64,19 @@ export default function ProductDetail({ category, product }: ProductDetailProps)
                 fill
                 priority
                 sizes="(min-width: 1024px) 58vw, 100vw"
-                className="object-cover"
+                className={`object-cover ${soldOut ? "grayscale" : ""}`}
               />
-              {product.badge && (
+              {soldOut && (
+                <>
+                  <div aria-hidden="true" className="absolute inset-0 bg-stone-950/45" />
+                  <span className="absolute inset-x-0 bottom-0 flex justify-center pb-5 sm:pb-6">
+                    <span className="rounded-full border border-stone-100/40 bg-stone-950/70 px-4 py-1.5 text-[0.62rem] font-medium uppercase tracking-[0.2em] text-stone-100 backdrop-blur-sm">
+                      Agotado
+                    </span>
+                  </span>
+                </>
+              )}
+              {product.badge && !soldOut && (
                 <span className="absolute left-4 top-4 rounded-full bg-stone-950/60 px-3 py-1 text-[0.62rem] font-medium uppercase tracking-[0.2em] text-stone-100 backdrop-blur-sm sm:left-5 sm:top-5">
                   {product.badge}
                 </span>
@@ -90,7 +101,7 @@ export default function ProductDetail({ category, product }: ProductDetailProps)
             </p>
 
             <div className="mt-8 border-t border-border pt-8">
-              <AddToCart productName={product.name} />
+              <AddToCart productName={product.name} soldOut={soldOut} />
               <AskQuestion productName={product.name} />
             </div>
 

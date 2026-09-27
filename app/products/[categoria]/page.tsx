@@ -8,11 +8,12 @@ import {
   getCategorySlugs,
   isMaterial,
   isSortValue,
+  isStyle,
 } from "@/lib/catalog"
 
 type Props = {
   params: Promise<{ categoria: string }>
-  searchParams: Promise<{ material?: string; orden?: string }>
+  searchParams: Promise<{ material?: string; estilo?: string; orden?: string }>
 }
 
 export function generateStaticParams() {
@@ -30,12 +31,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function CategoriaPage({ params, searchParams }: Props) {
   const { categoria } = await params
-  const { material, orden } = await searchParams
+  const { material, estilo, orden } = await searchParams
 
   const category = getCategory(categoria)
   if (!category) notFound()
 
   const activeMaterial = isMaterial(material) ? material : undefined
+  const activeStyle = isStyle(estilo) ? estilo : undefined
   const sort = isSortValue(orden) ? orden : "destacados"
 
   return (
@@ -43,10 +45,12 @@ export default async function CategoriaPage({ params, searchParams }: Props) {
       category={category}
       products={filterAndSortProducts(category.products, {
         material: activeMaterial,
+        style: activeStyle,
         sort,
       })}
       basePath={`/products/${category.slug}`}
       material={activeMaterial}
+      style={activeStyle}
       sort={sort}
     />
   )

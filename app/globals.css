@@ -328,3 +328,31 @@ body {
     transition: none;
   }
 }
+
+@supports (animation-timeline: view()) {
+  .parallax-frame {
+    view-timeline: --parallax block;
+  }
+  .parallax-img {
+    animation: parallax-shift linear both;
+    animation-timeline: --parallax;
+    animation-range: entry 0% exit 100%;
+  }
+}
+
+@keyframes parallax-shift {
+  from {
+    transform: translate3d(0, calc(var(--parallax-distance, 120px) * -0.5), 0);
+  }
+  to {
+    transform: translate3d(0, calc(var(--parallax-distance, 120px) * 0.5), 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .parallax-img {
+    animation: none;
+    transform: none;
+    will-change: auto;
+  }
+}
