@@ -6,7 +6,7 @@ export const anillos: Category = {
   eyebrow: "Joyería",
   description:
     "Corazones, perlas y destellos pensados para llevar solos o apilados. Ajustables y listos para regalar.",
-  heroImage: "/img/anillo-lifestyle-2.webp",
+  heroImage: "/img/modelos/modelo-manos-anillos.webp",
   products: [
     {
       slug: "ola-dorada",
@@ -14,7 +14,7 @@ export const anillos: Category = {
       description: "Anillo abierto con curva ondulada y circonita.",
       price: 34,
       material: "oro",
-      image: "/img/anillos/anillo-ola-dorada.webp",
+      image: "/img/anillos/anillo-S-flor.webp",
       badge: "Más vendido",
       addedAt: 3,
     },
@@ -24,7 +24,7 @@ export const anillos: Category = {
       description: "Aro delicado rematado con un pequeño corazón.",
       price: 29,
       material: "oro",
-      image: "/img/anillos/anillo-corazon-fino.webp",
+      image: "/img/anillos/anillo-corazon-doble.webp",
       addedAt: 5,
     },
     {
@@ -52,7 +52,7 @@ export const anillos: Category = {
       description: "Banda fina con piedra central talla brillante.",
       price: 36,
       material: "oro",
-      image: "/img/anillos/anillo-flor-dorada.webp",
+      image: "/img/anillos/anillo-linea-flor.webp",
       addedAt: 2,
     },
     {

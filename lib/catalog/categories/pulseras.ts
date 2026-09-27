@@ -6,7 +6,7 @@ export const pulseras: Category = {
   eyebrow: "Joyería",
   description:
     "Cadenas finas, perlas y tréboles para apilar en la muñeca. Ajustables y cómodas de llevar.",
-  heroImage: "/img/pulsera-lifestyle-1.webp",
+  heroImage: "/img/modelos/modelo-perlas-corazon.webp",
   products: [
     {
       slug: "riviera",

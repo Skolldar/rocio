@@ -6,7 +6,7 @@ export const pendientes: Category = {
   eyebrow: "Joyería",
   description:
     "Desde botones mínimos hasta aros con cristal: piezas ligeras para el día a día o para brillar de noche.",
-  heroImage: "/img/aretes-lifestyle-1.webp",
+  heroImage: "/img/pendientes/aretes-hero.webp",
   products: [
     {
       slug: "cono-de-cristal",
@@ -42,7 +42,7 @@ export const pendientes: Category = {
       description: "Aro con cristal facetado colgante.",
       price: 33,
       material: "oro",
-      image: "/img/pendientes/aretes-aro-cuarzo.webp",
+      image: "/img/pendientes/aretes-pera.webp",
       addedAt: 5,
     },
     {
@@ -51,7 +51,7 @@ export const pendientes: Category = {
       description: "Trébol de nácar blanco en forma de mini.",
       price: 19,
       material: "oro",
-      image: "/img/pendientes/aretes-trebol-nacar-mini.webp",
+      image: "/img/pendientes/aretes-flor-blanca-mini.webp",
       addedAt: 11,
     },
     {
@@ -80,7 +80,7 @@ export const pendientes: Category = {
       description: "Botón redondo de nácar.",
       price: 22,
       material: "plata",
-      image: "/img/pendientes/aretes-luna-de-nacar.webp",
+      image: "/img/pendientes/aretes-circular-blanca.webp",
       addedAt: 4,
     },
     {
@@ -98,7 +98,7 @@ export const pendientes: Category = {
       description: "Botón con forma de árbol de la vida.",
       price: 20,
       material: "oro",
-      image: "/img/pendientes/aretes-arbol-de-la-vida.webp",
+      image: "/img/pendientes/aretes-hojas.webp",
       addedAt: 10,
     },
     {
@@ -125,7 +125,7 @@ export const pendientes: Category = {
       description: "Corazón con pavé de circonitas.",
       price: 28,
       material: "oro",
-      image: "/img/pendientes/aretes-pave-corazon.webp",
+      image: "/img/pendientes/aretes-corazon-verde.webp",
       badge: "Nuevo",
       addedAt: 15,
     },
@@ -135,7 +135,7 @@ export const pendientes: Category = {
       description: "Set de botones con circonitas y estrella.",
       price: 39,
       material: "oro",
-      image: "/img/pendientes/aretes-set-planetario.webp",
+      image: "/img/pendientes/aretes-set-brillo.webp",
       badge: "Edición limitada",
       addedAt: 13,
     },
@@ -145,7 +145,7 @@ export const pendientes: Category = {
       description: "Set de perlas y botones dorados.",
       price: 36,
       material: "oro",
-      image: "/img/pendientes/aretes-set-corazon-perla.webp",
+      image: "/img/pendientes/aretes-set-perla.webp",
       addedAt: 1,
     },
   ],

@@ -6,7 +6,7 @@ export const collares: Category = {
   eyebrow: "Joyería",
   description:
     "Gargantillas rígidas, perlas y tréboles de nácar que enmarcan el escote. Para llevar solos o en capas.",
-  heroImage: "/img/collar-lifestyle-1.webp",
+  heroImage: "/img/modelos/modelo-collar-corazon-perla.webp",
   products: [
     {
       slug: "medalla-grabada",

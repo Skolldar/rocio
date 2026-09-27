@@ -10,31 +10,31 @@ const categories: Category[] = [
   {
     name: "Anillos",
     tagline: "Para llevar solos o apilados",
-    image: "/img/anillo-2.webp",
+    image: "/img/anillos/anillo-S-flor.webp",
     href: "/products/anillos",
   },
   {
     name: "Collares",
     tagline: "Cadenas finas y colgantes de oro",
-    image: "/img/collar-flor.webp",
+    image: "/img/collares/collar-corazon-filigrana.webp",
     href: "/products/collares",
   },
   {
     name: "Pendientes",
     tagline: "Aros, perlas y botones para cada día",
-    image: "/img/aretes-2.webp",
+    image: "/img/pendientes/aretes-pera.webp",
     href: "/products/pendientes",
   },
   {
     name: "Pulseras",
     tagline: "Eslabones y cadenas que se llevan a diario",
-    image: "/img/pulsera-esposas.webp",
+    image: "/img/pulseras/pulsera-esposas.webp",
     href: "/products/pulseras",
   },
   {
     name: "Brazaletes",
     tagline: "Piezas rígidas pensadas para durar años",
-    image: "/img/pulsera-serpiente.webp",
+    image: "/img/pulseras/pulsera-eslabones.webp",
     href: "/products/brazaletes",
   },
 ];

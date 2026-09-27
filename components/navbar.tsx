@@ -147,7 +147,7 @@ export default function Navbar() {
                             className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
                             style={{
                               backgroundImage:
-                                "url('/Users/carlapena/Desktop/rocio/img/modelos/modelo-collares-capas.webp')",
+                                "url('/img/modelos/modelo-collares-capas.webp')",
                             }}
                           />
                           <span

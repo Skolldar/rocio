@@ -6,7 +6,7 @@ export const brazaletes: Category = {
   eyebrow: "Joyería",
   description:
     "Brazaletes rígidos y de charms con circonitas, nácar y detalles con significado.",
-  heroImage: "/img/brazalete-lifestyle-1.webp",
+  heroImage: "/img/brazaletes/brazalete.webp",
   products: [
     {
       slug: "corazon-pave",
