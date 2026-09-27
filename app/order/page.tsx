@@ -2,7 +2,7 @@
 export default function OrderPage() {
   return (
     <div>
-      <h1>Order Page</h1>
+      <h1>Tu pedido</h1>
     </div>
   )
 }

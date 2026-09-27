@@ -8,34 +8,34 @@ type Category = {
 
 const categories: Category[] = [
   {
-    name: "Rings",
-    tagline: "Where every promise begins",
+    name: "Anillos",
+    tagline: "Para llevar solos o apilados",
     image: "/img/anillo-2.webp",
-    href: "/products?category=rings",
+    href: "/products/anillos",
   },
   {
-    name: "Necklaces",
-    tagline: "Grace that rests close to the heart",
+    name: "Collares",
+    tagline: "Cadenas finas y colgantes de oro",
     image: "/img/collar-flor.webp",
-    href: "/products?category=necklaces",
+    href: "/products/collares",
   },
   {
-    name: "Earrings",
-    tagline: "A quiet sparkle in every turn",
+    name: "Pendientes",
+    tagline: "Aros, perlas y botones para cada día",
     image: "/img/aretes-2.webp",
-    href: "/products?category=earrings",
-  },
-  {
-    name: "Bracelets",
-    tagline: "Elegance that follows your every move",
-    image: "/img/pulsera-esposas.webp",
-    href: "/products?category=bracelets",
+    href: "/products/pendientes",
   },
   {
     name: "Pulseras",
-    tagline: "Heirloom pieces made to endure",
+    tagline: "Eslabones y cadenas que se llevan a diario",
+    image: "/img/pulsera-esposas.webp",
+    href: "/products/pulseras",
+  },
+  {
+    name: "Brazaletes",
+    tagline: "Piezas rígidas pensadas para durar años",
     image: "/img/pulsera-serpiente.webp",
-    href: "/products?category=watches",
+    href: "/products/brazaletes",
   },
 ];
 
@@ -50,22 +50,22 @@ export default function CategoryShowcase() {
       <div className="mx-auto mb-12 max-w-2xl text-center sm:mb-16">
         <p
           className="mb-4 text-xs font-medium uppercase tracking-[0.32em] text-[#b88a2e]"
-          style={{ fontFamily: "Elms Sans, system-ui, sans-serif" }}
+          style={{ fontFamily: "var(--font-elms-sans), system-ui, sans-serif" }}
         >
-          Curated Selection
+          Selección actual
         </p>
         <h2
           id="shop-by-category-title"
           className="text-4xl font-semibold leading-none tracking-tight text-foreground sm:text-5xl"
-          style={{ fontFamily: "Elms Sans, system-ui, sans-serif" }}
+          style={{ fontFamily: "var(--font-elms-sans), system-ui, sans-serif" }}
         >
-          Shop by Category
+          Compra por categoría
         </h2>
         <p
           className="mx-auto mt-5 max-w-md text-sm font-light leading-relaxed text-muted-foreground"
-          style={{ fontFamily: "Elms Sans, system-ui, sans-serif" }}
+          style={{ fontFamily: "var(--font-elms-sans), system-ui, sans-serif" }}
         >
-          Explore our collections, each crafted to mark the moments that matter most.
+          Anillos, collares, pendientes y pulseras en oro y plata, para el día a día o para regalar.
         </p>
       </div>
 
@@ -83,7 +83,7 @@ export default function CategoryShowcase() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={category.image}
-              alt={`${category.name} collection`}
+              alt={`Colección de ${category.name.toLowerCase()}`}
               loading="lazy"
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             />
@@ -98,13 +98,13 @@ export default function CategoryShowcase() {
             <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
               <h3
                 className="mt-1.5 text-2xl font-semibold leading-tight text-[#f5f0e8] sm:text-[1.65rem]"
-                style={{ fontFamily: "Elms Sans, system-ui, sans-serif" }}
+                style={{ fontFamily: "var(--font-elms-sans), system-ui, sans-serif" }}
               >
                 {category.name}
               </h3>
               <p
                 className="mt-0.5 text-xs font-light text-[#f5f0e8]/70"
-                style={{ fontFamily: "Elms Sans, system-ui, sans-serif" }}
+                style={{ fontFamily: "var(--font-elms-sans), system-ui, sans-serif" }}
               >
                 {category.tagline}
               </p>
