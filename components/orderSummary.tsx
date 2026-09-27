@@ -3,53 +3,13 @@
 import React, { useState } from "react";
 import Image from "next/image";
 
-type CartItem = {
-  id: string;
-  name: string;
-  detail: string;
-  price: number;
-  quantity: number;
-  image: string;
-};
-
-const INITIAL_ITEMS: CartItem[] = [
-  {
-    id: "anillo-aurora",
-    name: "Anillo Aurora",
-    detail: "Oro 18k · Diamante 0.5ct",
-    price: 1290,
-    quantity: 1,
-    image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=160&q=80",
-  },
-  {
-    id: "collar-lumen",
-    name: "Collar Lumen",
-    detail: "Oro blanco · Zafiro",
-    price: 860,
-    quantity: 1,
-    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=160&q=80",
-  },
-  {
-    id: "pendientes-eclat",
-    name: "Pendientes Éclat",
-    detail: "Oro 18k · Perla",
-    price: 540,
-    quantity: 2,
-    image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=160&q=80",
-  },
-];
+import { SAMPLE_CART_ITEMS, eur, type CartItem } from "@/lib/cart";
 
 const SHIPPING_THRESHOLD = 1500;
 const SHIPPING_COST = 25;
 
-const eur = new Intl.NumberFormat("es-ES", {
-  style: "currency",
-  currency: "EUR",
-  maximumFractionDigits: 0,
-});
-
 export default function OrderSummary() {
-  const [items, setItems] = useState<CartItem[]>(INITIAL_ITEMS);
+  const [items, setItems] = useState<CartItem[]>(SAMPLE_CART_ITEMS);
 
   const updateQuantity = (id: string, delta: number) =>
     setItems((prev) =>

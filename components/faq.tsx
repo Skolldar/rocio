@@ -107,7 +107,7 @@ export default function Faq() {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <p className="max-w-5xl pb-8 text-base text-muted-foreground">
+                    <p className="max-w-7xl pb-8 text-base text-muted-foreground">
                       {item.answer}
                     </p>
                   </div>

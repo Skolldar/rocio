@@ -4,6 +4,7 @@ import Link from "next/link"
 import { ArrowUpRight, Gem, HandHeart, Leaf, Scissors } from "lucide-react"
 
 import ParallaxImage from "@/components/parallaxImage"
+import QualityGuarantee from "@/components/qualityGuarantee"
 
 export const metadata: Metadata = {
   title: "Sobre nosotras · Luxgirl",
@@ -75,7 +76,7 @@ export default function SobreNosotrasPage() {
       >
         <Image
           src="/img/modelos/modelo-selfie-flores.webp"
-          alt=""
+          alt="selfie de modelo con pendientes y collares de oro"
           fill
           priority
           sizes="100vw"
@@ -92,11 +93,12 @@ export default function SobreNosotrasPage() {
           </p>
           <h1
             id="nosotras-titulo"
-            className="mt-3 text-[clamp(2.5rem,1.5rem+5vw,5.5rem)] font-semibold text-balance"
+            className="mt-3 text-[clamp(2.5rem,1.5rem+5vw,3.5rem)] font-semibold text-balance"
           >
-            Joyas hechas por mujeres, para mujeres
+            Joyas hechas por mujeres, <br /> 
+            para mujeres
           </h1>
-          <p className="mt-4 max-w-[46ch] text-base leading-relaxed text-stone-200 sm:mt-5 md:text-lg md:font-light">
+          <p className="mt-4 max-w-lg text-base leading-relaxed text-stone-200 sm:mt-5 md:text-lg md:font-light">
             Luxgirl es un atelier pequeño con una idea clara: piezas bonitas,
             bien hechas y pensadas para llevarlas cada día.
           </p>
@@ -145,9 +147,13 @@ export default function SobreNosotrasPage() {
         <ParallaxImage
           src="/img/modelos/modelo-collares-capas.webp"
           alt="Modelo con varios collares de oro a distintas alturas"
-          className="relative h-[55vh] min-h-80 w-full lg:h-[70vh]"
+          objectPosition="50% 58%"
+          className="relative h-[80svh] min-h-100 w-full max-h-180 lg:h-[110svh] lg:min-h-200 lg:max-h-300"
         />
       </section>
+
+      {/* Sellos de calidad */}
+      <QualityGuarantee className="border-t-0" />
 
       {/* Valores */}
       <section
@@ -235,11 +241,11 @@ export default function SobreNosotrasPage() {
       {/* CTA */}
       <section
         aria-labelledby="cta-titulo"
-        className="bg-stone-950 text-stone-50"
+        className="bg-white text-foreground"
       >
         <div className="grid grid-cols-1 lg:grid-cols-2">
           <div className="flex flex-col justify-center px-8 py-16 lg:px-16 lg:py-24">
-            <p className="text-xs font-medium uppercase tracking-[0.22em] text-gold-bright">
+            <p className="text-xs font-medium uppercase tracking-[0.22em] text-gold-deep">
               Descubre el atelier
             </p>
             <h2
@@ -248,21 +254,21 @@ export default function SobreNosotrasPage() {
             >
               Ahora que nos conoces, conoce las piezas
             </h2>
-            <p className="mt-5 max-w-[52ch] text-base font-light leading-relaxed text-stone-300">
+            <p className="mt-5 max-w-3xl text-base font-light leading-relaxed text-muted-foreground">
               Explora las colecciones o escríbenos si buscas algo concreto. Nos
               encanta ayudar a encontrar la joya adecuada.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/products"
-                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-gold-bright px-6 text-sm font-medium uppercase tracking-[0.14em] text-stone-950 transition-colors hover:bg-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-bright focus-visible:ring-offset-2 focus-visible:ring-offset-stone-950"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-gold px-6 text-sm font-medium uppercase tracking-[0.14em] text-gold-ink transition-colors hover:bg-gold-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-deep focus-visible:ring-offset-2 focus-visible:ring-offset-white"
               >
                 Ver colecciones
                 <ArrowUpRight aria-hidden="true" strokeWidth={1.75} className="size-4" />
               </Link>
               <Link
                 href="/regalos"
-                className="inline-flex min-h-11 items-center rounded-full border border-white/30 px-6 text-sm font-medium uppercase tracking-[0.14em] text-stone-100 transition-colors hover:border-gold-bright hover:text-gold-bright focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-bright"
+                className="inline-flex min-h-11 items-center rounded-full border border-border px-6 text-sm font-medium uppercase tracking-[0.14em] text-foreground transition-colors hover:border-gold-deep hover:text-gold-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-deep focus-visible:ring-offset-2 focus-visible:ring-offset-white"
               >
                 Guía de regalos
               </Link>

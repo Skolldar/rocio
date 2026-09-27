@@ -16,6 +16,9 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import MobileMenu, { type NavLink } from "@/components/mobileMenu"
+import CartPreview from "@/components/cartPreview"
+import { SAMPLE_CART_ITEMS, type CartItem } from "@/lib/cart"
+import { INSTAGRAM_URL, InstagramIcon } from "@/components/socialIcons"
 
 type Category = NavLink
 
@@ -73,6 +76,12 @@ const collections: Category[] = [
 export default function Navbar() {
   const [scrolled, setScrolled] = React.useState(false)
   const [mobileOpen, setMobileOpen] = React.useState(false)
+  const [cartOpen, setCartOpen] = React.useState(false)
+  const [cartItems, setCartItems] = React.useState<CartItem[]>(SAMPLE_CART_ITEMS)
+  const cartCount = cartItems.reduce((sum, it) => sum + it.quantity, 0)
+  const removeCartItem = (itemId: string) =>
+    setCartItems((prev) => prev.filter((it) => it.id !== itemId))
+  const cartCloseTimer = React.useRef<ReturnType<typeof setTimeout>>(undefined)
   const pathname = usePathname()
 
   const heroPages = ["/", "/regalos", "/sobre-nosotras"]
@@ -82,12 +91,30 @@ export default function Navbar() {
   const transparent = hasHero && !scrolled && !mobileOpen
   const closeMobile = () => setMobileOpen(false)
 
+  // La vista previa no tiene sentido en /order, donde el resumen ya está visible.
+  const cartPreviewEnabled = !pathname.startsWith("/order")
+  const openCart = () => {
+    clearTimeout(cartCloseTimer.current)
+    if (cartPreviewEnabled) setCartOpen(true)
+  }
+  // Pequeño retraso para poder pasar el ratón del icono al panel sin que se cierre.
+  const scheduleCloseCart = () => {
+    clearTimeout(cartCloseTimer.current)
+    cartCloseTimer.current = setTimeout(() => setCartOpen(false), 200)
+  }
+  const closeCart = () => {
+    clearTimeout(cartCloseTimer.current)
+    setCartOpen(false)
+  }
+
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
     onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
+
+  React.useEffect(() => () => clearTimeout(cartCloseTimer.current), [])
 
   return (
     <>
@@ -210,16 +237,42 @@ export default function Navbar() {
 
           {/* Actions */}
           <div className="flex items-center gap-1 sm:gap-2">
-            <Link
-              href="/order"
-              aria-label="Carrito de compra"
-              className="relative grid size-10 cursor-pointer place-items-center rounded-full text-stone-200 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-bright"
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram de Luxgirl"
+              className="grid size-10 cursor-pointer place-items-center rounded-full text-stone-200 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-bright"
             >
-              <ShoppingBag className="size-5" />
-              <span className="absolute -right-0.5 -top-0.5 grid min-w-4.5 place-items-center rounded-full bg-gold px-1 text-[0.65rem] font-semibold text-stone-950">
-                2
-              </span>
-            </Link>
+              <InstagramIcon className="size-5" />
+            </a>
+
+            <div
+              className="relative"
+              onMouseEnter={openCart}
+              onMouseLeave={scheduleCloseCart}
+            >
+              <Link
+                href="/order"
+                aria-label="Carrito de compra"
+                aria-controls="vista-carrito"
+                onClick={closeCart}
+                className="relative grid size-10 cursor-pointer place-items-center rounded-full text-stone-200 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-bright"
+              >
+                <ShoppingBag className="size-5" />
+                <span className="absolute -right-0.5 -top-0.5 grid min-w-4.5 place-items-center rounded-full bg-gold px-1 text-[0.65rem] font-semibold text-stone-950">
+                  {cartCount}
+                </span>
+              </Link>
+
+              <CartPreview
+                id="vista-carrito"
+                open={cartOpen && cartPreviewEnabled}
+                items={cartItems}
+                onRemove={removeCartItem}
+                onNavigate={closeCart}
+              />
+            </div>
 
             {/* Mobile toggle */}
             <button

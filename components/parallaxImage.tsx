@@ -5,20 +5,16 @@ import { useEffect, useRef } from "react"
 type ParallaxImageProps = {
   src: string
   alt: string
-  /** How far (px) the image drifts across the full scroll pass. */
   distance?: number
+  objectPosition?: string
   className?: string
 }
 
-/**
- * Full-bleed image that drifts vertically as the viewport scrolls past it,
- * creating a parallax effect. The image is rendered taller than its frame so
- * the drift never exposes an edge. Honors `prefers-reduced-motion`.
- */
 export default function ParallaxImage({
   src,
   alt,
   distance = 120,
+  objectPosition = "50% 50%",
   className = "",
 }: ParallaxImageProps) {
   const frameRef = useRef<HTMLDivElement>(null)
@@ -56,6 +52,8 @@ export default function ParallaxImage({
     }
   }, [distance])
 
+  const overflow = distance / 2
+
   return (
     <div ref={frameRef} className={`overflow-hidden ${className}`}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -64,7 +62,13 @@ export default function ParallaxImage({
         src={src}
         alt={alt}
         loading="lazy"
-        className="absolute -top-[15%] left-0 h-[130%] w-full object-cover will-change-transform"
+        decoding="async"
+        style={{
+          top: -overflow,
+          height: `calc(100% + ${distance}px)`,
+          objectPosition,
+        }}
+        className="absolute left-0 w-full object-cover will-change-transform"
       />
     </div>
   )

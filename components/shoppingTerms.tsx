@@ -50,8 +50,8 @@ export default function ShoppingTerms() {
             >
               <block.icon
                 aria-hidden="true"
-                strokeWidth={1.25}
-                className="mb-5 size-7 text-foreground"
+                strokeWidth={1.5}
+                className="mb-6 size-10 text-foreground"
               />
               <h3 className="text-base font-medium tracking-[0.01em] text-muted-foreground">
                 {block.title}

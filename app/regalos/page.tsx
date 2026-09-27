@@ -111,7 +111,7 @@ export default function RegalosPage() {
           >
             Regalos que se recuerdan
           </h1>
-          <p className="mt-4 max-w-[46ch] text-base leading-relaxed text-stone-200 sm:mt-5 md:text-lg md:font-light">
+          <p className="mt-4 max-w-lg text-base leading-relaxed text-stone-200 sm:mt-5 md:text-lg md:font-light">
             Joyas elegidas para sorprender, con estuche de firma y envoltorio
             incluido. Solo tienes que decidir a quién.
           </p>
