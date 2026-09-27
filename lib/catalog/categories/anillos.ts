@@ -6,7 +6,7 @@ export const anillos: Category = {
   eyebrow: "Joyería",
   description:
     "Corazones, perlas y destellos pensados para llevar solos o apilados. Ajustables y listos para regalar.",
-  heroImage: "/img/anillo-lifestyle-3.webp",
+  heroImage: "/img/anillo-lifestyle-2.webp",
   products: [
     {
       slug: "ola-dorada",
@@ -61,7 +61,7 @@ export const anillos: Category = {
       description: "Anillo con diseño de huella de cachorro.",
       price: 42,
       material: "oro",
-      image: "/img/anillos/anillo-huella.jpeg",
+      image: "/img/anillos/anillo-huella.webp",
       badge: "Más vendido",
       addedAt: 1,
     },
@@ -71,7 +71,7 @@ export const anillos: Category = {
       description: "Flor esmaltada en blanco con perla en el centro.",
       price: 39,
       material: "oro",
-      image: "/img/anillos/anillo-flor-de-perla.jpeg",
+      image: "/img/anillos/anillo-flor-de-perla.webp",
       badge: "Edición limitada",
       addedAt: 7,
     },
@@ -81,7 +81,7 @@ export const anillos: Category = {
       description: "Perla cultivada sobre una banda dorada.",
       price: 38,
       material: "oro",
-      image: "/img/anillos/anillo-perla-clasica.jpeg",
+      image: "/img/anillos/anillo-perla-clasica.webp",
       badge: "Nuevo",
       addedAt: 6,
     },

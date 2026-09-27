@@ -6,7 +6,7 @@ export const pendientes: Category = {
   eyebrow: "Joyería",
   description:
     "Desde botones mínimos hasta aros con cristal: piezas ligeras para el día a día o para brillar de noche.",
-  heroImage: "/img/aretes-lifestyle-1.jpg",
+  heroImage: "/img/aretes-lifestyle-1.webp",
   products: [
     {
       slug: "cono-de-cristal",
@@ -107,7 +107,7 @@ export const pendientes: Category = {
       description: "Botón triangular de cuarzo rosa.",
       price: 26,
       material: "plata",
-      image: "/img/pendientes/aretes-cuarzo-rosa.jpeg",
+      image: "/img/pendientes/aretes-cuarzo-rosa.webp",
       addedAt: 12,
     },
     {

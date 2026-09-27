@@ -6,7 +6,7 @@ export const collares: Category = {
   eyebrow: "Joyería",
   description:
     "Gargantillas rígidas, perlas y tréboles de nácar que enmarcan el escote. Para llevar solos o en capas.",
-  heroImage: "/img/collar-lifestyle-1.jpg",
+  heroImage: "/img/collar-lifestyle-1.webp",
   products: [
     {
       slug: "medalla-grabada",
@@ -135,7 +135,7 @@ export const collares: Category = {
       description: "Cadena serpiente rematada con una perla.",
       price: 45,
       material: "oro",
-      image: "/img/collares/collar-lazo-de-perla.jpeg",
+      image: "/img/collares/collar-lazo-de-perla.webp",
       badge: "Nuevo",
       addedAt: 16,
     },
@@ -145,7 +145,7 @@ export const collares: Category = {
       description: "Gargantilla rígida con flor de lirio.",
       price: 54,
       material: "oro",
-      image: "/img/collares/collar-lirio.jpg",
+      image: "/img/collares/collar-lirio.webp",
       addedAt: 11,
     },
     {
@@ -154,7 +154,7 @@ export const collares: Category = {
       description: "Gargantilla de circonitas engastadas.",
       price: 69,
       material: "oro",
-      image: "/img/collares/collar-constelacion.jpg",
+      image: "/img/collares/collar-constelacion.webp",
       badge: "Edición limitada",
       addedAt: 13,
     },

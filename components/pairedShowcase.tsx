@@ -39,7 +39,7 @@ const pairs: ShowcasePair[] = [
   {
     label: "Pendientes de Fiesta",
     href: "/products?categoria=pendientes",
-    lifestyleImage: "/img/aretes-lifestyle-1.jpg",
+    lifestyleImage: "/img/aretes-lifestyle-1.webp",
     lifestyleAlt: "Modelo con pendientes de perla y oro a la luz del sol",
     product: {
       name: "Pendientes Solsticio",

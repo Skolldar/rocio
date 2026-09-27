@@ -6,7 +6,7 @@ export const brazaletes: Category = {
   eyebrow: "Joyería",
   description:
     "Brazaletes rígidos y de charms con circonitas, nácar y detalles con significado.",
-  heroImage: "/img/brazalete-lifestyle-1.jpg",
+  heroImage: "/img/brazalete-lifestyle-1.webp",
   products: [
     {
       slug: "corazon-pave",
@@ -14,7 +14,7 @@ export const brazaletes: Category = {
       description: "Brazalete rígido con corazón y circonitas.",
       price: 45,
       material: "oro",
-      image: "/img/brazaletes/brazalete-corazon-pave.jpeg",
+      image: "/img/brazaletes/brazalete-corazon-pave.webp",
       badge: "Más vendido",
       addedAt: 5,
     },
@@ -80,7 +80,7 @@ export const brazaletes: Category = {
       description: "Charms de llave, candado y flor.",
       price: 49,
       material: "oro",
-      image: "/img/brazaletes/brazalete-charms-llave.jpeg",
+      image: "/img/brazaletes/brazalete-charms-llave.webp",
       addedAt: 4,
     },
     {

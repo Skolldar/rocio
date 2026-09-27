@@ -6,7 +6,7 @@ export const pulseras: Category = {
   eyebrow: "Joyería",
   description:
     "Cadenas finas, perlas y tréboles para apilar en la muñeca. Ajustables y cómodas de llevar.",
-  heroImage: "/img/pulsera-lifestyle-1.jpg",
+  heroImage: "/img/pulsera-lifestyle-1.webp",
   products: [
     {
       slug: "riviera",
@@ -14,7 +14,7 @@ export const pulseras: Category = {
       description: "Cadena de circonitas engastadas.",
       price: 38,
       material: "plata",
-      image: "/img/pulseras/pulsera-riviera.jpeg",
+      image: "/img/pulseras/pulsera-riviera.webp",
       badge: "Más vendido",
       addedAt: 5,
     },
@@ -33,7 +33,7 @@ export const pulseras: Category = {
       description: "Cadena fina con charm de perrito globo.",
       price: 34,
       material: "oro",
-      image: "/img/pulseras/pulsera-globo.jpeg",
+      image: "/img/pulseras/pulsera-globo.webp",
       badge: "Nuevo",
       addedAt: 9,
     },
@@ -52,7 +52,7 @@ export const pulseras: Category = {
       description: "Tréboles de nácar blanco enlazados.",
       price: 42,
       material: "oro",
-      image: "/img/pulseras/pulsera-trebol-blanco.jpeg",
+      image: "/img/pulseras/pulsera-trebol-blanco.webp",
       badge: "Más vendido",
       addedAt: 7,
     },
@@ -81,7 +81,7 @@ export const pulseras: Category = {
       description: "Cadena con placas pulidas.",
       price: 31,
       material: "oro",
-      image: "/img/pulseras/pulsera-placas.jpeg",
+      image: "/img/pulseras/pulsera-placas.webp",
       addedAt: 2,
     },
     {
