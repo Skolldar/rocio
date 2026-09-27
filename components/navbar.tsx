@@ -60,12 +60,12 @@ const collections: Category[] = [
   },
   {
     title: "Más Vendidos",
-    href: "/products?coleccion=mas-vendidos",
+    href: "/products/mas-vendidos",
     description: "Las piezas favoritas de la comunidad Luxgirl.",
   },
   {
     title: "Para Regalo",
-    href: "/products?coleccion=regalo",
+    href: "/products/para-regalo",
     description: "Selección lista para sorprender, con envoltorio incluido.",
   },
 ]
@@ -75,8 +75,10 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = React.useState(false)
   const pathname = usePathname()
 
+  const heroPages = ["/", "/regalos", "/sobre-nosotras"]
   const hasHero =
-    pathname === "/" || categories.some((category) => category.href === pathname)
+    heroPages.includes(pathname) ||
+    categories.some((category) => category.href === pathname)
   const transparent = hasHero && !scrolled && !mobileOpen
   const closeMobile = () => setMobileOpen(false)
 
@@ -179,7 +181,7 @@ export default function Navbar() {
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
                   <Link
-                    href="/products?coleccion=regalo"
+                    href="/regalos"
                     className={cn(
                       navigationMenuTriggerStyle(),
                       "bg-transparent text-stone-200 hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white"
@@ -193,7 +195,7 @@ export default function Navbar() {
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
                   <Link
-                    href="/"
+                    href="/sobre-nosotras"
                     className={cn(
                       navigationMenuTriggerStyle(),
                       "bg-transparent text-stone-200 hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white"
@@ -208,20 +210,6 @@ export default function Navbar() {
 
           {/* Actions */}
           <div className="flex items-center gap-1 sm:gap-2">
-            <button
-              type="button"
-              aria-label="Buscar"
-              className="grid size-10 cursor-pointer place-items-center rounded-full text-stone-200 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-bright"
-            >
-              <Search className="size-5" />
-            </button>
-            <Link
-              href="/order"
-              aria-label="Mi cuenta"
-              className="hidden size-10 cursor-pointer place-items-center rounded-full text-stone-200 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-bright sm:grid"
-            >
-              <User className="size-5" />
-            </Link>
             <Link
               href="/order"
               aria-label="Carrito de compra"

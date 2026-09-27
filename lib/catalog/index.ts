@@ -33,14 +33,16 @@ export function getProductParams() {
   )
 }
 
-function getBadgeCollection(
-  badge: NonNullable<Product["badge"]>,
+const GIFT_MAX_PRICE = 35
+
+function getCollection(
+  include: (product: Product) => boolean,
   meta: Omit<Category, "products">,
 ) {
   const productCategory = new Map<Product, string>()
   for (const category of categories) {
     for (const product of category.products) {
-      if (product.badge === badge) {
+      if (include(product)) {
         productCategory.set(product, category.slug)
       }
     }
@@ -56,7 +58,7 @@ function getBadgeCollection(
 }
 
 export function getLimitedEdition() {
-  return getBadgeCollection("Edición limitada", {
+  return getCollection((product) => product.badge === "Edición limitada", {
     slug: "edicion-limitada",
     title: "Edición Limitada",
     eyebrow: "Colección",
@@ -68,12 +70,33 @@ export function getLimitedEdition() {
 }
 
 export function getNovedades() {
-  return getBadgeCollection("Nuevo", {
+  return getCollection((product) => product.badge === "Nuevo", {
     slug: "novedades",
     title: "Novedades",
     eyebrow: "Colección",
     description:
       "Lo último que ha llegado al atelier: piezas recién salidas del taller para estrenar esta temporada.",
     heroImage: "/img/modelos/modelo-collares-capas.webp",
+  })
+}
+
+export function getMasVendidos() {
+  return getCollection((product) => product.badge === "Más vendido", {
+    slug: "mas-vendidos",
+    title: "Más Vendidos",
+    eyebrow: "Colección",
+    description:
+      "Las piezas que más se repiten en nuestros pedidos: favoritas para llevar a diario y para regalar sin dudar.",
+    heroImage: "/img/modelos/modelo-mano-anillos-pulsera.webp",
+  })
+}
+
+export function getParaRegalo() {
+  return getCollection((product) => product.price <= GIFT_MAX_PRICE, {
+    slug: "para-regalo",
+    title: "Para Regalo",
+    eyebrow: "Colección",
+    description: `Detalles por ${GIFT_MAX_PRICE} € o menos, listos para regalar en el estuche de firma Luxgirl.`,
+    heroImage: "/img/modelos/modelo-perlas-corazon.webp",
   })
 }

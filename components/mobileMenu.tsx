@@ -189,7 +189,7 @@ export default function MobileMenu({
             ))}
             <li>
               <Link
-                href="/"
+                href="/sobre-nosotras"
                 onClick={onClose}
                 className="inline-flex min-h-11 items-center rounded-full border border-white/15 px-4 text-sm text-stone-200 outline-none transition-colors hover:border-gold-bright/60 hover:text-white focus-visible:ring-2 focus-visible:ring-gold-bright active:bg-white/10"
               >

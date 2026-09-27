@@ -113,15 +113,18 @@ export default function CategoryPage({
 
           {products.length > 0 ? (
             <ul className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-3 lg:mt-12 xl:grid-cols-4">
-              {products.map((product, index) => (
-                <li key={product.slug}>
-                  <ProductCard
-                    product={product}
-                    href={productHref(product)}
-                    priority={index < 4}
-                  />
-                </li>
-              ))}
+              {products.map((product, index) => {
+                const href = productHref(product)
+                return (
+                  <li key={href}>
+                    <ProductCard
+                      product={product}
+                      href={href}
+                      priority={index < 4}
+                    />
+                  </li>
+                )
+              })}
             </ul>
           ) : (
             <div className="mx-auto mt-16 max-w-md text-center">

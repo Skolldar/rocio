@@ -41,14 +41,16 @@ const columns: FooterColumn[] = [
     title: "Colecciones",
     links: [
       { label: "Novedades", href: "/products/novedades" },
-      { label: "Más Vendidos", href: "/products?coleccion=mas-vendidos" },
-      { label: "Para Regalo", href: "/products?coleccion=regalo" },
+      { label: "Más Vendidos", href: "/products/mas-vendidos" },
+      { label: "Para Regalo", href: "/products/para-regalo" },
+      { label: "Guía de Regalos", href: "/regalos" },
       { label: "Atelier de Oro", href: "/products" },
     ],
   },
   {
     title: "Ayuda",
     links: [
+      { label: "Sobre nosotras", href: "/sobre-nosotras" },
       { label: "Envíos y entregas", href: "/" },
       { label: "Devoluciones", href: "/" },
       { label: "Guía de tallas", href: "/" },
