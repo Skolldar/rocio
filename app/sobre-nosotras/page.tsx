@@ -98,9 +98,9 @@ export default function SobreNosotrasPage() {
             Accesorios elegidos por una mujer, <br className="hidden sm:inline" />
             para otras mujeres
           </h1>
-          <p className="mt-4 max-w-lg text-base leading-relaxed text-stone-200 sm:mt-5 md:text-lg md:font-regular">
-            Luxgirl es un proyecto pequeño que llevo yo sola. Piezas bonitas,
-            delicadas y asequibles, para sentirte bien contigo misma.
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-stone-200 sm:mt-5 md:text-lg md:font-regular">
+            Luxgirl es un proyecto pequeño que llevo yo sola. <br />
+            Piezas bonitas, delicadas y asequibles, para sentirte bien contigo misma.
           </p>
         </div>
       </section>
@@ -131,14 +131,14 @@ export default function SobreNosotrasPage() {
               <p>
                 Siempre he pensado que los accesorios son mucho más que un
                 complemento. Con el ajetreo del día a día vestimos algo
-                práctico, básico o cómodo, y en algún momento pensamos "falta
-                algo". Un collar, unos aretes o un anillo son ese algo.
+                práctico, básico o cómodo, y en algún momento pensamos &quot;falta
+                algo&quot;. Un collar, unos aretes o un anillo son ese algo.
               </p>
               <p>
                 Cada pieza que elijo la imagino en la historia de otra mujer:
                 en un día cualquiera, en una cita, en una salida con amigas o
-                en ese momento frente al espejo en el que piensas "hoy me
-                quiero ver bonita para mí".
+                en ese momento frente al espejo en el que piensas &quot;hoy me
+                quiero ver bonita para mí&quot;.
               </p>
             </div>
           </div>
