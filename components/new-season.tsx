@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 
@@ -9,59 +10,39 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 
-type SeasonPiece = {
+import { formatPrice, getProduct } from "@/lib/catalog"
+
+type SeasonPick = {
   name: string
   category: string
-  price: string
-  image: string
-  href: string
+  categorySlug: string
+  slug: string
 }
 
 // Otoño · Invierno 2026 — la cápsula de nueva temporada.
-const pieces: SeasonPiece[] = [
-  {
-    name: "Solsticio",
-    category: "Anillos",
-    price: "320,00 €",
-    image: "/img/anillos/anillo-S-flor.webp",
-    href: "/products/anillos?orden=novedades",
-  },
-  {
-    name: "Vendimia",
-    category: "Collares",
-    price: "480,00 €",
-    image: "/img/collares/collar-corazon-filigrana.webp",
-    href: "/products/collares?orden=novedades",
-  },
-  {
-    name: "Ámbar",
-    category: "Pendientes",
-    price: "260,00 €",
-    image: "/img/pendientes/aretes-pera.webp",
-    href: "/products/pendientes?orden=novedades",
-  },
-  {
-    name: "Bruma",
-    category: "Pulseras",
-    price: "210,00 €",
-    image: "/img/pulseras/pulsera-eslabones.webp",
-    href: "/products/pulseras?orden=novedades",
-  },
-  {
-    name: "Eclipse",
-    category: "Edición Limitada",
-    price: "540,00 €",
-    image: "/img/brazaletes/brazalete-charms-corazon.webp",
-    href: "/products/edicion-limitada?orden=novedades",
-  },
-  {
-    name: "Penumbra",
-    category: "Collares",
-    price: "390,00 €",
-    image: "/img/collares/collar-medalla-grabada.webp",
-    href: "/products/collares?orden=novedades",
-  },
+// Precio, imagen y enlace se resuelven desde el catálogo para que siempre coincidan.
+const picks: SeasonPick[] = [
+  { name: "Solsticio", category: "Anillos", categorySlug: "anillos", slug: "ola-dorada" },
+  { name: "Vendimia", category: "Collares", categorySlug: "collares", slug: "corazon-filigrana" },
+  { name: "Ámbar", category: "Pendientes", categorySlug: "pendientes", slug: "aretes-pera" },
+  { name: "Bruma", category: "Pulseras", categorySlug: "pulseras", slug: "eslabones" },
+  { name: "Eclipse", category: "Edición Limitada", categorySlug: "brazaletes", slug: "charms-corazon" },
+  { name: "Penumbra", category: "Collares", categorySlug: "collares", slug: "medalla-grabada" },
 ]
+
+const pieces = picks.flatMap((pick) => {
+  const match = getProduct(pick.categorySlug, pick.slug)
+  if (!match) return []
+  return [
+    {
+      name: pick.name,
+      category: pick.category,
+      price: formatPrice(match.product.price),
+      image: match.product.image,
+      href: `/products/${match.category.slug}/${match.product.slug}`,
+    },
+  ]
+})
 
 export default function NewSeason() {
   return (
@@ -113,10 +94,13 @@ export default function NewSeason() {
                   className="group block rounded-xl focus-visible:outline-none"
                 >
                   <div className="relative aspect-4/5 overflow-hidden rounded-xl bg-foreground/5 ring-1 ring-border transition duration-300 group-hover:ring-gold-deep/50 group-focus-visible:ring-2 group-focus-visible:ring-gold-deep">
-                    <div
+                    <Image
+                      src={piece.image}
+                      alt=""
                       aria-hidden="true"
-                      className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-[1.05] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
-                      style={{ backgroundImage: `url('${piece.image}')` }}
+                      fill
+                      sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 78vw"
+                      className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.05] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                     />
                     <div
                       aria-hidden="true"

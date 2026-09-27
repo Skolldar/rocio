@@ -1,5 +1,7 @@
+import Image from "next/image"
 import Link from "next/link"
 
+import LazyVideo from "@/components/lazyVideo"
 import ParallaxImage from "@/components/parallaxImage"
 import { formatPrice } from "@/lib/catalog"
 
@@ -69,12 +71,12 @@ export default function PairedShowcase() {
             href={pair.href}
             className="group relative block min-h-[58vh] overflow-hidden lg:min-h-170 focus-visible:outline-none"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={pair.lifestyleImage}
               alt={pair.lifestyleAlt}
-              loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-1200 ease-out group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover transition-transform duration-1200 ease-out group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
             />
             {/* Soft legibility wash so the white link reads on any photo */}
             <div
@@ -99,15 +101,10 @@ export default function PairedShowcase() {
               href={pair.product.href ?? pair.href}
               className="group relative block min-h-[58vh] overflow-hidden bg-sand lg:min-h-170 focus-visible:outline-none"
             >
-              <video
+              <LazyVideo
                 src={pair.product.video}
                 poster={pair.product.image}
                 aria-label={pair.product.alt}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-1200 ease-out group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
               />
               {/* Soft wash so the product name reads over the footage */}

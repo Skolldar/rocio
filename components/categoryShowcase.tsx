@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 
@@ -80,12 +81,12 @@ export default function CategoryShowcase() {
               index === 4 ? "col-span-2 aspect-3/2 md:col-span-1 md:aspect-3/4" : "aspect-3/4"
             }`}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={category.image}
               alt={`Colección de ${category.name.toLowerCase()}`}
-              loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              fill
+              sizes={index === 4 ? "(min-width: 1024px) 20vw, (min-width: 768px) 33vw, 100vw" : "(min-width: 1024px) 20vw, (min-width: 768px) 33vw, 50vw"}
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             />
 
             {/* Legibility gradient */}

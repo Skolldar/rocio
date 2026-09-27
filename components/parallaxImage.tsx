@@ -1,6 +1,9 @@
 "use client"
 
 import { useEffect, useRef, type CSSProperties } from "react"
+import { getImageProps } from "next/image"
+
+import { observePlayback, posterUrl } from "@/components/lazyVideo"
 
 type ParallaxImageProps = {
   src: string
@@ -9,6 +12,7 @@ type ParallaxImageProps = {
   distance?: number
   objectPosition?: string
   className?: string
+  sizes?: string
 }
 
 export default function ParallaxImage({
@@ -18,6 +22,7 @@ export default function ParallaxImage({
   distance = 120,
   objectPosition = "50% 50%",
   className = "",
+  sizes = "(min-width: 1024px) 50vw, 100vw",
 }: ParallaxImageProps) {
   const frameRef = useRef<HTMLDivElement>(null)
   const mediaRef = useRef<HTMLImageElement & HTMLVideoElement>(null)
@@ -26,15 +31,11 @@ export default function ParallaxImage({
     const frame = frameRef.current
     const media = mediaRef.current
     if (!frame || !media) return
-    // React doesn't reliably reflect the `muted` attribute onto the DOM
-    // property, so set it directly: the video must never play sound.
-    if (video) media.muted = true
+    // Videos only download and play once they approach the viewport.
+    const stopPlayback = video ? observePlayback(media) : () => {}
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
 
-    if (video && reduceMotion) media.pause()
-   
-    if (CSS.supports("animation-timeline: view()")) return
-    if (reduceMotion) return
+    if (CSS.supports("animation-timeline: view()") || reduceMotion) return stopPlayback
 
     let raf = 0
     const update = () => {
@@ -55,6 +56,7 @@ export default function ParallaxImage({
     window.addEventListener("scroll", onScroll, { passive: true })
     window.addEventListener("resize", onScroll)
     return () => {
+      stopPlayback()
       window.removeEventListener("scroll", onScroll)
       window.removeEventListener("resize", onScroll)
       if (raf) cancelAnimationFrame(raf)
@@ -67,6 +69,9 @@ export default function ParallaxImage({
     height: `calc(100% + ${distance}px)`,
     objectPosition,
   }
+  // Responsive, optimizer-served sources; positioning comes from `mediaStyle`.
+  const { style: _fillStyle, ...imgProps } = getImageProps({ src, alt, fill: true, sizes }).props
+  void _fillStyle
   const mediaClass =
     "parallax-img absolute left-0 w-full object-cover will-change-transform"
 
@@ -80,13 +85,12 @@ export default function ParallaxImage({
         <video
           ref={mediaRef}
           src={video}
-          poster={src}
+          poster={posterUrl(src, 1920)}
           aria-label={alt}
-          autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="none"
           style={mediaStyle}
           className={mediaClass}
         />
@@ -94,10 +98,8 @@ export default function ParallaxImage({
         // eslint-disable-next-line @next/next/no-img-element
         <img
           ref={mediaRef}
-          src={src}
+          {...imgProps}
           alt={alt}
-          loading="lazy"
-          decoding="async"
           style={mediaStyle}
           className={mediaClass}
         />

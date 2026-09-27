@@ -41,8 +41,14 @@ export function Component() {
 
       <div className="slide-content">
         <p className="slide-eyebrow">La Colección</p>
-        <h1 className="slide-title" id="mainTitle"></h1>
-        <p className="slide-description" id="mainDesc"></p>
+        {/* The first slide's copy is server-rendered so it paints immediately;
+            the slider engine takes these nodes over once it boots. */}
+        <h1 className="slide-title" id="mainTitle">
+          {slides[0].title}
+        </h1>
+        <p className="slide-description" id="mainDesc">
+          {slides[0].description}
+        </p>
         <Link className="slide-cta" href={slides[activeSlide].href}>
           Explora la colección
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">

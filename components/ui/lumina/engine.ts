@@ -1,38 +1,49 @@
-// Lumina slider engine: owns the Three.js renderer, the shader material, the
+// Lumina slider engine: owns the WebGL renderer, the shader uniforms, the
 // auto-advance timer, and the DOM wiring for navigation/counter/progress.
 //
-// State that was previously shared between closures now lives on the instance.
 // Methods are arrow-function fields so they keep their `this` binding when used
-// as event listeners or timer callbacks. Call `start()` after the CDN
-// dependencies have loaded, and `dispose()` to tear everything down.
-/* eslint-disable @typescript-eslint/no-explicit-any -- GSAP and Three.js are untyped CDN globals */
+// as event listeners or timer callbacks. This module is loaded lazily (it pulls
+// in GSAP), so the hero's first paint never waits on it. Call `start()` once,
+// and `dispose()` to tear everything down.
+
+import { gsap } from "gsap";
 
 import { getEffectIndex, PROGRESS_UPDATE_INTERVAL, SLIDER_CONFIG } from "./config";
-import { fragmentShader, vertexShader } from "./shaders";
+import { QuadRenderer, type SlideTexture } from "./gl";
+import { fragmentShader } from "./shaders";
 import { slides } from "./slides";
-import { animateInitialTitle, animateTitleIn, animateTitleOut, splitText } from "./title-animations";
-
-declare const gsap: any;
-declare const THREE: any;
-
+import { animateTitleIn, animateTitleOut, splitText } from "./title-animations";
 
 const imageCache = new Map<string, Promise<HTMLImageElement>>();
+
+// Widths the Next.js image optimizer serves by default (`images.deviceSizes`).
+const DEVICE_SIZES = [640, 750, 828, 1080, 1200, 1920, 2048, 3840];
+
+// Texture URL for a slide, resized by the Next.js image optimizer to the
+// viewport instead of downloading the full-size original. Slide 0 reuses the
+// poster's already-downloaded source so it comes straight from cache.
+const textureUrl = (src: string, idx: number): string => {
+  if (idx === 0) {
+    const poster = document.querySelector<HTMLImageElement>(".slide-poster");
+    if (poster?.currentSrc) return poster.currentSrc;
+  }
+  const target = window.innerWidth * Math.min(window.devicePixelRatio, 2);
+  const width = DEVICE_SIZES.find((w) => w >= target) ?? DEVICE_SIZES[DEVICE_SIZES.length - 1];
+  return `/_next/image?url=${encodeURIComponent(src)}&w=${width}&q=75`;
+};
 
 export class LuminaSliderEngine {
   private currentSlideIndex = 0;
 
   onSlideChange?: (idx: number) => void;
   private isTransitioning = false;
-  private shaderMaterial: any;
-  private renderer: any;
-  private scene: any;
-  private camera: any;
-  private slideTextures: any[] = [];
+  private renderer: QuadRenderer | null = null;
+  private slideTextures: (SlideTexture | null)[] = [];
   private texturesLoaded = false;
-  private autoSlideTimer: any = null;
-  private progressAnimation: any = null;
+  private autoSlideTimer: ReturnType<typeof setTimeout> | null = null;
+  private progressAnimation: ReturnType<typeof setInterval> | null = null;
+  private progress = { value: 0 };
   private sliderEnabled = false;
-  private rafId = 0;
   private disposed = false;
   // The auto-advance only runs while the hero is actually on screen.
   private inView = false;
@@ -46,13 +57,11 @@ export class LuminaSliderEngine {
     this.createSlidesNavigation();
     this.updateCounter(0);
 
+    // The first title is server-rendered and already visible (it is the LCP
+    // element). Split it into letters, still visible, so the first transition
+    // can animate it out.
     const titleEl = document.getElementById("mainTitle");
-    const descEl = document.getElementById("mainDesc");
-    if (titleEl && descEl) {
-      titleEl.innerHTML = splitText(slides[0].title);
-      descEl.textContent = slides[0].description;
-      animateInitialTitle(titleEl, descEl);
-    }
+    if (titleEl) titleEl.innerHTML = splitText(slides[0].title, true);
 
     this.initRenderer();
 
@@ -75,25 +84,43 @@ export class LuminaSliderEngine {
     this.disposed = true;
     this.sliderEnabled = false;
     this.stopAutoSlideTimer();
-    cancelAnimationFrame(this.rafId);
     document.removeEventListener("visibilitychange", this.onVisibility);
     window.removeEventListener("resize", this.onResize);
-    this.slideTextures.forEach((t) => t?.dispose?.());
-    this.shaderMaterial?.dispose?.();
-    this.renderer?.dispose?.();
+    gsap.killTweensOf(this.progress);
+    this.renderer?.dispose();
+    this.renderer = null;
   };
 
   // --- SHADER UNIFORMS ---
 
   private updateShaderUniforms = () => {
-    if (!this.shaderMaterial) return;
+    const r = this.renderer;
+    if (!r) return;
     const s = SLIDER_CONFIG.settings;
-    const u = this.shaderMaterial.uniforms;
     for (const key in s) {
-      const uName = "u" + key.charAt(0).toUpperCase() + key.slice(1);
-      if (u[uName]) u[uName].value = s[key];
+      const value = s[key];
+      if (typeof value !== "number") continue;
+      r.setFloat("u" + key.charAt(0).toUpperCase() + key.slice(1), value);
     }
-    u.uEffectType.value = getEffectIndex(s.currentEffect);
+    r.setInt("uEffectType", getEffectIndex(s.currentEffect));
+  };
+
+  // Binds the outgoing/incoming slide textures to the shader.
+  private bindTextures = (from: SlideTexture, to: SlideTexture) => {
+    const r = this.renderer;
+    if (!r) return;
+    r.setTexture("uTexture1", from.texture);
+    r.setTexture("uTexture2", to.texture);
+    r.setVec2("uTexture1Size", from.size);
+    r.setVec2("uTexture2Size", to.size);
+  };
+
+  // Draws one frame. The image is static between transitions, so frames are
+  // only drawn while a transition runs or after a resize, never in a loop.
+  private draw = () => {
+    if (!this.renderer || this.disposed) return;
+    this.renderer.setFloat("uProgress", this.progress.value);
+    this.renderer.render();
   };
 
   // --- CONTENT ---
@@ -125,10 +152,7 @@ export class LuminaSliderEngine {
     if (!currentTexture || !targetTexture) return;
 
     this.isTransitioning = true;
-    this.shaderMaterial.uniforms.uTexture1.value = currentTexture;
-    this.shaderMaterial.uniforms.uTexture2.value = targetTexture;
-    this.shaderMaterial.uniforms.uTexture1Size.value = currentTexture.userData.size;
-    this.shaderMaterial.uniforms.uTexture2Size.value = targetTexture.userData.size;
+    this.bindTextures(currentTexture, targetTexture);
 
     this.updateContent(targetIndex);
 
@@ -137,19 +161,20 @@ export class LuminaSliderEngine {
     this.updateNavigationState(this.currentSlideIndex);
 
     gsap.fromTo(
-      this.shaderMaterial.uniforms.uProgress,
+      this.progress,
       { value: 0 },
       {
         value: 1,
         duration: this.transitionDuration(),
         ease: "power2.inOut",
+        onUpdate: this.draw,
         // Start the auto-slide progress bar as the new image begins appearing,
         // not after the transition finishes, so the bar tracks the full dwell.
         onStart: () => this.safeStartTimer(),
         onComplete: () => {
-          this.shaderMaterial.uniforms.uProgress.value = 0;
-          this.shaderMaterial.uniforms.uTexture1.value = targetTexture;
-          this.shaderMaterial.uniforms.uTexture1Size.value = targetTexture.userData.size;
+          this.progress.value = 0;
+          this.bindTextures(targetTexture, targetTexture);
+          this.draw();
           this.isTransitioning = false;
         },
       }
@@ -236,7 +261,7 @@ export class LuminaSliderEngine {
       progress += increment;
       this.updateSlideProgress(this.currentSlideIndex, progress);
       if (progress >= 100) {
-        clearInterval(this.progressAnimation);
+        if (this.progressAnimation) clearInterval(this.progressAnimation);
         this.progressAnimation = null;
         this.fadeSlideProgress(this.currentSlideIndex);
         if (!this.isTransitioning) this.handleSlideChange();
@@ -261,119 +286,77 @@ export class LuminaSliderEngine {
 
   // --- TEXTURES & RENDERER ---
 
-  private loadImageTexture = async (src: string) => {
-    let pending = imageCache.get(src);
+  private loadImageTexture = async (src: string, idx: number): Promise<SlideTexture | null> => {
+    const url = textureUrl(src, idx);
+    let pending = imageCache.get(url);
     if (!pending) {
       pending = new Promise<HTMLImageElement>((resolve, reject) => {
         const img = new Image();
         img.crossOrigin = "anonymous";
         img.onload = () => resolve(img);
-        img.onerror = () => reject(new Error(`Failed to load ${src}`));
-        img.src = src;
+        img.onerror = () => reject(new Error(`Failed to load ${url}`));
+        img.src = url;
       }).then(async (img) => {
         await img.decode().catch(() => undefined);
         return img;
       });
-      imageCache.set(src, pending);
-      pending.catch(() => imageCache.delete(src));
+      imageCache.set(url, pending);
+      pending.catch(() => imageCache.delete(url));
     }
     const img = await pending;
-    const t = new THREE.Texture(img);
-    t.minFilter = t.magFilter = THREE.LinearFilter;
-    t.needsUpdate = true;
-    t.userData = { size: new THREE.Vector2(img.width, img.height) };
-    return t;
+    if (this.disposed || !this.renderer) return null;
+    return this.renderer.createTexture(img);
+  };
+
+  private resizeRenderer = () => {
+    if (!this.renderer) return;
+    this.renderer.setSize(window.innerWidth, window.innerHeight, Math.min(window.devicePixelRatio, 2));
+    this.renderer.setVec2("uResolution", [window.innerWidth, window.innerHeight]);
   };
 
   private onResize = () => {
-    if (this.renderer) {
-      this.renderer.setSize(window.innerWidth, window.innerHeight);
-      this.shaderMaterial.uniforms.uResolution.value.set(window.innerWidth, window.innerHeight);
-    }
+    this.resizeRenderer();
+    this.draw();
   };
 
   private onVisibility = () =>
     document.hidden ? this.stopAutoSlideTimer() : !this.isTransitioning && this.safeStartTimer();
 
   private initRenderer = async () => {
-    const canvas = document.querySelector(".webgl-canvas") as HTMLCanvasElement;
+    const canvas = document.querySelector<HTMLCanvasElement>(".webgl-canvas");
     if (!canvas) return;
-    this.scene = new THREE.Scene();
-    this.camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-    this.renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: false });
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    try {
+      this.renderer = new QuadRenderer(canvas, fragmentShader, ["uTexture1", "uTexture2"]);
+    } catch (e) {
+      // Without WebGL the server-rendered poster simply stays in place.
+      console.warn("Hero slider disabled:", e);
+      return;
+    }
+    this.resizeRenderer();
+    this.updateShaderUniforms();
 
-    this.shaderMaterial = new THREE.ShaderMaterial({
-      uniforms: {
-        uTexture1: { value: null },
-        uTexture2: { value: null },
-        uProgress: { value: 0 },
-        uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
-        uTexture1Size: { value: new THREE.Vector2(1, 1) },
-        uTexture2Size: { value: new THREE.Vector2(1, 1) },
-        uEffectType: { value: 0 },
-        uGlobalIntensity: { value: 1.0 },
-        uSpeedMultiplier: { value: 1.0 },
-        uDistortionStrength: { value: 1.0 },
-        uColorEnhancement: { value: 1.0 },
-        uGlassRefractionStrength: { value: 1.0 },
-        uGlassChromaticAberration: { value: 1.0 },
-        uGlassBubbleClarity: { value: 1.0 },
-        uGlassEdgeGlow: { value: 1.0 },
-        uGlassLiquidFlow: { value: 1.0 },
-        uFrostIntensity: { value: 1.0 },
-        uFrostCrystalSize: { value: 1.0 },
-        uFrostIceCoverage: { value: 1.0 },
-        uFrostTemperature: { value: 1.0 },
-        uFrostTexture: { value: 1.0 },
-        uRippleFrequency: { value: 25.0 },
-        uRippleAmplitude: { value: 0.08 },
-        uRippleWaveSpeed: { value: 1.0 },
-        uRippleRippleCount: { value: 1.0 },
-        uRippleDecay: { value: 1.0 },
-        uPlasmaIntensity: { value: 1.2 },
-        uPlasmaSpeed: { value: 0.8 },
-        uPlasmaEnergyIntensity: { value: 0.4 },
-        uPlasmaContrastBoost: { value: 0.3 },
-        uPlasmaTurbulence: { value: 1.0 },
-        uTimeshiftDistortion: { value: 1.6 },
-        uTimeshiftBlur: { value: 1.5 },
-        uTimeshiftFlow: { value: 1.4 },
-        uTimeshiftChromatic: { value: 1.5 },
-        uTimeshiftTurbulence: { value: 1.4 },
-      },
-      vertexShader,
-      fragmentShader,
-    });
-    this.scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), this.shaderMaterial));
+    const load = (i: number) =>
+      this.loadImageTexture(slides[i].media, i)
+        .catch(() => {
+          console.warn(`Failed texture: ${slides[i].media}`);
+          return null;
+        })
+        .then((t) => (this.slideTextures[i] = t));
 
-    const loads = slides.map((s) =>
-      this.loadImageTexture(s.media).catch(() => {
-        console.warn(`Failed texture: ${s.media}`);
-        return null;
-      }),
-    );
     this.slideTextures = slides.map(() => null);
-    loads.forEach((p, i) => p.then((t) => { this.slideTextures[i] = t; }));
-    await Promise.all(loads.slice(0, 2));
+    // The first two slides gate the slider; the rest follow in the background.
+    await Promise.all([load(0), load(1)]);
     if (this.disposed) return;
-    if (this.slideTextures[0] && this.slideTextures[1]) {
-      this.shaderMaterial.uniforms.uTexture1.value = this.slideTextures[0];
-      this.shaderMaterial.uniforms.uTexture2.value = this.slideTextures[1];
-      this.shaderMaterial.uniforms.uTexture1Size.value = this.slideTextures[0].userData.size;
-      this.shaderMaterial.uniforms.uTexture2Size.value = this.slideTextures[1].userData.size;
+    for (let i = 2; i < slides.length; i++) void load(i);
+
+    const [first, second] = this.slideTextures;
+    if (first && second) {
+      this.bindTextures(first, first);
+      this.draw();
       this.texturesLoaded = true;
       this.sliderEnabled = true;
-      this.updateShaderUniforms();
       document.querySelector(".slider-wrapper")?.classList.add("loaded");
       this.safeStartTimer(500);
     }
-
-    const render = () => {
-      this.rafId = requestAnimationFrame(render);
-      this.renderer.render(this.scene, this.camera);
-    };
-    render();
   };
 }

@@ -1,8 +1,8 @@
-// GLSL shaders for the WebGL slide transitions. The fragment shader exposes
-// one effect per `uEffectType` value (see `getEffectIndex` in `config.ts`);
-// only the `glass` effect is fully implemented, the rest cross-fade.
+// GLSL fragment shader for the WebGL slide transitions (the vertex shader
+// lives in `gl.ts`). It exposes one effect per `uEffectType` value (see
+// `getEffectIndex` in `config.ts`); only the `glass` effect is fully
+// implemented, the rest cross-fade.
 
-export const vertexShader = `varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`;
 
 export const fragmentShader = `
   uniform sampler2D uTexture1, uTexture2;

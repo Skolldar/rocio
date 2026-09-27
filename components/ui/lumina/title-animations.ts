@@ -1,17 +1,17 @@
 // GSAP-driven text animations for the hero title/description. Each slide gets a
 // distinct entrance so cycling through the deck feels varied.
-/* eslint-disable @typescript-eslint/no-explicit-any -- GSAP is an untyped CDN global */
 
-declare const gsap: any;
+import { gsap } from "gsap";
 
 // Wraps each character in an inline-block span so letters can be staggered
 // independently. Spaces become non-breaking spaces to preserve word gaps.
-export const splitText = (text: string): string =>
+// `visible` keeps the letters shown, for splitting text that is already on screen.
+export const splitText = (text: string, visible = false): string =>
   text
     .split("")
     .map(
       (char) =>
-        `<span style="display: inline-block; opacity: 0;">${char === " " ? "&nbsp;" : char}</span>`
+        `<span style="display: inline-block; opacity: ${visible ? 1 : 0};">${char === " " ? "&nbsp;" : char}</span>`
     )
     .join("");
 
@@ -64,10 +64,4 @@ export const animateTitleIn = (idx: number, titleEl: HTMLElement, descEl: HTMLEl
       gsap.to(children, { y: 0, opacity: 1, duration: 0.8, stagger: 0.03, ease: "power3.out" });
       gsap.to(descEl, { y: 0, opacity: 1, duration: 0.8, delay: 0.2, ease: "power3.out" });
   }
-};
-
-// Initial entrance played once when the slider first mounts.
-export const animateInitialTitle = (titleEl: HTMLElement, descEl: HTMLElement): void => {
-  gsap.fromTo(titleEl.children, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 1, stagger: 0.03, ease: "power3.out", delay: 0.5 });
-  gsap.fromTo(descEl, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: "power3.out", delay: 0.8 });
 };

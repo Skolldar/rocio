@@ -66,6 +66,17 @@ export default function MobileMenu({
 
   const featuredStep = categories.length
 
+  // The closed panel stays mounted (invisible) over the viewport, so its links
+  // would all count as "visible" and prefetch every route on page load. Only
+  // prefetch once the menu is actually open.
+  const prefetch = open ? null : false
+
+  // Likewise, hold the featured card's background image until the first open
+  // so it isn't downloaded on every page load. It stays set afterwards so it
+  // doesn't vanish during the closing fade.
+  const [hasOpened, setHasOpened] = React.useState(open)
+  if (open && !hasOpened) setHasOpened(true)
+
   return (
     <nav
       id={id}
@@ -103,6 +114,7 @@ export default function MobileMenu({
               >
                 <Link
                   href={category.href}
+                  prefetch={prefetch}
                   onClick={onClose}
                   aria-current={active ? "page" : undefined}
                   className="group flex min-h-16 items-center gap-4 border-b border-white/10 py-3 outline-none transition-colors focus-visible:bg-white/5"
@@ -135,6 +147,7 @@ export default function MobileMenu({
         {/* Featured collection */}
         <Link
           href="/products"
+          prefetch={prefetch}
           onClick={onClose}
           style={revealStyle(open, featuredStep + 1)}
           className={cn(
@@ -145,10 +158,14 @@ export default function MobileMenu({
           <span
             aria-hidden="true"
             className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105 motion-reduce:transition-none"
-            style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=80')",
-            }}
+            style={
+              hasOpened
+                ? {
+                    backgroundImage:
+                      "url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=80')",
+                  }
+                : undefined
+            }
           />
           <span
             aria-hidden="true"
@@ -180,6 +197,7 @@ export default function MobileMenu({
               <li key={collection.title}>
                 <Link
                   href={collection.href}
+                  prefetch={prefetch}
                   onClick={onClose}
                   className="inline-flex min-h-11 items-center rounded-full border border-white/15 px-4 text-sm text-stone-200 outline-none transition-colors hover:border-gold-bright/60 hover:text-white focus-visible:ring-2 focus-visible:ring-gold-bright active:bg-white/10"
                 >
@@ -190,6 +208,7 @@ export default function MobileMenu({
             <li>
               <Link
                 href="/sobre-nosotras"
+                prefetch={prefetch}
                 onClick={onClose}
                 className="inline-flex min-h-11 items-center rounded-full border border-white/15 px-4 text-sm text-stone-200 outline-none transition-colors hover:border-gold-bright/60 hover:text-white focus-visible:ring-2 focus-visible:ring-gold-bright active:bg-white/10"
               >
@@ -209,6 +228,7 @@ export default function MobileMenu({
         >
           <Link
             href="/order"
+            prefetch={prefetch}
             onClick={onClose}
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/20 text-[0.78rem] font-medium uppercase tracking-[0.12em] text-stone-100 outline-none transition-colors hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-gold-bright"
           >
@@ -217,6 +237,7 @@ export default function MobileMenu({
           </Link>
           <Link
             href="/order"
+            prefetch={prefetch}
             onClick={onClose}
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-linear-135 from-gold-bright to-gold text-[0.78rem] font-medium uppercase tracking-[0.12em] text-gold-ink shadow-gold outline-none transition-[filter] hover:brightness-107 focus-visible:ring-2 focus-visible:ring-gold-bright focus-visible:ring-offset-2 focus-visible:ring-offset-stone-950"
           >

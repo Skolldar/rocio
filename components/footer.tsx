@@ -53,14 +53,14 @@ const socials: SocialLink[] = [
 ]
 
 const legal: FooterLink[] = [
-  { label: "Aviso legal", href: "/" },
-  { label: "Privacidad", href: "/" },
-  { label: "Cookies", href: "/" },
-  { label: "Términos", href: "/" },
+  { label: "Aviso legal", href: "/aviso-legal" },
+  { label: "Privacidad", href: "/privacidad" },
+  { label: "Cookies", href: "/cookies" },
+  { label: "Términos", href: "/terminos" },
 ]
 
 export default function Footer() {
-  const year = 2026
+  const year = new Date().getFullYear()
 
   return (
     <footer
@@ -164,6 +164,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
+                      prefetch={false}
                       className="rounded-sm text-sm font-regular text-stone-300 transition-colors hover:text-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-bright focus-visible:ring-offset-2 focus-visible:ring-offset-stone-950"
                     >
                       {link.label}
@@ -185,6 +186,7 @@ export default function Footer() {
               <li key={link.label}>
                 <Link
                   href={link.href}
+                  prefetch={false}
                   className="rounded-sm text-xs font-regular text-stone-400 transition-colors hover:text-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-bright"
                 >
                   {link.label}

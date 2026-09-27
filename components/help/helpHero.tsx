@@ -51,7 +51,7 @@ export default function HelpHero({
           </p>
           <h1
             id={titleId}
-            className="mt-3 max-w-[18ch] text-[clamp(2.25rem,1.5rem+4vw,3.5rem)] font-semibold leading-[1.05] text-balance"
+            className="mt-3 max-w-2xl text-[clamp(2.25rem,1.5rem+4vw,3.5rem)] font-semibold leading-[1.05] text-balance"
           >
             {title}
           </h1>
@@ -76,7 +76,7 @@ export default function HelpHero({
             </p>
             <h1
               id={titleId}
-              className="mt-3 max-w-[18ch] text-[clamp(2.25rem,1.5rem+4vw,3.5rem)] font-semibold leading-[1.05] text-balance"
+              className="mt-3 max-w-2xl text-[clamp(2.25rem,1.5rem+4vw,3.5rem)] font-semibold leading-[1.05] text-balance"
             >
               {title}
             </h1>
@@ -112,7 +112,7 @@ export default function HelpHero({
           </p>
           <h1
             id={titleId}
-            className="mt-3 max-w-[18ch] text-[clamp(2.25rem,1.5rem+4vw,3.5rem)] font-semibold leading-[1.05] text-balance"
+            className="mt-3 max-w-2xl text-[clamp(2.25rem,1.5rem+4vw,3.5rem)] font-semibold leading-[1.05] text-balance"
           >
             {title}
           </h1>
