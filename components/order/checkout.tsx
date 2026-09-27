@@ -71,7 +71,7 @@ function EmptyCart() {
       icon={<ShoppingBag aria-hidden="true" className="size-7" strokeWidth={1.25} />}
       title="Tu carrito está vacío"
       text="Cuando añadas una joya aparecerá aquí, y podrás pedírmela por WhatsApp."
-      action={{ href: "/products", label: "Ver joyas" }}
+      action={{ href: "/products/novedades", label: "Ver joyas" }}
     />
   )
 }
