@@ -209,5 +209,18 @@ export const collares: Category = {
       badge: "Edición limitada",
       addedAt: 13,
     },
+    {
+      slug: "de-angel",
+      name: "De Ángel",
+      description: "Escapulario de nácar con ángel y corazón en cadena dorada.",
+      story:
+        "Un escapulario de dos placas rectangulares de nácar, una con un ángel grabado y otra con un corazón, sobre una cadena dorada fina. Las placas cuelgan una junto a otra y se mueven de forma independiente. El nácar es natural, así que el tono y el grabado varían un poco de una pieza a otra.",
+      price: 6.00,
+      soldOut: false,
+      material: "oro",
+      image: "/img/collares/collar-de-angel.webp",
+      badge: "Nuevo",
+      addedAt: 17,
+    },
   ],
 }
