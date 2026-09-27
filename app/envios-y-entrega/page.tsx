@@ -15,7 +15,7 @@ import HelpHero from "@/components/help/helpHero"
 export const metadata: Metadata = {
   title: "Envíos y entrega · Luxgirl",
   description:
-    "Elige cómo recibir tu pedido: envío a domicilio con un coste fijo o entrega en mano, sin coste, quedando conmigo.",
+    "Elige cómo recibir tu pedido: envío a domicilio con un coste fijo o entrega en mano, sin coste, en el centro comercial Plaza Río de Madrid.",
 }
 
 // Condiciones actuales. Cambia aquí los datos y se actualizan en toda la página.
@@ -55,12 +55,12 @@ const options: DeliveryOption[] = [
     eyebrow: "Opción 2",
     title: "Entrega en mano",
     price: "Sin coste",
-    priceNote: "quedamos y te lo doy yo",
+    priceNote: "en el C.C. Plaza Río, Madrid",
     timing: "cuando mejor te venga, normalmente en la misma semana",
     description:
-      "Si estás en mi ciudad o cerca, quedamos en un sitio que nos venga bien a las dos y te entrego el pedido en persona. No pagas envío.",
+      "Si estás en Madrid o cerca, quedamos en el centro comercial Plaza Río y te doy el pedido en persona. No pagas envío.",
     bullets: [
-      "Acordamos día, hora y lugar por mensaje.",
+      "Acordamos el día y la hora por mensaje.",
       "Puedes ver la pieza antes de llevártela y pagar en ese momento si prefieres efectivo.",
       "Si el plan cambia, avísame y buscamos otro momento sin problema.",
     ],
@@ -80,7 +80,7 @@ const steps = [
   {
     title: "Sale del taller o quedamos",
     description:
-      "Si has elegido envío, la llevo a la mensajería y te paso el seguimiento. Si has elegido entrega en mano, cerramos el sitio y la hora.",
+      "Si has elegido envío, la llevo a la mensajería y te paso el seguimiento. Si has elegido entrega en mano, cerramos el día y la hora para vernos en Plaza Río.",
   },
   {
     title: "La tienes contigo",
@@ -119,7 +119,7 @@ export default function EnviosPage() {
         eyebrow="Envíos y entrega"
         titleId="envios-titulo"
         title="Dos formas de recibir tu pedido"
-        intro="Puedes pedir que te lo envíe a casa, con un coste fijo, o quedar conmigo y recogerlo en mano sin pagar envío. Las dos opciones llevan el mismo estuche y la misma nota."
+        intro="Puedes pedir que te lo envíe a casa, con un coste fijo, o recogerlo en mano en el centro comercial Plaza Río, en Madrid, sin pagar envío. Las dos opciones llevan el mismo estuche y la misma nota."
         image={{
           src: "/img/empaque-productos.webp",
           alt: "Estuches y cajas de Luxgirl preparados para enviar",

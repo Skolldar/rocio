@@ -2,13 +2,14 @@
 
 import { useId } from "react"
 import Link from "next/link"
-import { Handshake, Truck, type LucideIcon } from "lucide-react"
+import { Handshake, MapPin, Truck, type LucideIcon } from "lucide-react"
 
 import InfoTip from "@/components/order/infoTip"
 import Step from "@/components/order/step"
 import { eur } from "@/lib/cart"
 import {
   deliveryOptions,
+  HAND_DELIVERY_PLACE,
   updateCheckout,
   useCheckout,
   type Delivery,
@@ -47,6 +48,71 @@ export default function CheckoutOptions() {
             })}
           </div>
         </fieldset>
+
+        {checkout.delivery === "envio" ? (
+          <fieldset className="mt-6 grid gap-4 sm:grid-cols-[10rem_minmax(0,1fr)]">
+            <legend className="mb-4 text-sm font-medium">
+              Dirección de envío <span className="font-normal text-muted-foreground">(opcional)</span>
+            </legend>
+            <div className="sm:col-span-2">
+              <label htmlFor={`${id}-direccion`} className="text-sm text-muted-foreground">
+                Calle, número, piso y puerta
+              </label>
+              <input
+                id={`${id}-direccion`}
+                type="text"
+                autoComplete="street-address"
+                placeholder="Ej.: Calle Mayor 12, 3º B"
+                value={checkout.address}
+                onChange={(event) => updateCheckout({ address: event.target.value })}
+                className={cn("mt-2 h-12", fieldStyles)}
+              />
+            </div>
+            <div>
+              <label htmlFor={`${id}-cp`} className="text-sm text-muted-foreground">
+                Código postal
+              </label>
+              <input
+                id={`${id}-cp`}
+                type="text"
+                inputMode="numeric"
+                autoComplete="postal-code"
+                maxLength={5}
+                placeholder="28001"
+                value={checkout.postalCode}
+                onChange={(event) =>
+                  updateCheckout({ postalCode: event.target.value.replace(/\D/g, "") })
+                }
+                className={cn("mt-2 h-12 tabular-nums", fieldStyles)}
+              />
+            </div>
+            <div>
+              <label htmlFor={`${id}-localidad`} className="text-sm text-muted-foreground">
+                Localidad
+              </label>
+              <input
+                id={`${id}-localidad`}
+                type="text"
+                autoComplete="address-level2"
+                placeholder="Ej.: Madrid"
+                value={checkout.city}
+                onChange={(event) => updateCheckout({ city: event.target.value })}
+                className={cn("mt-2 h-12", fieldStyles)}
+              />
+            </div>
+            <p className="text-sm text-muted-foreground sm:col-span-2">
+              Si prefieres, déjalo en blanco y me la pasas por WhatsApp.
+            </p>
+          </fieldset>
+        ) : (
+          <p className="mt-6 flex gap-3 rounded-2xl bg-accent/50 p-4 text-sm leading-relaxed sm:p-5">
+            <MapPin aria-hidden="true" strokeWidth={1.5} className="mt-0.5 size-5 shrink-0 text-gold-deep" />
+            <span>
+              Te lo doy en el <strong className="font-medium">{HAND_DELIVERY_PLACE}</strong>. El día
+              y la hora los cerramos por WhatsApp.
+            </span>
+          </p>
+        )}
       </Step>
 
       <Step number={3} title="Algo más">
@@ -77,8 +143,8 @@ export default function CheckoutOptions() {
                 Nota <span className="font-normal text-muted-foreground">(opcional)</span>
               </label>
               <InfoTip id={`${id}-nota-ayuda`} label="Qué poner en la nota">
-                Si pides un anillo o una pulsera, dime la talla de cada uno. La
-                dirección me la pasas luego por el chat.
+                Si pides un anillo o una pulsera, dime la talla de cada uno. Si es un
+                regalo, dímelo y no incluyo el precio.
               </InfoTip>
             </div>
             <textarea

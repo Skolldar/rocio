@@ -4,9 +4,12 @@ import { createLocalStore } from "@/lib/localStore"
 // Mismas condiciones que en /envios-y-entrega.
 export const SHIPPING_COST = 4.9
 
+// La entrega en mano es siempre en el mismo sitio.
+export const HAND_DELIVERY_PLACE = "Centro comercial Plaza Río, Madrid"
+
 export const deliveryOptions = {
   envio: { label: "Envío a domicilio", note: "2 a 4 días laborables", cost: SHIPPING_COST },
-  mano: { label: "Entrega en mano", note: "Quedamos en mi ciudad", cost: 0 },
+  mano: { label: "Entrega en mano", note: "En el C.C. Plaza Río, Madrid", cost: 0 },
 } as const
 
 export type Delivery = keyof typeof deliveryOptions
@@ -15,12 +18,19 @@ export type Checkout = {
   delivery: Delivery
   name: string
   note: string
+  // Solo se usan con envío a domicilio.
+  address: string
+  postalCode: string
+  city: string
 }
 
 const DEFAULT_CHECKOUT: Checkout = {
   delivery: "envio",
   name: "",
   note: "",
+  address: "",
+  postalCode: "",
+  city: "",
 }
 
 const store = createLocalStore<Checkout>("luxgirl:pedido", DEFAULT_CHECKOUT, (raw) => {
@@ -30,10 +40,14 @@ const store = createLocalStore<Checkout>("luxgirl:pedido", DEFAULT_CHECKOUT, (ra
     typeof value.delivery === "string" && value.delivery in deliveryOptions
       ? (value.delivery as Delivery)
       : DEFAULT_CHECKOUT.delivery
+  const text = (field: string) => (typeof value[field] === "string" ? value[field] : "")
   return {
     delivery,
-    name: typeof value.name === "string" ? value.name : "",
-    note: typeof value.note === "string" ? value.note : "",
+    name: text("name"),
+    note: text("note"),
+    address: text("address"),
+    postalCode: text("postalCode"),
+    city: text("city"),
   }
 })
 
@@ -68,6 +82,14 @@ export function buildOrderMessage(items: CartItem[], checkout: Checkout) {
     }`,
     `*Total: ${eur.format(total)}*`,
   ]
+
+  if (checkout.delivery === "mano") {
+    lines.push("", `Recogida: ${HAND_DELIVERY_PLACE}`)
+  } else {
+    const place = [checkout.postalCode.trim(), checkout.city.trim()].filter(Boolean).join(" ")
+    const address = [checkout.address.trim(), place].filter(Boolean).join(", ")
+    if (address) lines.push("", `Dirección de envío: ${address}`)
+  }
   if (note) lines.push("", `Nota: ${note}`)
 
   return lines.join("\n")
