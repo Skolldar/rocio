@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 import { slides } from "./lumina/slides";
@@ -15,13 +16,14 @@ export function Component() {
 
   return (
     <main className="slider-wrapper" ref={containerRef} aria-label="Colecciones destacadas">
-      <img
+      <Image
         className="slide-poster"
         src={slides[0].media}
         alt=""
         aria-hidden="true"
-        decoding="async"
-        fetchPriority="high"
+        fill
+        priority
+        sizes="100vw"
       />
       <canvas className="webgl-canvas" aria-hidden="true"></canvas>
 
@@ -33,7 +35,7 @@ export function Component() {
         </span>
         <span className="slide-counter-sep">/</span>
         <span className="slide-total" id="slideTotal">
-          06
+          {String(slides.length).padStart(2, "0")}
         </span>
       </div>
 
