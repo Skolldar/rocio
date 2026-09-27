@@ -34,13 +34,13 @@ const columns: FooterColumn[] = [
       { label: "Collares", href: "/products?categoria=collares" },
       { label: "Pendientes", href: "/products?categoria=pendientes" },
       { label: "Pulseras", href: "/products?categoria=pulseras" },
-      { label: "Edición Limitada", href: "/products?categoria=edicion-limitada" },
+      { label: "Edición Limitada", href: "/products/edicion-limitada" },
     ],
   },
   {
     title: "Colecciones",
     links: [
-      { label: "Novedades", href: "/products?coleccion=novedades" },
+      { label: "Novedades", href: "/products/novedades" },
       { label: "Más Vendidos", href: "/products?coleccion=mas-vendidos" },
       { label: "Para Regalo", href: "/products?coleccion=regalo" },
       { label: "Atelier de Oro", href: "/products" },

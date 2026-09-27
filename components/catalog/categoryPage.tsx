@@ -18,6 +18,7 @@ type CategoryPageProps = {
   basePath: string
   material?: Material
   sort: SortValue
+  productHref?: (product: Product) => string
 }
 
 export default function CategoryPage({
@@ -26,9 +27,8 @@ export default function CategoryPage({
   basePath,
   material,
   sort,
+  productHref = (product) => `/products/${category.slug}/${product.slug}`,
 }: CategoryPageProps) {
-  // Orden fijo (el de materialLabels) para que los filtros no cambien de sitio
-  // entre categorías.
   const materials = (Object.keys(materialLabels) as Material[]).filter((m) =>
     category.products.some((p) => p.material === m),
   )
@@ -117,7 +117,7 @@ export default function CategoryPage({
                 <li key={product.slug}>
                   <ProductCard
                     product={product}
-                    href={`/products/${category.slug}/${product.slug}`}
+                    href={productHref(product)}
                     priority={index < 4}
                   />
                 </li>

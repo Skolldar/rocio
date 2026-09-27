@@ -5,42 +5,34 @@ body {
   font-family: var(--font-elms-sans), var(--font-google-sans), system-ui, sans-serif;
 }
 
-/* ============================================================
-   shadcn/ui design tokens (Tailwind v4)
-   Tuned to the Luxgirl palette: warm dark stone + champagne gold.
-   These back the semantic utilities used by components in
-   components/ui (bg-background, bg-accent, text-muted-foreground…).
-   ============================================================ */
 :root {
-  /* ---- Luxgirl brand palette (single source of truth) ----
-     Use via Tailwind: text-gold-bright, bg-ink, text-cream, ring-gold-deep… */
-  --gold: #d8a948; /* champagne gold — CTAs, cart badge, gradient end */
-  --gold-bright: #f0c869; /* bright gold — accents on dark surfaces */
-  --gold-deep: #b88a2e; /* deeper gold — accents & focus rings on light surfaces */
-  --gold-ink: #1c1206; /* dark brown text on gold */
-  --ink: #0c0a09; /* warm near-black (stone-950) */
-  --cream: #f5f0e8; /* warm off-white text on dark */
-  --sand: #f3efe8; /* light warm image backdrop */
+  --gold: #d8a948;
+  --gold-bright: #f0c869;
+  --gold-deep: #b88a2e;
+  --gold-ink: #1c1206;
+  --ink: #0c0a09;
+  --cream: #f5f0e8;
+  --sand: #f3efe8;
 
-  --background: #faf9f7; /* stone-50-ish, matches light pages */
+  --background: #faf9f7;
   --foreground: var(--ink);
   --card: #ffffff;
   --card-foreground: var(--ink);
   --primary: var(--gold);
-  --primary-foreground: var(--gold-ink); /* dark brown for legibility on gold */
+  --primary-foreground: var(--gold-ink);
   --secondary: #f0ede8;
   --secondary-foreground: #1c1917;
   --muted: #f0ede8;
   --muted-foreground: #6b6259;
   --popover: #ffffff;
   --popover-foreground: var(--ink);
-  --accent: #f3ead7; /* soft champagne */
+  --accent: #f3ead7;
   --accent-foreground: #1c1917;
   --destructive: #b91c1c;
   --destructive-foreground: #faf9f7;
   --border: #e7e1d8;
   --input: #e7e1d8;
-  --ring: var(--gold-deep); /* keeps focus rings legible on light pages */
+  --ring: var(--gold-deep);
   --radius: 0.625rem;
 }
 
@@ -78,11 +70,6 @@ body {
   --radius-lg: var(--radius);
 }
 
-/* ============================================================
-   Luxgirl Hero — Liquid Glass WebGL slider
-   Palette: --ink / --cream + --gold / --gold-bright (defined in :root)
-   ============================================================ */
-
 .slider-wrapper {
   position: relative;
   width: 100%;
@@ -108,7 +95,6 @@ body {
   display: block;
 }
 
-/* Legibility gradient over the imagery */
 .slider-overlay {
   position: absolute;
   inset: 0;
@@ -119,15 +105,11 @@ body {
     linear-gradient(to right, color-mix(in srgb, var(--ink) 60%, transparent) 0%, color-mix(in srgb, var(--ink) 0%, transparent) 55%);
 }
 
-/* The global <Navbar /> owns the top bar (brand on the left, actions on the
-   right), so the hero's own top-corner brand + slide counter are hidden to
-   avoid a duplicated wordmark. The slider keeps its bottom-right navigation. */
 .slider-brand,
 .slide-counter {
   display: none;
 }
 
-/* Brand wordmark */
 .slider-brand {
   position: absolute;
   top: clamp(1.5rem, 4vw, 2.75rem);
@@ -140,7 +122,6 @@ body {
   text-transform: uppercase;
 }
 
-/* Slide counter (top-right) */
 .slide-counter {
   position: absolute;
   top: clamp(4.5rem, 9vw, 6.5rem);
@@ -164,15 +145,14 @@ body {
   color: color-mix(in srgb, var(--cream) 60%, transparent);
 }
 
-/* Headline block (bottom-left) */
 .slide-content {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
-  max-width: 100rem; /* matches max-w-400 + mx-auto on the page sections */
-  padding-inline: 2rem; /* matches px-8 */
+  max-width: 100rem;
+  padding-inline: 2rem;
   z-index: 10;
 }
 
@@ -245,14 +225,13 @@ body {
   outline-offset: 3px;
 }
 
-/* Slide navigation (bottom-right) */
 .slides-navigation {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 100rem; /* matches max-w-400 + mx-auto on the page sections */
-  padding-inline: 2rem; /* matches px-8 */
+  max-width: 100rem;
+  padding-inline: 2rem;
   bottom: clamp(2rem, 6vh, 3.5rem);
   z-index: 20;
   display: flex;

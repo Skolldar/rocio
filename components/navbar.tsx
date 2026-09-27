@@ -47,7 +47,7 @@ const categories: Category[] = [
   },
   {
     title: "Edición Limitada",
-    href: "/products?categoria=edicion-limitada",
+    href: "/products/edicion-limitada",
     description: "Series numeradas diseñadas en cantidades reducidas.",
   },
 ]
@@ -55,7 +55,7 @@ const categories: Category[] = [
 const collections: Category[] = [
   {
     title: "Novedades",
-    href: "/products?coleccion=novedades",
+    href: "/products/novedades",
     description: "Lo último que ha llegado al atelier.",
   },
   {
@@ -139,7 +139,7 @@ export default function Navbar() {
                     <li className="row-span-3">
                       <NavigationMenuLink asChild>
                         <a
-                          href="/products"
+                          href="/products/collares/doble-corazon"
                           className="group relative flex h-full w-full select-none flex-col justify-end overflow-hidden rounded-md p-6 no-underline outline-none focus:ring-2 focus:ring-gold-bright"
                         >
                           <span

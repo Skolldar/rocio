@@ -52,7 +52,7 @@ const pieces: SeasonPiece[] = [
     category: "Edición Limitada",
     price: "540 €",
     image: "/img/brazaletes/brazalete-charms-corazon.webp",
-    href: "/products?categoria=edicion-limitada&coleccion=novedades",
+    href: "/products/edicion-limitada?orden=novedades",
   },
   {
     name: "Penumbra",
@@ -149,7 +149,7 @@ export default function NewSeason() {
           {/* Footer link */}
           <div className="mt-12 border-t border-border pt-6">
             <Link
-              href="/products?coleccion=novedades"
+              href="/products/novedades"
               className="group inline-flex items-center gap-2 rounded-sm text-sm font-medium uppercase tracking-[0.18em] text-foreground transition-colors hover:text-gold-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-deep focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               Ver toda la colección
