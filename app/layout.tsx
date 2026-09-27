@@ -17,6 +17,9 @@ const googleSans = Google_Sans({
   style: ["normal", "italic"],
   axes: ["opsz"],
   variable: "--font-google-sans",
+  // Only a fallback behind Elms Sans: the browser fetches it on demand for
+  // glyphs Elms Sans lacks, so preloading it just delays the first paint.
+  preload: false,
   adjustFontFallback: false,
   fallback: ["system-ui", "sans-serif"],
 });

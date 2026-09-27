@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
 
-import { LEGAL } from "@/components/legal/legalData"
 import LegalPage, { type LegalSection } from "@/components/legal/legalPage"
 
 export const metadata: Metadata = {

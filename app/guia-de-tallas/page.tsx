@@ -131,7 +131,7 @@ export default function GuiaDeTallasPage() {
 
             <div className="min-w-0 lg:col-span-7">
               <div className="overflow-x-auto rounded-xl border border-border bg-white p-6 sm:p-8">
-                <table className="w-full min-w-[26rem] border-collapse">
+                <table className="w-full min-w-104 border-collapse">
                   <caption className="mb-5 text-left text-lg font-medium">
                     Tabla de tallas de anillo
                   </caption>

@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 
-import { LEGAL } from "@/components/legal/legalData"
 import LegalPage, { type LegalSection } from "@/components/legal/legalPage"
 
 export const metadata: Metadata = {
