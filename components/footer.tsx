@@ -130,7 +130,7 @@ export default function Footer() {
               Lux<span className="text-gold-bright">girl</span>
             </Link>
             <p className="mt-4 max-w-xs text-sm font-regular leading-relaxed text-stone-400">
-              Joyería contemporánea en acero inoxidable con baño de oro o plata, para
+              Joyería contemporánea en acero inoxidable color oro y color plata, para
               marcar los momentos que más importan.
             </p>
 

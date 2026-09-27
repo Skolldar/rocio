@@ -9,60 +9,60 @@ import QualityGuarantee from "@/components/qualityGuarantee"
 export const metadata: Metadata = {
   title: "Sobre mí · Luxgirl",
   description:
-    "Luxgirl es un pequeño proyecto de joyería que llevo yo sola: piezas escogidas con calma, materiales que duran y trato directo conmigo.",
+    "Luxgirl es un pequeño proyecto que llevo yo sola: accesorios bonitos y asequibles, elegidos con calma para mujeres que disfrutan verse bien.",
 }
 
 const values = [
   {
     icon: Gem,
-    title: "Materiales que duran",
+    title: "Piezas que yo me pondría",
     description:
-      "Todas mis piezas son de acero inoxidable con baño de oro o de plata. No se oscurecen, no dan alergia y aguantan el día a día sin perder el color.",
+      "Solo elijo lo que yo llevaría en cada ocasión. Si una pieza no me enamora, no entra en la tienda.",
   },
   {
     icon: Scissors,
-    title: "Sin prisas",
+    title: "Asequibles de verdad",
     description:
-      "Reviso y termino cada joya a mano, en tiradas pequeñas. Si algo no me convence, no sale.",
+      "Verte bonita no tiene por qué costar una fortuna. Busco piezas delicadas a precios que puedas permitirte sin pensarlo dos veces.",
   },
   {
     icon: HandHeart,
     title: "Hablas conmigo",
     description:
-      "Si tienes dudas con la talla, con un regalo o con cómo cuidar una pieza, me escribes y te contesto yo.",
+      "Si tienes dudas con una pieza, con un regalo o con cómo combinarla, me escribes y te contesto yo.",
   },
   {
     icon: Leaf,
-    title: "Para toda la vida",
+    title: "Para cualquier día",
     description:
-      "Diseño pensando en piezas que quieras llevar dentro de diez años, no solo esta temporada.",
+      "Una cita, una salida con amigas o un martes cualquiera. Un collar o unos aretes pueden cambiar cómo te sientes con lo que llevas puesto.",
   },
 ]
 
 const milestones = [
   {
-    year: "2021",
-    title: "Un cajón lleno de ideas",
+    year: "El inicio",
+    title: "Una casualidad",
     description:
-      "Empecé haciendo las joyas sencillas que quería llevar y no encontraba en ningún sitio. Al principio, solo para mí.",
+      "Un día me encontré con piezas preciosas, delicadas y a precios increíbles. Piezas que me pondría en cada ocasión. Y pensé: ¿por qué no convertir esto en una oportunidad?",
   },
   {
-    year: "2023",
-    title: "El primer taller",
+    year: "La idea",
+    title: "Un pequeño sueño",
     description:
-      "Monté un pequeño taller en casa y saqué la primera colección completa de collares y pendientes.",
+      "Quería otra fuente de ingresos, sí. Pero también me hacía ilusión compartir algo que a mí me encanta.",
   },
   {
-    year: "2025",
-    title: "Edición Limitada",
+    year: "El nombre",
+    title: "Nace Luxgirl",
     description:
-      "Ya habían salido miles de piezas del taller. Ese año empecé las series numeradas, en cantidades muy pequeñas.",
+      "Un espacio para mujeres que disfrutan verse bien, expresarse a través de su estilo y encontrar belleza en los pequeños detalles.",
   },
   {
     year: "Hoy",
-    title: "Sigo haciéndolo yo",
+    title: "Sigo eligiendo yo",
     description:
-      "Cada pedido sale con su estuche y una nota escrita a mano. La escribo yo, igual que el primer día.",
+      "Cada pieza que entra en Luxgirl la imagino formando parte de la historia de otra mujer. Quiero que esto crezca hasta ser una marca que acompañe a cada una en su manera de brillar.",
   },
 ]
 
@@ -95,12 +95,12 @@ export default function SobreNosotrasPage() {
             id="sobre-mi-titulo"
             className="mt-3 text-[clamp(2.5rem,1.5rem+5vw,3.5rem)] font-semibold text-balance"
           >
-            Joyas hechas por una mujer, <br className="hidden sm:inline" />
+            Accesorios elegidos por una mujer, <br className="hidden sm:inline" />
             para otras mujeres
           </h1>
           <p className="mt-4 max-w-lg text-base leading-relaxed text-stone-200 sm:mt-5 md:text-lg md:font-regular">
             Luxgirl es un proyecto pequeño que llevo yo sola. Piezas bonitas,
-            bien hechas y pensadas para llevarlas cada día.
+            delicadas y asequibles, para sentirte bien contigo misma.
           </p>
         </div>
       </section>
@@ -117,24 +117,28 @@ export default function SobreNosotrasPage() {
                 id="historia-titulo"
                 className="mt-3 text-3xl font-semibold text-balance sm:text-4xl"
               >
-                Empecé buscando la joya que no existía
+                Empezó como una casualidad
               </h2>
             </div>
             <div className="space-y-6 text-base font-regular leading-relaxed text-muted-foreground lg:col-span-7 lg:text-lg">
               <p>
-                Quería collares finos que no se enredaran, pendientes ligeros
-                para llevar todo el día y anillos que combinaran entre sí sin
-                pensarlo mucho. Como no los encontraba, empecé a hacerlos.
+                Me apasiona sentirme bien conmigo misma, y esos pequeños
+                detalles que hacen que un look se sienta nuestro. Un día me
+                encontré con piezas preciosas, delicadas y a precios
+                increíbles. Piezas que me pondría en cualquier ocasión. Ahí
+                empezó este pequeño sueño.
               </p>
               <p>
-                Luxgirl sigue siendo cosa de una sola persona. Elijo cada
-                material, pruebo cada pieza y preparo cada pedido en el taller.
-                Lo que llega a tus manos ha pasado antes por las mías, y me
-                gusta que sea así.
+                Siempre he pensado que los accesorios son mucho más que un
+                complemento. Con el ajetreo del día a día vestimos algo
+                práctico, básico o cómodo, y en algún momento pensamos "falta
+                algo". Un collar, unos aretes o un anillo son ese algo.
               </p>
               <p>
-                Creo en una joyería cercana: sin lujos inaccesibles, sin prisas
-                y sin piezas que acaban olvidadas en un cajón.
+                Cada pieza que elijo la imagino en la historia de otra mujer:
+                en un día cualquiera, en una cita, en una salida con amigas o
+                en ese momento frente al espejo en el que piensas "hoy me
+                quiero ver bonita para mí".
               </p>
             </div>
           </div>
@@ -143,7 +147,7 @@ export default function SobreNosotrasPage() {
 
       {/* Imagen parallax: se fija en la parte superior y el contenido
           siguiente se desliza por encima (efecto cortina). */}
-      <section aria-label="El taller" className="sticky top-0 z-0 h-svh">
+      <section aria-label="Las piezas" className="sticky top-0 z-0 h-svh">
         <ParallaxImage
           src="/img/modelos/modelo-collares-capas.webp"
           video="/video/taller.mp4"
@@ -172,7 +176,7 @@ export default function SobreNosotrasPage() {
               id="valores-titulo"
               className="mt-3 text-3xl font-semibold text-balance sm:text-4xl"
             >
-              Cuatro cosas en las que no cedo
+              Cuatro cosas que tengo claras
             </h2>
           </div>
 
@@ -206,7 +210,7 @@ export default function SobreNosotrasPage() {
                 id="recorrido-titulo"
                 className="mt-3 text-3xl font-semibold text-balance sm:text-4xl"
               >
-                Paso a paso, sin prisas
+                Cómo llegué hasta aquí
               </h2>
               <div className="relative mt-10 aspect-4/5 overflow-hidden rounded-xl">
                 <Image
@@ -249,7 +253,7 @@ export default function SobreNosotrasPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2">
           <div className="flex flex-col justify-center px-5 sm:px-8 py-16 lg:px-16 lg:py-24">
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-gold-deep">
-              Descubre el taller
+              Descubre las piezas
             </p>
             <h2
               id="cta-titulo"
@@ -259,7 +263,7 @@ export default function SobreNosotrasPage() {
             </h2>
             <p className="mt-5 max-w-3xl text-base font-regular leading-relaxed text-muted-foreground">
               Echa un vistazo a las colecciones o escríbeme si buscas algo
-              concreto. Me gusta ayudar a encontrar la joya adecuada.
+              concreto. Me gusta ayudar a encontrar la pieza que te falta.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link

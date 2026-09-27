@@ -185,7 +185,7 @@ export default function MobileMenu({
             </span>
           </span>
           <span className="relative mt-1 text-sm font-regular leading-snug text-stone-200">
-            Piezas de acero inoxidable con baño de oro o plata.
+            Piezas de acero inoxidable color oro y color plata.
           </span>
         </Link>
 

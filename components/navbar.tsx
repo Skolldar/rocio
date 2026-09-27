@@ -26,7 +26,7 @@ const categories: Category[] = [
   {
     title: "Anillos",
     href: "/products/anillos",
-    description: "Solitarios, alianzas y diseños de autor con baño de oro o plata.",
+    description: "Solitarios, alianzas y diseños de autor en acero inoxidable color oro o color plata.",
   },
   {
     title: "Collares",

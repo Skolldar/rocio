@@ -27,7 +27,7 @@ const sections: LegalSection[] = [
     title: "Las piezas",
     content: (
       <p>
-        Todo es acero inoxidable con baño de oro o plata. Las fotos son de las piezas
+        Todo es acero inoxidable color oro o color plata. Las fotos son de las piezas
         reales, aunque el color puede variar un poco según tu pantalla. Las medidas son
         aproximadas. Si una pieza aparece como agotada, dímelo y te aviso cuando vuelva.
       </p>

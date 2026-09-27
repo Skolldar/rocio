@@ -10,7 +10,7 @@ export const slides: Slide[] = [
   {
     label: "Collares",
     title: "Brillo Eterno",
-    description: "Collares con baño de oro para llevar cada día.",
+    description: "Collares de acero inoxidable color oro para llevar cada día.",
     media: "/img/collares/neklace.webp",
     href: "/products/collares",
   },

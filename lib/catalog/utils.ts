@@ -1,8 +1,8 @@
 import type { Material, Product, ProductDetail, Style } from "./types"
 
 export const materialLabels: Record<Material, string> = {
-  oro: "Baño de oro",
-  plata: "Baño de plata",
+  oro: "Acero inoxidable color oro",
+  plata: "Acero inoxidable color plata",
 }
 
 export const styleLabels: Record<Style, string> = {

@@ -26,7 +26,7 @@ const googleSans = Google_Sans({
 
 export const metadata: Metadata = {
   title: "Luxgirl",
-  description: "Joyería contemporánea en acero inoxidable con baño de oro o plata.",
+  description: "Joyería contemporánea en acero inoxidable color oro y color plata.",
 };
 
 export default function RootLayout({

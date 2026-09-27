@@ -28,7 +28,7 @@ const stamps: Stamp[] = [
     icon: ShieldCheck,
     ring: "Alta durabilidad",
     label: "Alta durabilidad",
-    description: "Acero inoxidable con baño de oro o plata que no se oscurece.",
+    description: "Acero inoxidable color oro o color plata que no se oscurece.",
   },
 ]
 

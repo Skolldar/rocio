@@ -8,7 +8,7 @@ import HelpHero from "@/components/help/helpHero"
 export const metadata: Metadata = {
   title: "Cuidado de tus joyas · Luxgirl",
   description:
-    "Cómo limpiar, guardar y proteger tus joyas de acero inoxidable con baño de oro o plata para que duren años con el mismo color.",
+    "Cómo limpiar, guardar y proteger tus joyas de acero inoxidable color oro o color plata para que duren años con el mismo color.",
 }
 
 const yes = [
@@ -19,7 +19,7 @@ const yes = [
 ]
 
 const no = [
-  "Bañarte en la piscina o en el mar con ellas. El cloro y la sal atacan el baño.",
+  "Bañarte en la piscina o en el mar con ellas. El cloro y la sal apagan el color.",
   "Usar limpiadores de plata, líquidos abrasivos o cepillos duros.",
   "Dejarlas en el baño con la humedad y el vapor de la ducha.",
   "Guardarlas todas juntas en un mismo cajón, rozándose.",
@@ -45,9 +45,9 @@ const cleaningSteps = [
 
 const materials = [
   {
-    title: "Acero inoxidable con baño de oro o plata",
+    title: "Acero inoxidable color oro y color plata",
     description:
-      "Es la base de todas mis piezas. No se oxida, no da alergia y aguanta el agua puntual. Lo que se desgasta con el tiempo es el baño, y lo que más lo acelera es el roce con otras joyas, el perfume y el sudor. Con un uso normal y estos cuidados, el color se mantiene años.",
+      "Es la base de todas mis piezas. No se oxida, no da alergia y aguanta el agua puntual. Lo que se desgasta con el tiempo es el color, y lo que más lo acelera es el roce con otras joyas, el perfume y el sudor. Con un uso normal y estos cuidados, el color se mantiene años.",
   },
   {
     title: "Perlas y nácar",
@@ -73,7 +73,7 @@ export default function CuidadoPage() {
         eyebrow="Cuidado de tus joyas"
         titleId="cuidado-titulo"
         title="Poco trabajo, muchos años"
-        intro="Mis piezas están pensadas para llevarlas cada día, pero el baño de oro o de plata agradece unos gestos sencillos. Lo que cuento aquí es lo mismo que hago yo con las mías."
+        intro="Mis piezas están pensadas para llevarlas cada día, pero el acabado en color oro o color plata agradece unos gestos sencillos. Lo que cuento aquí es lo mismo que hago yo con las mías."
         image={{
           src: "/img/modelos/modelo-mano-anillos-pulsera.webp",
           alt: "Mano con anillos y pulsera de oro",
@@ -214,13 +214,13 @@ export default function CuidadoPage() {
           <div className="mt-14 rounded-xl bg-stone-800 p-8 text-stone-50 sm:p-10 lg:flex lg:items-center lg:justify-between lg:gap-12">
             <div className="max-w-5xl mx-auto">
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-gold-bright">
-                Si el baño se ha desgastado
+                Si el color se ha desgastado
               </p>
               <p className="mt-3 text-base font-regular leading-relaxed text-stone-200">
                 Pasa con los años, sobre todo en anillos y pulseras, que rozan
-                más. Escríbeme con una foto: en muchos casos puedo volver a
-                bañar la pieza o cambiarte el cierre por mucho menos de lo que
-                cuesta una nueva.
+                más. Escríbeme con una foto y vemos qué se puede hacer. A veces
+                basta con cambiar el cierre, y sale por mucho menos de lo que
+                cuesta una pieza nueva.
               </p>
             </div>
           </div>
