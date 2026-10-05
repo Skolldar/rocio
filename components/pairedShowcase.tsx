@@ -10,13 +10,14 @@ type ShowcasePair = {
   href: string
   lifestyleImage: string
   lifestyleAlt: string
+  // Optional looping footage that replaces the still lifestyle image
+  lifestyleVideo?: string
   product: {
     name: string
     href?: string
     price?: string
     image: string
     alt: string
-    video?: string
   }
 
   reverse?: boolean
@@ -24,17 +25,18 @@ type ShowcasePair = {
 
 const pairs: ShowcasePair[] = [
   {
-    label: "Collares",
-    href: "/products/collares/medalla-grabada",
-    lifestyleImage: "/img/collares/collar-medalla-grabada.webp",
+    label: "Pulseras",
+    href: "/products/pulseras",
+    lifestyleImage: "/img/pulseras/pulsera-trebol-negro.webp",
     lifestyleAlt:
-      "Collar Medalla Grabada: medalla rectangular en relieve sobre cadena fina de oro",
+      "Pulsera Trebol Negro: eslabones de oro con colgante de trébol",
+    lifestyleVideo: "/video/collar.mp4",
     product: {
-      name: "Pulseras",
-      href: "/products/pulseras",
-      image: "/img/collares/collar-corazon-filigrana.webp",
-      alt: "Cadenas finas, perlas y tréboles para apilar en la muñeca",
-      video: "/video/collar.mp4",
+      name: "Medalla Grabada",
+      href: "/products/collares/medalla-grabada",
+      price: formatPrice(6),
+      image: "/img/collares/collar-medalla-grabada.webp",
+      alt: "Collar Medalla Grabada: medalla rectangular en relieve sobre cadena fina de oro",
     },
   },
   {
@@ -71,13 +73,22 @@ export default function PairedShowcase() {
             href={pair.href}
             className="group relative block min-h-[58vh] overflow-hidden lg:min-h-170 focus-visible:outline-none"
           >
-            <Image
-              src={pair.lifestyleImage}
-              alt={pair.lifestyleAlt}
-              fill
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              className="object-cover transition-transform duration-1200 ease-out group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
-            />
+            {pair.lifestyleVideo ? (
+              <LazyVideo
+                src={pair.lifestyleVideo}
+                poster={pair.lifestyleImage}
+                aria-label={pair.lifestyleAlt}
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-1200 ease-out group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+              />
+            ) : (
+              <Image
+                src={pair.lifestyleImage}
+                alt={pair.lifestyleAlt}
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover transition-transform duration-1200 ease-out group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+              />
+            )}
             {/* Soft legibility wash so the white link reads on any photo */}
             <div
               aria-hidden="true"
@@ -95,53 +106,31 @@ export default function PairedShowcase() {
             />
           </Link>
 
-          {/* Product pane — video fills the panel; still image stays centered */}
-          {pair.product.video ? (
-            <Link
-              href={pair.product.href ?? pair.href}
-              className="group relative block min-h-[58vh] overflow-hidden bg-sand lg:min-h-170 focus-visible:outline-none"
-            >
-              <LazyVideo
-                src={pair.product.video}
-                poster={pair.product.image}
-                aria-label={pair.product.alt}
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-1200 ease-out group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
-              />
-              {/* Soft wash so the product name reads over the footage */}
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 bg-linear-to-t from-stone-950/40 via-transparent to-transparent"
-              />
-              <h3 className="absolute bottom-8 left-0 right-0 text-center text-base font-normal tracking-wide text-cream transition-colors group-hover:text-gold-bright">
+          {/* Product pane — parallax still with name and price */}
+          <Link
+            href={pair.product.href ?? pair.href}
+            className="group relative block min-h-[58vh] overflow-clip bg-sand lg:min-h-170 focus-visible:outline-none"
+          >
+            <ParallaxImage
+              src={pair.product.image}
+              alt={pair.product.alt}
+              className="absolute inset-0"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-linear-to-t from-stone-950/55 via-stone-950/10 to-transparent"
+            />
+            <div className="absolute bottom-8 left-0 right-0 text-center">
+              <h3 className="text-base font-normal tracking-wide text-cream transition-colors group-hover:text-gold-bright">
                 {pair.product.name}
               </h3>
-            </Link>
-          ) : (
-            <Link
-              href={pair.product.href ?? pair.href}
-              className="group relative block min-h-[58vh] overflow-clip bg-sand lg:min-h-170 focus-visible:outline-none"
-            >
-              <ParallaxImage
-                src={pair.product.image}
-                alt={pair.product.alt}
-                className="absolute inset-0"
-              />
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 bg-linear-to-t from-stone-950/55 via-stone-950/10 to-transparent"
-              />
-              <div className="absolute bottom-8 left-0 right-0 text-center">
-                <h3 className="text-base font-normal tracking-wide text-cream transition-colors group-hover:text-gold-bright">
-                  {pair.product.name}
-                </h3>
-                {pair.product.price && (
-                  <p className="mt-2 text-xl italic text-gold-bright">
-                    {pair.product.price}
-                  </p>
-                )}
-              </div>
-            </Link>
-          )}
+              {pair.product.price && (
+                <p className="mt-2 text-xl italic text-gold-bright">
+                  {pair.product.price}
+                </p>
+              )}
+            </div>
+          </Link>
         </div>
       ))}
     </section>
