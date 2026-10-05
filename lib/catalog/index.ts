@@ -10,6 +10,10 @@ export * from "./utils"
 
 const categories: Category[] = [anillos, collares, pendientes, pulseras, brazaletes]
 
+export function getCategories() {
+  return categories
+}
+
 export function getCategorySlugs() {
   return categories.map((category) => category.slug)
 }
@@ -99,4 +103,10 @@ export function getParaRegalo() {
     description: `Detalles por ${GIFT_MAX_PRICE} € o menos, listos para regalar en el estuche de firma Luxgirl.`,
     heroImage: "/img/modelos/modelo-perlas-corazon.webp",
   })
+}
+
+export function getCollections() {
+  return [getNovedades(), getMasVendidos(), getParaRegalo(), getLimitedEdition()].map(
+    ({ category }) => category,
+  )
 }

@@ -18,6 +18,8 @@ export function generateMetadata(): Metadata {
   return {
     title: `${category.title} · Luxgirl`,
     description: category.description,
+    alternates: { canonical: `/products/${category.slug}` },
+    openGraph: { images: [{ url: category.heroImage, alt: category.title }] },
   }
 }
 

@@ -4,6 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Menu, ShoppingBag, X } from "lucide-react"
+import { ChevronDownIcon } from "@radix-ui/react-icons"
 
 import { cn } from "@/lib/utils"
 import {
@@ -18,6 +19,7 @@ import {
 import MobileMenu, { type NavLink } from "@/components/mobileMenu"
 import CartPreview from "@/components/cartPreview"
 import { removeFromCart, useCart } from "@/lib/cart"
+import { useHydrated } from "@/lib/localStore"
 import { INSTAGRAM_URL, InstagramIcon } from "@/components/socialIcons"
 
 type Category = NavLink
@@ -80,6 +82,9 @@ export default function Navbar() {
   const { items: cartItems, count: cartCount } = useCart()
   const cartCloseTimer = React.useRef<ReturnType<typeof setTimeout>>(undefined)
   const pathname = usePathname()
+  // Radix genera los ids del menú con useId y no coinciden entre servidor y
+  // cliente; el menú real se monta tras la hidratación para evitar el error.
+  const hydrated = useHydrated()
 
   // Páginas con hero oscuro: la barra empieza transparente con texto claro.
   // Las páginas de ayuda no están aquí a propósito: su barra es siempre sólida.
@@ -143,6 +148,9 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop navigation */}
+          {!hydrated ? (
+            <StaticDesktopNav itemClass={itemClass} />
+          ) : (
           <NavigationMenu className="hidden lg:flex">
             <NavigationMenuList className="gap-1">
               <NavigationMenuItem>
@@ -233,6 +241,7 @@ export default function Navbar() {
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
+          )}
 
           {/* Actions */}
           <div className="flex items-center gap-1 sm:gap-2">
@@ -302,6 +311,35 @@ export default function Navbar() {
         collections={collections}
       />
     </>
+  )
+}
+
+// Copia sin interacción del menú de escritorio para el HTML del servidor.
+function StaticDesktopNav({ itemClass }: { itemClass: string }) {
+  const triggerClass = cn(navigationMenuTriggerStyle(), "group", itemClass)
+  return (
+    <nav className="relative z-10 hidden max-w-max flex-1 items-center justify-center lg:flex">
+      <ul className="group flex flex-1 list-none items-center justify-center gap-1">
+        {["Joyería", "Colecciones"].map((label) => (
+          <li key={label}>
+            <button type="button" className={triggerClass}>
+              {label}{" "}
+              <ChevronDownIcon className="relative top-px ml-1 h-3 w-3" aria-hidden="true" />
+            </button>
+          </li>
+        ))}
+        <li>
+          <Link href="/regalos" className={cn(navigationMenuTriggerStyle(), itemClass)}>
+            Regalos
+          </Link>
+        </li>
+        <li>
+          <Link href="/sobre-nosotras" className={cn(navigationMenuTriggerStyle(), itemClass)}>
+            Sobre mí
+          </Link>
+        </li>
+      </ul>
+    </nav>
   )
 }
 

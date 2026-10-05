@@ -26,6 +26,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${category.title} · Luxgirl`,
     description: category.description,
+    // Los filtros (?material=, ?orden=…) apuntan a la URL limpia de la categoría.
+    alternates: { canonical: `/products/${category.slug}` },
+    openGraph: { images: [{ url: category.heroImage, alt: category.title }] },
   }
 }
 
