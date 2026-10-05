@@ -4,10 +4,8 @@ import { ArrowUpRight, Mail } from "lucide-react"
 
 import {
   type BrandIcon,
-  FacebookIcon,
   INSTAGRAM_URL,
   InstagramIcon,
-  YoutubeIcon,
 } from "@/components/socialIcons"
 
 type FooterLink = { label: string; href: string }
@@ -48,8 +46,8 @@ const columns: FooterColumn[] = [
 
 const socials: SocialLink[] = [
   { label: "Instagram", href: INSTAGRAM_URL, icon: InstagramIcon },
-  { label: "Facebook", href: "https://facebook.com", icon: FacebookIcon },
-  { label: "YouTube", href: "https://youtube.com", icon: YoutubeIcon },
+  // { label: "Facebook", href: "https://facebook.com", icon: FacebookIcon },
+  // { label: "YouTube", href: "https://youtube.com", icon: YoutubeIcon },
 ]
 
 const legal: FooterLink[] = [
