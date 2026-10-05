@@ -432,3 +432,36 @@ body {
     will-change: auto;
   }
 }
+
+/* Card entrance (see components/reveal.tsx). Plays on first paint for the
+   cards in view; offscreen cards get .is-pending and replay it on scroll.
+   nth-child staggers the first row; later batches get an inline delay. */
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+}
+
+.reveal-item {
+  animation: reveal-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal-item:nth-child(2) { --reveal-delay: 70ms; }
+.reveal-item:nth-child(3) { --reveal-delay: 140ms; }
+.reveal-item:nth-child(4) { --reveal-delay: 210ms; }
+.reveal-item:nth-child(5) { --reveal-delay: 280ms; }
+
+.reveal-item.is-pending {
+  opacity: 0;
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-item,
+  .reveal-item.is-pending {
+    opacity: 1;
+    animation: none;
+  }
+}

@@ -4,6 +4,7 @@ import { ChevronRight } from "lucide-react"
 
 import CatalogToolbar from "@/components/catalog/catalogToolbar"
 import ProductCard from "@/components/catalog/productCard"
+import Reveal from "@/components/reveal"
 import {
   materialLabels,
   styleLabels,
@@ -121,11 +122,11 @@ export default function CategoryPage({
           />
 
           {products.length > 0 ? (
-            <ul className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-3 lg:mt-12 xl:grid-cols-4">
+            <Reveal as="ul" className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-3 lg:mt-12 xl:grid-cols-4">
               {products.map((product, index) => {
                 const href = productHref(product)
                 return (
-                  <li key={href}>
+                  <li key={href} className="reveal-item">
                     <ProductCard
                       product={product}
                       href={href}
@@ -134,7 +135,7 @@ export default function CategoryPage({
                   </li>
                 )
               })}
-            </ul>
+            </Reveal>
           ) : (
             <div className="mx-auto mt-16 max-w-md text-center">
               <p className="text-xl font-semibold">No hay piezas con este filtro</p>

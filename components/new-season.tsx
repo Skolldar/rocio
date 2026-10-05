@@ -10,6 +10,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 
+import Reveal from "@/components/reveal"
 import { formatPrice, getProduct } from "@/lib/catalog"
 
 type SeasonPick = {
@@ -83,11 +84,12 @@ export default function NewSeason() {
           </div>
 
           {/* Pieces */}
+          <Reveal>
           <CarouselContent className="-ml-4 mt-10 sm:-ml-6 lg:mt-14">
             {pieces.map((piece) => (
               <CarouselItem
                 key={piece.name}
-                className="basis-[78%] pl-4 sm:basis-1/2 sm:pl-6 lg:basis-1/3 xl:basis-1/4"
+                className="reveal-item basis-[78%] pl-4 sm:basis-1/2 sm:pl-6 lg:basis-1/3 xl:basis-1/4"
               >
                 <Link
                   href={piece.href}
@@ -129,6 +131,7 @@ export default function NewSeason() {
               </CarouselItem>
             ))}
           </CarouselContent>
+          </Reveal>
 
           {/* Footer link */}
           <div className="mt-12 border-t border-border pt-6">

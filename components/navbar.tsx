@@ -79,6 +79,10 @@ export default function Navbar() {
   const [scrolled, setScrolled] = React.useState(false)
   const [mobileOpen, setMobileOpen] = React.useState(false)
   const [cartOpen, setCartOpen] = React.useState(false)
+  // Menú controlado: el <Link> de Next hace preventDefault en el clic y Radix
+  // entonces no cierra el desplegable, que se quedaba abierto mientras cargaba
+  // la página siguiente. Aquí se cierra a mano al pulsar cualquier enlace.
+  const [menuValue, setMenuValue] = React.useState("")
   const { items: cartItems, count: cartCount } = useCart()
   const cartCloseTimer = React.useRef<ReturnType<typeof setTimeout>>(undefined)
   const pathname = usePathname()
@@ -151,7 +155,14 @@ export default function Navbar() {
           {!hydrated ? (
             <StaticDesktopNav itemClass={itemClass} />
           ) : (
-          <NavigationMenu className="hidden lg:flex">
+          <NavigationMenu
+            className="hidden lg:flex"
+            value={menuValue}
+            onValueChange={setMenuValue}
+            onClick={(event) => {
+              if ((event.target as HTMLElement).closest("a")) setMenuValue("")
+            }}
+          >
             <NavigationMenuList className="gap-1">
               <NavigationMenuItem>
                 <NavigationMenuTrigger className={itemClass}>

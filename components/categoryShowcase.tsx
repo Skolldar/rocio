@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import Reveal from "@/components/reveal";
+
 
 type Category = {
   name: string;
@@ -70,12 +72,12 @@ export default function CategoryShowcase() {
       </div>
 
       {/* 5-card grid */}
-      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-5">
+      <Reveal className="mx-auto grid max-w-7xl grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-5">
         {categories.map((category, index) => (
           <Link
             key={category.name}
             href={category.href}
-            className={`group relative block overflow-hidden rounded-xl border border-border bg-foreground/5 shadow-sm outline-none transition-shadow duration-300 hover:shadow-xl focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+            className={`reveal-item group relative block overflow-hidden rounded-xl border border-border bg-foreground/5 shadow-sm outline-none transition-shadow duration-300 hover:shadow-xl focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
               // the 5th card spans both columns on the 2-col mobile layout, as a
               // landscape banner so it doesn't tower over the others
               index === 4 ? "col-span-2 aspect-3/2 md:col-span-1 md:aspect-3/4" : "aspect-3/4"
@@ -110,7 +112,7 @@ export default function CategoryShowcase() {
             </div>
           </Link>
         ))}
-      </div>
+      </Reveal>
       </div>
     </section>
   );

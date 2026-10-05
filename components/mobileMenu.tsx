@@ -164,7 +164,7 @@ export default function MobileMenu({
               hasOpened
                 ? {
                     backgroundImage:
-                      "url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=80')",
+                      "url('/img/modelos/modelo-collares-capas.webp')",
                   }
                 : undefined
             }
