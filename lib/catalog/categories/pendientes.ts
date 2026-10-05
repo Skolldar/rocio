@@ -201,7 +201,7 @@ export const pendientes: Category = {
       price: 8.00,
       soldOut: false,
       material: "oro",
-      image: "/img/pendientes/aretes-set-perla.webp",
+      image: "/img/pendientes/aretes-set-perla-corazon.webp",
       addedAt: 1,
     },
   ],
