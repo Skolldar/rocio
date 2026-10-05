@@ -71,7 +71,7 @@ const storeJsonLd = {
       name: SITE_NAME,
       description: SITE_DESCRIPTION,
       url: SITE_URL,
-      logo: absoluteUrl("/logo-complete.svg"),
+      logo: absoluteUrl("/logo/logo-complete.svg"),
       image: absoluteUrl(DEFAULT_IMAGE),
       email: EMAIL,
       telephone: PHONE_HREF.replace("tel:", ""),
