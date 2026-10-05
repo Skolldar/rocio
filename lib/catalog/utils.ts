@@ -5,6 +5,11 @@ export const materialLabels: Record<Material, string> = {
   plata: "Acero inoxidable color plata",
 }
 
+export const materialSwatchClass: Record<Material, string> = {
+  oro: "bg-[radial-gradient(circle_at_30%_30%,var(--gold-bright),var(--gold)_45%,var(--gold-deep))]",
+  plata: "bg-[radial-gradient(circle_at_30%_30%,#ffffff,#d4d4d8_45%,#8b8b93)]",
+}
+
 export const styleLabels: Record<Style, string> = {
   doble: "Collares dobles",
   mini: "Mini",

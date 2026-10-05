@@ -29,11 +29,12 @@ export default function SortSelect({ sort }: { sort: SortValue }) {
     })
   }
 
+  // On phones this row lines up with MaterialSelect: same label width, full-width trigger
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-2 sm:gap-3">
       <span
         id="ordenar-etiqueta"
-        className="text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground"
+        className="w-21 shrink-0 text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground sm:w-auto sm:tracking-[0.22em]"
       >
         Ordenar
       </span>
@@ -41,7 +42,10 @@ export default function SortSelect({ sort }: { sort: SortValue }) {
         <SelectTrigger
           aria-labelledby="ordenar-etiqueta"
           aria-busy={pending}
-          className={cn("w-60", pending && "opacity-60")}
+          className={cn(
+            "min-w-0 flex-1 gap-2 px-3 text-xs sm:w-60 sm:flex-none sm:gap-3 sm:px-4 sm:text-sm",
+            pending && "opacity-60",
+          )}
         >
           <SelectValue />
         </SelectTrigger>

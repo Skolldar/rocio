@@ -41,8 +41,9 @@ export default function ProductCard({ product, href, priority = false }: Product
             </span>
           </>
         )}
+        {/* Tighter type on narrow two-column grids so long badges stay on one line */}
         {product.badge && !soldOut && (
-          <span className="absolute left-3 top-3 rounded-full bg-stone-950/60 px-3 py-1 text-[0.68rem] font-medium uppercase tracking-[0.2em] text-stone-100 backdrop-blur-sm sm:left-4 sm:top-4">
+          <span className="absolute left-2 top-2 max-w-[calc(100%-1rem)] truncate whitespace-nowrap rounded-full bg-stone-950/60 px-2.5 py-1 text-[0.625rem] font-medium uppercase tracking-widest text-stone-100 backdrop-blur-sm sm:left-4 sm:top-4 sm:max-w-[calc(100%-2rem)] sm:px-3 sm:text-[0.68rem] sm:tracking-[0.2em]">
             {product.badge}
           </span>
         )}

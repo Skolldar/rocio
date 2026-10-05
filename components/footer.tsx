@@ -160,10 +160,10 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="flex flex-col gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs font-regular text-stone-400">
+          <p className="text-center text-xs font-regular text-stone-400 sm:text-left">
             © {year} Luxgirl. Todos los derechos reservados.
           </p>
-          <ul className="flex flex-wrap items-center gap-x-5 gap-y-2">
+          <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 sm:justify-start">
             {legal.map((link) => (
               <li key={link.label}>
                 <Link

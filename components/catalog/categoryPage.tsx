@@ -113,7 +113,6 @@ export default function CategoryPage({
         <div className="mx-auto max-w-400 px-5 sm:px-8 py-10 sm:py-14">
           <CatalogToolbar
             basePath={basePath}
-            total={products.length}
             material={material}
             style={style}
             sort={sort}

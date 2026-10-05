@@ -74,7 +74,7 @@ export default function AddToCart({
         <button
           type="button"
           onClick={handleAdd}
-          className="inline-flex h-13 flex-1 cursor-pointer items-center justify-center gap-2.5 rounded-full bg-linear-to-br from-gold-bright to-gold px-6 text-sm font-semibold uppercase tracking-[0.14em] text-gold-ink shadow-gold transition-[filter,box-shadow] duration-200 hover:shadow-gold-lg hover:brightness-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-deep focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          className="inline-flex h-13 cursor-pointer items-center justify-center gap-2.5 rounded-full bg-linear-to-br sm:flex-1 from-gold-bright to-gold px-6 text-sm font-semibold uppercase tracking-[0.14em] text-gold-ink shadow-gold transition-[filter,box-shadow] duration-200 hover:shadow-gold-lg hover:brightness-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-deep focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
           {added ? (
             <Check aria-hidden="true" className="size-4.5" />
@@ -85,7 +85,11 @@ export default function AddToCart({
         </button>
       </div>
 
-      <p role="status" className="mt-3 min-h-5 text-sm font-regular text-muted-foreground">
+      {/* Phones collapse the empty status line so the next CTA sits a regular gap below */}
+      <p
+        role="status"
+        className="mt-3 min-h-5 text-sm font-regular text-muted-foreground max-sm:empty:mt-0 max-sm:empty:min-h-0"
+      >
         {added && (
           <>
             {quantity} × {productName} en tu carrito.{" "}

@@ -3,16 +3,17 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import {
   materialLabels,
+  materialSwatchClass,
   styleLabels,
   type Material,
   type SortValue,
   type Style,
 } from "@/lib/catalog"
+import MaterialSelect from "@/components/catalog/materialSelect"
 import SortSelect from "@/components/catalog/sortSelect"
 
 type CatalogToolbarProps = {
   basePath: string
-  total: number
   material?: Material
   style?: Style
   sort: SortValue
@@ -32,14 +33,14 @@ function buildHref(
   return query ? `${basePath}?${query}` : basePath
 }
 
-const swatchClass: Record<Material, string> = {
-  oro: "bg-[radial-gradient(circle_at_30%_30%,var(--gold-bright),var(--gold)_45%,var(--gold-deep))]",
-  plata: "bg-[radial-gradient(circle_at_30%_30%,#ffffff,#d4d4d8_45%,#8b8b93)]",
-}
+const groupClass =
+  "grid w-full auto-cols-fr grid-flow-col items-center gap-1 rounded-full border border-border bg-secondary/70 p-1 sm:inline-flex sm:w-auto sm:shrink-0"
+
+const pillClass =
+  "inline-flex min-h-10 items-center justify-center gap-2 rounded-full px-3 text-center text-sm leading-tight transition-[background-color,color,box-shadow] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-deep focus-visible:ring-offset-2 focus-visible:ring-offset-secondary sm:whitespace-nowrap sm:px-4"
 
 export default function CatalogToolbar({
   basePath,
-  total,
   material,
   style,
   sort,
@@ -64,13 +65,16 @@ export default function CatalogToolbar({
 
   return (
     <div className="flex flex-col gap-6 border-b border-border pb-6 lg:flex-row lg:items-center lg:justify-between">
-      {/* On phones the filter pills scroll sideways (bleeding into the page
-          gutter) instead of wrapping their labels onto two lines. */}
-      <div className="-mx-5 flex items-center gap-x-5 gap-y-3 overflow-x-auto px-5 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 [&::-webkit-scrollbar]:hidden">
+      {/* On phones the material filter is a dropdown (its labels are too long for
+          pills) and the style filter is a full-width segmented control. */}
+      <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-5">
+        {filters.length > 0 && (
+          <MaterialSelect material={material} materials={materials} className="sm:hidden" />
+        )}
         {filters.length > 0 && (
           <nav
             aria-label="Filtrar por material"
-            className="inline-flex shrink-0 items-center gap-1 rounded-full border border-border bg-secondary/70 p-1"
+            className={cn(groupClass, "max-sm:hidden")}
           >
             {filters.map((filter) => {
               const active = filter.value === material
@@ -81,7 +85,7 @@ export default function CatalogToolbar({
                   aria-current={active ? "page" : undefined}
                   scroll={false}
                   className={cn(
-                    "inline-flex min-h-10 items-center gap-2 whitespace-nowrap rounded-full px-4 text-sm transition-[background-color,color,box-shadow] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-deep focus-visible:ring-offset-2 focus-visible:ring-offset-secondary",
+                    pillClass,
                     active
                       ? "bg-card text-foreground shadow-[0_1px_2px_rgb(12_10_9/0.06),0_4px_12px_rgb(12_10_9/0.06)] ring-1 ring-border"
                       : "text-muted-foreground hover:text-foreground",
@@ -92,7 +96,7 @@ export default function CatalogToolbar({
                       aria-hidden="true"
                       className={cn(
                         "size-3 shrink-0 rounded-full ring-1 ring-black/10",
-                        swatchClass[filter.value],
+                        materialSwatchClass[filter.value],
                       )}
                     />
                   )}
@@ -105,7 +109,7 @@ export default function CatalogToolbar({
         {styleFilters.length > 0 && (
           <nav
             aria-label="Filtrar por estilo"
-            className="inline-flex shrink-0 items-center gap-1 rounded-full border border-border bg-secondary/70 p-1"
+            className={groupClass}
           >
             {styleFilters.map((filter) => {
               const active = filter.value === style
@@ -116,7 +120,7 @@ export default function CatalogToolbar({
                   aria-current={active ? "page" : undefined}
                   scroll={false}
                   className={cn(
-                    "inline-flex min-h-10 items-center whitespace-nowrap rounded-full px-4 text-sm transition-[background-color,color,box-shadow] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-deep focus-visible:ring-offset-2 focus-visible:ring-offset-secondary",
+                    pillClass,
                     active
                       ? "bg-card text-foreground shadow-[0_1px_2px_rgb(12_10_9/0.06),0_4px_12px_rgb(12_10_9/0.06)] ring-1 ring-border"
                       : "text-muted-foreground hover:text-foreground",
@@ -128,13 +132,6 @@ export default function CatalogToolbar({
             })}
           </nav>
         )}
-        <p
-          className="shrink-0 whitespace-nowrap text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground"
-          aria-live="polite"
-        >
-          <span className="tabular-nums text-foreground">{total}</span>{" "}
-          {total === 1 ? "pieza" : "piezas"}
-        </p>
       </div>
 
       <SortSelect sort={sort} />
