@@ -186,17 +186,9 @@ export class LuminaSliderEngine {
     this.navigateToSlide((this.currentSlideIndex + 1) % slides.length);
   };
 
+  // The nav buttons are server-rendered with the hero; this only wires them up.
   private createSlidesNavigation = () => {
-    const nav = document.getElementById("slidesNav");
-    if (!nav) return;
-    nav.innerHTML = "";
-    slides.forEach((slide, i) => {
-      const item = document.createElement("button");
-      item.type = "button";
-      item.className = `slide-nav-item${i === 0 ? " active" : ""}`;
-      item.dataset.slideIndex = String(i);
-      item.setAttribute("aria-label", `Ir a la diapositiva ${i + 1}: ${slide.label}`);
-      item.innerHTML = `<div class="slide-progress-line"><div class="slide-progress-fill"></div></div><div class="slide-nav-title">${slide.label}</div>`;
+    document.querySelectorAll<HTMLButtonElement>("#slidesNav .slide-nav-item").forEach((item, i) => {
       item.addEventListener("click", (e) => {
         e.stopPropagation();
         if (!this.isTransitioning && i !== this.currentSlideIndex) {
@@ -205,7 +197,6 @@ export class LuminaSliderEngine {
           this.navigateToSlide(i);
         }
       });
-      nav.appendChild(item);
     });
   };
 

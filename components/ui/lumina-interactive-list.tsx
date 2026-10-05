@@ -57,7 +57,24 @@ export function Component() {
         </Link>
       </div>
 
-      <nav className="slides-navigation" id="slidesNav" aria-label="Diapositivas de la colección"></nav>
+      {/* Server-rendered so the labels paint with the hero; the slider engine
+          wires up these buttons once it boots. */}
+      <nav className="slides-navigation" id="slidesNav" aria-label="Diapositivas de la colección">
+        {slides.map((slide, i) => (
+          <button
+            key={slide.label}
+            type="button"
+            className={`slide-nav-item${i === 0 ? " active" : ""}`}
+            data-slide-index={i}
+            aria-label={`Ir a la diapositiva ${i + 1}: ${slide.label}`}
+          >
+            <div className="slide-progress-line">
+              <div className="slide-progress-fill"></div>
+            </div>
+            <div className="slide-nav-title">{slide.label}</div>
+          </button>
+        ))}
+      </nav>
     </main>
   );
 }
