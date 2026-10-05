@@ -2,11 +2,9 @@ import { ArrowUpRight, Clock, Mail, Phone } from "lucide-react"
 
 import {
   type BrandIcon,
-  FacebookIcon,
   INSTAGRAM_URL,
   InstagramIcon,
   WhatsappIcon,
-  YoutubeIcon,
 } from "@/components/socialIcons"
 import { EMAIL, PHONE_DISPLAY, PHONE_HREF, whatsappUrl } from "@/lib/contact"
 
@@ -48,8 +46,6 @@ type Social = { label: string; handle: string; href: string; icon: BrandIcon }
 
 const socials: Social[] = [
   { label: "Instagram", handle: "@_.luxgirl._", href: INSTAGRAM_URL, icon: InstagramIcon },
-  { label: "Facebook", handle: "Luxgirl", href: "https://facebook.com", icon: FacebookIcon },
-  { label: "YouTube", handle: "Luxgirl", href: "https://youtube.com", icon: YoutubeIcon },
 ]
 
 export default function Contact() {

@@ -1,6 +1,6 @@
 
 import Link from "next/link"
-import { ArrowUpRight, Mail } from "lucide-react"
+import { ArrowUpRight } from "lucide-react"
 
 import {
   type BrandIcon,
@@ -46,8 +46,6 @@ const columns: FooterColumn[] = [
 
 const socials: SocialLink[] = [
   { label: "Instagram", href: INSTAGRAM_URL, icon: InstagramIcon },
-  // { label: "Facebook", href: "https://facebook.com", icon: FacebookIcon },
-  // { label: "YouTube", href: "https://youtube.com", icon: YoutubeIcon },
 ]
 
 const legal: FooterLink[] = [
@@ -71,50 +69,36 @@ export default function Footer() {
 
       <div className="mx-auto max-w-400 px-5 sm:px-8 py-16 lg:py-20">
         <div className="flex flex-col gap-8 border-b border-white/10 pb-12 lg:flex-row lg:items-end lg:justify-between lg:pb-16">
-          <div className="max-w-xl">
-            <p className="text-[0.72rem] font-medium uppercase tracking-[0.32em] text-gold-bright">
-              Lista Luxgirl
+          <div className="max-w-5xl">
+            <p className="text-xs font-medium uppercase tracking-wide text-gold-bright">
+              @_.luxgirl._
             </p>
-            <h3 className="mt-3 text-[clamp(1.875rem,4vw,2.75rem)] font-semibold leading-[1.05] tracking-tight text-stone-50">
-              Únete y recibe lo nuevo primero
+            <h3 className="mt-3 text-4xl font-semibold leading-[1.05]  text-stone-50">
+              Síguenos para estar al tanto de todo
             </h3>
-            <p className="mt-3 max-w-md text-sm font-regular leading-relaxed text-stone-300">
-              Lanzamientos, ediciones limitadas y un 10&nbsp;% en tu primera compra.
+            <p className="mt-3 max-w-xl text-sm font-regular leading-relaxed text-stone-300">
+              Las piezas nuevas y las ediciones limitadas salen antes en Instagram. Si
+              algo te gusta, pídelo por mensaje directo.
             </p>
           </div>
 
-          <form
-            className="flex w-full max-w-md flex-col gap-3 sm:flex-row"
-            // Static scaffold — wire to a real subscribe action when available.
-            action="/"
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Seguir a Luxgirl en Instagram (@_.luxgirl._), se abre en una pestaña nueva"
+            className="group inline-flex h-12 w-full max-w-md shrink-0 cursor-pointer items-center justify-between gap-3 rounded-full bg-gold-bright pl-5 pr-2 text-stone-950 transition-colors duration-200 hover:bg-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-bright focus-visible:ring-offset-2 focus-visible:ring-offset-stone-950 sm:w-auto"
           >
-            <label htmlFor="footer-email" className="sr-only">
-              Correo electrónico
-            </label>
-            <div className="relative flex-1">
-              <Mail
-                aria-hidden="true"
-                className="pointer-events-none absolute left-4 top-1/2 size-4.5 -translate-y-1/2 text-stone-400"
-                strokeWidth={1.75}
-              />
-              <input
-                id="footer-email"
-                type="email"
-                name="email"
-                required
-                autoComplete="email"
-                placeholder="tu@correo.com"
-                className="h-12 w-full rounded-full border border-white/15 bg-white/5 pl-11 pr-4 text-sm text-stone-50 placeholder:text-stone-400 transition-colors focus:border-gold-bright focus:outline-none focus:ring-2 focus:ring-gold-bright/40"
-              />
-            </div>
-            <button
-              type="submit"
-              className="inline-flex h-12 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full bg-gold-bright px-6 text-xs font-semibold uppercase tracking-[0.16em] text-stone-950 transition-colors hover:bg-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-bright focus-visible:ring-offset-2 focus-visible:ring-offset-stone-950"
-            >
-              Suscribirme
+            <span className="inline-flex items-center gap-2.5">
+              <InstagramIcon className="size-4.5" />
+              <span className="text-xs font-semibold uppercase tracking-[0.16em]">
+                Seguir en Instagram
+              </span>
+            </span>
+            <span className="grid size-8 place-items-center rounded-full bg-stone-950 text-gold-bright transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:group-hover:translate-0">
               <ArrowUpRight className="size-4" />
-            </button>
-          </form>
+            </span>
+          </a>
         </div>
 
         {/* Main grid — brand + link columns */}
