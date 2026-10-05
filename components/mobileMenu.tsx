@@ -189,34 +189,55 @@ export default function MobileMenu({
           </span>
         </Link>
 
-        {/* Collections as chips */}
+        {/* Collections — 2×2 grid of tiles, arrow badge matches the featured card */}
         <div style={revealStyle(open, featuredStep + 2)} className={cn("mt-8", revealClass(open))}>
           <p className="text-[0.72rem] font-medium uppercase tracking-[0.32em] text-gold-bright">
             Colecciones
           </p>
-          <ul className="mt-4 flex flex-wrap gap-2">
-            {collections.map((collection) => (
-              <li key={collection.title}>
-                <Link
-                  href={collection.href}
-                  prefetch={prefetch}
-                  onClick={onClose}
-                  className="inline-flex min-h-11 items-center rounded-full border border-white/15 px-4 text-sm text-stone-200 outline-none transition-colors hover:border-gold-bright/60 hover:text-white focus-visible:ring-2 focus-visible:ring-gold-bright active:bg-white/10"
-                >
-                  {collection.title}
-                </Link>
-              </li>
-            ))}
-            <li>
-              <Link
-                href="/sobre-nosotras"
-                prefetch={prefetch}
-                onClick={onClose}
-                className="inline-flex min-h-11 items-center rounded-full border border-white/15 px-4 text-sm text-stone-200 outline-none transition-colors hover:border-gold-bright/60 hover:text-white focus-visible:ring-2 focus-visible:ring-gold-bright active:bg-white/10"
-              >
-                Sobre mí
-              </Link>
-            </li>
+          <ul className="mt-4 grid grid-cols-2 gap-3">
+            {[
+              ...collections,
+              {
+                title: "Sobre mí",
+                href: "/sobre-nosotras",
+                description: "La historia detrás del taller.",
+              },
+            ].map((collection) => {
+              const active = isActive(collection.href)
+              return (
+                <li key={collection.title}>
+                  <Link
+                    href={collection.href}
+                    prefetch={prefetch}
+                    onClick={onClose}
+                    aria-current={active ? "page" : undefined}
+                    className={cn(
+                      "group flex h-full flex-col gap-3 rounded-lg border bg-white/3 p-4 outline-none transition-[border-color,background-color,transform] duration-200 hover:border-gold-bright/50 hover:bg-white/6 focus-visible:ring-2 focus-visible:ring-gold-bright active:scale-[0.98] motion-reduce:transition-none",
+                      active ? "border-gold-bright/60" : "border-white/10"
+                    )}
+                  >
+                    <span className="flex items-center justify-between gap-3">
+                      <span
+                        className={cn(
+                          "text-lg font-semibold leading-tight transition-colors group-hover:text-gold-bright",
+                          active ? "text-gold-bright" : "text-white"
+                        )}
+                      >
+                        {collection.title}
+                      </span>
+                      <ArrowUpRight
+                        aria-hidden="true"
+                        strokeWidth={1.5}
+                        className="size-5 shrink-0 text-stone-500 transition-[color,transform] duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-gold-bright group-active:text-gold-bright"
+                      />
+                    </span>
+                    <span className="line-clamp-2 text-[0.8rem] leading-snug text-stone-400">
+                      {collection.description}
+                    </span>
+                  </Link>
+                </li>
+              )
+            })}
           </ul>
         </div>
 
